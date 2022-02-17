@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "lint": "yarn add --dev husky lint-staged",
+    "lint": "eslint ./src --ext ts",
     "format": "yarn prettier --write src",
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build",
