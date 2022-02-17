@@ -16,4 +16,4 @@ export { default as UrlTools } from './utils/UrlTools';
 /* -------------------------------------------------------------------------- */
 /*                                    Enums                                   */
 /* -------------------------------------------------------------------------- */
-export { default as ENDPOINT_ENUM } from './enums/ENDPOINT_ENUM';
+export { default as API_ENDPOINTS } from './enums/API_ENDPOINTS';

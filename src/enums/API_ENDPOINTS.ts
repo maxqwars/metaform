@@ -5,7 +5,7 @@
 
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-shadow
-enum ENDPOINT_ENUM {
+enum API_ENDPOINTS {
   ADVANCED_SEARCH = 'advancedSearch',
   GET_CACHING_NODES = 'getCachingNodes',
   GET_CHANGES = 'getChanges',
@@ -24,4 +24,4 @@ enum ENDPOINT_ENUM {
   NONE = '',
 }
 
-export default ENDPOINT_ENUM;
+export default API_ENDPOINTS;
