@@ -1,8 +1,5 @@
 import UrlBuilder from '../core/UrlBuilder';
 
-const BASE_URL = 'api.server.com/v2';
-const urlBuilder = new UrlBuilder(BASE_URL);
-
 describe('Required methods to be defined', () => {
   test('UrlBuilder.setEndpoint', () => {
     expect(UrlBuilder.prototype.setEndpoint).toBeDefined();

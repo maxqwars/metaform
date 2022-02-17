@@ -12,7 +12,7 @@ export default class CoreQueryParamsBuilder {
 
   public build(): string {
     return Object.keys(this.params)
-      .map(key => key + '=' + this.params[key])
+      .map(key => `${key}=${this.params[key]}`)
       .join('&');
   }
 }

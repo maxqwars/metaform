@@ -21,6 +21,6 @@ describe('Required methods to be defined', () => {
 describe('CoreQueryBuilder.addParameter test collection', () => {
   test('Add param', () => {
     tqpb.addId(0);
-    expect(tqpb.buff['id']).toBe(0);
+    expect(tqpb.buff.id).toBe(0);
   });
 });

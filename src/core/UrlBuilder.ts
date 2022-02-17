@@ -3,13 +3,17 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+/* eslint-disable class-methods-use-this */
+
 import API_ENDPOINTS from '../enums/API_ENDPOINTS';
 
 export default class UrlBuilder {
   private readonly baseUrl: string;
+
   private readonly useHttps: boolean;
 
   private endpoint: API_ENDPOINTS;
+
   private queryParams: string;
 
   /**
@@ -37,7 +41,7 @@ export default class UrlBuilder {
    * @memberof UrlBuilder
    */
   private assignBaseUrl(url: string): string {
-    return url[url.length - 1] !== '/' ? url + '/' : url;
+    return url[url.length - 1] !== '/' ? `${url}/` : url;
   }
 
   private isEmptyString(str: string): boolean {

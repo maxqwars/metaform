@@ -3,6 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+/* eslint-disable prefer-destructuring */
+
 export default class UrlTools {
   /**
    * Extract hostname from url
@@ -48,12 +50,12 @@ export default class UrlTools {
     const arrLen = splitArr.length;
 
     if (arrLen > 2) {
-      domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
+      domain = `${splitArr[arrLen - 2]}.${splitArr[arrLen - 1]}`;
       if (
-        splitArr[arrLen - 2].length == 2 &&
-        splitArr[arrLen - 1].length == 2
+        splitArr[arrLen - 2].length === 2 &&
+        splitArr[arrLen - 1].length === 2
       ) {
-        domain = splitArr[arrLen - 3] + '.' + domain;
+        domain = `${splitArr[arrLen - 3]}.${domain}`;
       }
     }
     return domain;
