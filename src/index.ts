@@ -7,6 +7,7 @@
 /*                                Core classes                                */
 /* -------------------------------------------------------------------------- */
 export { default as UrlBuilder } from './core/UrlBuilder';
+export { default as CoreQueryParamsBuilder } from './core/CoreQueryParamsBuilder';
 
 /* -------------------------------------------------------------------------- */
 /*                                    Utils                                   */
