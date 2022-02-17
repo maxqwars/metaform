@@ -1,6 +1,6 @@
 {
   "name": "@maxqwars/metaform",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Metaform - next step of Xconnect",
   "main": "build/index.js",
   "types": "build/index.d.ts",
