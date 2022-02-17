@@ -3,8 +3,17 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-/* Core classes */
+/* -------------------------------------------------------------------------- */
+/*                                Core classes                                */
+/* -------------------------------------------------------------------------- */
 export { default as UrlBuilder } from './core/UrlBuilder';
 
-/* Utils */
+/* -------------------------------------------------------------------------- */
+/*                                    Utils                                   */
+/* -------------------------------------------------------------------------- */
 export { default as UrlTools } from './utils/UrlTools';
+
+/* -------------------------------------------------------------------------- */
+/*                                    Enums                                   */
+/* -------------------------------------------------------------------------- */
+export { default as ENDPOINT_ENUM } from './enums/ENDPOINT_ENUM';
