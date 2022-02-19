@@ -5,6 +5,12 @@
 
 /* eslint-disable prefer-destructuring */
 
+/**
+ * A class for extracting information from a url
+ *
+ * @export
+ * @class UrlTools
+ */
 export default class UrlTools {
   /**
    * Extract hostname from url

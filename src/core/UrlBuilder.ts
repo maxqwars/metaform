@@ -7,6 +7,12 @@
 
 import API_ENDPOINTS from '../enums/API_ENDPOINTS';
 
+/**
+ * Class for creating urls for API requests
+ *
+ * @export
+ * @class UrlBuilder
+ */
 export default class UrlBuilder {
   private readonly baseUrl: string;
 
@@ -44,6 +50,14 @@ export default class UrlBuilder {
     return url[url.length - 1] !== '/' ? `${url}/` : url;
   }
 
+  /**
+   * Checking for an empty string
+   *
+   * @private
+   * @param {string} str
+   * @return {*}  {boolean}
+   * @memberof UrlBuilder
+   */
   private isEmptyString(str: string): boolean {
     return !!str || str.length === 0;
   }
