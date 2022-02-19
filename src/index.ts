@@ -24,3 +24,32 @@ export { default as PLAYLIST_TYPE } from './enums/PLAYLIST_TYPE';
 export { default as TITLE_CONTENT_TYPE } from './enums/TITLE_CONTENT_TYPE';
 export { default as TITLE_SEASON } from './enums/TITLE_SEASON';
 export { default as WEEK_DAY } from './enums/WEEK_DAY';
+
+/* -------------------------------------------------------------------------- */
+/*                                    Types                                   */
+/* -------------------------------------------------------------------------- */
+export {
+  ISelectQueryParams,
+  IFormatQueryParams,
+  IShiftQueryParams,
+} from './typings/SharedTypes';
+
+export {
+  IGetTitleQueryParams,
+  IGetTitlesQueryParams,
+  INames,
+  IStatus,
+  IPoster,
+  IPosters,
+  ITeam,
+  IType,
+  ISeason,
+  IBlocked,
+  ISeries,
+  IObjectPlaylist,
+  IPlayer,
+  ITorrentQuality,
+  ITorrent,
+  ITorrents,
+  ITitle,
+} from './typings/DatabaseTypes';
