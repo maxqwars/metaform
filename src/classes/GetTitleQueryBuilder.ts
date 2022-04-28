@@ -28,42 +28,42 @@ export default class GetTitleQueryBuilder
   implements IGetTitleQueryBuilder
 {
   setId(id?: number): IGetTitleQueryBuilder {
-    super.addParam('id', id);
+    if (id) super.addParam('id', id);
     return this;
   }
 
   setCode(code?: string): IGetTitleQueryBuilder {
-    super.addParam('code', code);
+    if (code) super.addParam('code', code);
     return this;
   }
 
   setFilter(keys?: string[]): IGetTitleQueryBuilder {
-    super.addParam('filter', keys);
+    if (keys) super.addParam('filter', keys);
     return this;
   }
 
   setRemove(keys?: string[]): IGetTitleQueryBuilder {
-    super.addParam('remove', keys);
+    if (keys) super.addParam('remove', keys);
     return this;
   }
 
   setInclude(keys?: INCLUDE_RESOURCES[]): IGetTitleQueryBuilder {
-    super.addParam('include', keys);
+    if (keys) super.addParam('include', keys);
     return this;
   }
 
   setTorrentId(id?: number): IGetTitleQueryBuilder {
-    super.addParam('torrent_id', id);
+    if (id) super.addParam('torrent_id', id);
     return this;
   }
 
   setDescriptionType(type?: DESCRIPTION_TYPE): IGetTitleQueryBuilder {
-    super.addParam('description_type', type);
+    if (type) super.addParam('description_type', type);
     return this;
   }
 
   setPlaylistType(type?: PLAYLIST_TYPE): IGetTitleQueryBuilder {
-    super.addParam('playlist_type', type);
+    if (type) super.addParam('playlist_type', type);
     return this;
   }
 

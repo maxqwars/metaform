@@ -26,7 +26,6 @@ export default class Database extends ModuleBase {
     this.options = options;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async getTitle(
     params: DatabaseTypes.IGetTitleQueryParams
   ): Promise<DatabaseTypes.Title | SharedTypes.APIError | Error> {
@@ -43,11 +42,9 @@ export default class Database extends ModuleBase {
       descriptionType,
     } = params;
 
-    /* Init builders */
     const Q_BUILD = new GetTitleQueryBuilder();
     const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
 
-    /* Configure builders */
     U_BUILD.setEndpoint(API_ENDPOINT.GET_TITLE);
 
     Q_BUILD.setId(id)
@@ -63,9 +60,16 @@ export default class Database extends ModuleBase {
 
     const FINAL_URL = U_BUILD.build();
 
-    // eslint-disable-next-line no-unused-vars
-    const result = await this.fetchWithTimeout(FINAL_URL, timeout);
+    try {
+      const response = await this.fetchWithTimeout(FINAL_URL, timeout);
+      console.log(await response.json());
+    } catch (e) {
+      throw new Error('Connection timemout');
+    }
 
-    throw new Error('Not implemented');
+    return {
+      code: 0,
+      message: 'Not implemented',
+    };
   }
 }
