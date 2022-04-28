@@ -86,6 +86,7 @@
             >
               <h1>Metaform</h1>
             </a>
+            <p>Metaform - the next stage of XConnect development</p>
             <p>
               <img
                 src="https://img.shields.io/github/issues/maxqwars/metaform"
@@ -120,7 +121,6 @@
                 alt=""
               />
             </p>
-            <p>Metaform - the next stage of XConnect development</p>
 
             <a
               href="#what-is-metaform"
@@ -133,6 +133,48 @@
               Metaform is an open library for processing (or building) requests
               to servers compatible with the AniLibria REST API.
             </p>
+
+            <a
+              href="#browse-documentation"
+              id="browse-documentation"
+              style="color: inherit; text-decoration: none"
+            >
+              <h2>Browse documentation:</h2>
+            </a>
+            <ul>
+              <li>
+                <a href="https://maxqwars.github.io/metaform/"
+                  >TypeDoc powered documentation</a
+                >
+              </li>
+            </ul>
+
+            <a
+              href="#metaform-in-action"
+              id="metaform-in-action"
+              style="color: inherit; text-decoration: none"
+            >
+              <h2>Metaform in action</h2>
+            </a>
+            <p>Try writing a project using Metaform and these templates</p>
+            <ul>
+              <li>
+                <a href="https://codesandbox.io/s/gallant-galois-0puc4i"
+                  >CodeSandbox + React</a
+                >
+              </li>
+            </ul>
+
+            <a
+              href="#metaform-in-real-projects-showcase"
+              id="metaform-in-real-projects-showcase"
+              style="color: inherit; text-decoration: none"
+            >
+              <h2>Metaform in real projects (showcase)</h2>
+            </a>
+            <blockquote>
+              <p>Not found :(</p>
+            </blockquote>
           </div>
         </div>
         <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -146,6 +188,11 @@
               <li class="tsd-kind-enum">
                 <a href="enums/API_ENDPOINTS.html" class="tsd-kind-icon"
                   >API_<wbr />ENDPOINTS</a
+                >
+              </li>
+              <li class="tsd-kind-enum">
+                <a href="enums/API_VERSION.html" class="tsd-kind-icon"
+                  >API_<wbr />VERSION</a
                 >
               </li>
               <li class="tsd-kind-enum">
@@ -179,25 +226,30 @@
                 >
               </li>
               <li class="tsd-kind-class">
-                <a
-                  href="classes/CoreQueryParamsBuilder.html"
-                  class="tsd-kind-icon"
-                  >Core<wbr />Query<wbr />Params<wbr />Builder</a
+                <a href="classes/Database.html" class="tsd-kind-icon"
+                  >Database</a
                 >
               </li>
               <li class="tsd-kind-class">
-                <a href="classes/UrlBuilder.html" class="tsd-kind-icon"
-                  >Url<wbr />Builder</a
+                <a
+                  href="classes/GetTitleQueryBuilder.html"
+                  class="tsd-kind-icon"
+                  >Get<wbr />Title<wbr />Query<wbr />Builder</a
+                >
+              </li>
+              <li class="tsd-kind-class">
+                <a href="classes/QueryBuilderBase.html" class="tsd-kind-icon"
+                  >Query<wbr />Builder<wbr />Base</a
+                >
+              </li>
+              <li class="tsd-kind-class">
+                <a href="classes/RequestURLBuilder.html" class="tsd-kind-icon"
+                  >RequestURLBuilder</a
                 >
               </li>
               <li class="tsd-kind-class">
                 <a href="classes/UrlTools.html" class="tsd-kind-icon"
                   >Url<wbr />Tools</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IBlocked.html" class="tsd-kind-icon"
-                  >IBlocked</a
                 >
               </li>
               <li class="tsd-kind-interface">
@@ -222,45 +274,10 @@
                 >
               </li>
               <li class="tsd-kind-interface">
-                <a href="interfaces/INames.html" class="tsd-kind-icon"
-                  >INames</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IObjectPlaylist.html" class="tsd-kind-icon"
-                  >IObject<wbr />Playlist</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IPlayer.html" class="tsd-kind-icon"
-                  >IPlayer</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IPoster.html" class="tsd-kind-icon"
-                  >IPoster</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IPosters.html" class="tsd-kind-icon"
-                  >IPosters</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ISeason.html" class="tsd-kind-icon"
-                  >ISeason</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
                 <a
                   href="interfaces/ISelectQueryParams.html"
                   class="tsd-kind-icon"
                   >ISelect<wbr />Query<wbr />Params</a
-                >
-              </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ISeries.html" class="tsd-kind-icon"
-                  >ISeries</a
                 >
               </li>
               <li class="tsd-kind-interface">
@@ -270,36 +287,74 @@
                   >IShift<wbr />Query<wbr />Params</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IStatus.html" class="tsd-kind-icon"
-                  >IStatus</a
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#ObjectPlaylist" class="tsd-kind-icon"
+                  >Object<wbr />Playlist</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ITeam.html" class="tsd-kind-icon">ITeam</a>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#Poster" class="tsd-kind-icon">Poster</a>
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ITitle.html" class="tsd-kind-icon"
-                  >ITitle</a
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#Title" class="tsd-kind-icon">Title</a>
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleBlocked" class="tsd-kind-icon"
+                  >Title<wbr />Blocked</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ITorrent.html" class="tsd-kind-icon"
-                  >ITorrent</a
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleNames" class="tsd-kind-icon"
+                  >Title<wbr />Names</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ITorrentQuality.html" class="tsd-kind-icon"
-                  >ITorrent<wbr />Quality</a
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitlePlayer" class="tsd-kind-icon"
+                  >Title<wbr />Player</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/ITorrents.html" class="tsd-kind-icon"
-                  >ITorrents</a
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitlePosters" class="tsd-kind-icon"
+                  >Title<wbr />Posters</a
                 >
               </li>
-              <li class="tsd-kind-interface">
-                <a href="interfaces/IType.html" class="tsd-kind-icon">IType</a>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleSeason" class="tsd-kind-icon"
+                  >Title<wbr />Season</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleSeries" class="tsd-kind-icon"
+                  >Title<wbr />Series</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleStatus" class="tsd-kind-icon"
+                  >Title<wbr />Status</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleTeam" class="tsd-kind-icon"
+                  >Title<wbr />Team</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleTorrents" class="tsd-kind-icon"
+                  >Title<wbr />Torrents</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TitleType" class="tsd-kind-icon"
+                  >Title<wbr />Type</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#Torrent" class="tsd-kind-icon">Torrent</a>
+              </li>
+              <li class="tsd-kind-type-alias">
+                <a href="modules.html#TorrentQuality" class="tsd-kind-icon"
+                  >Torrent<wbr />Quality</a
+                >
               </li>
             </ul>
           </nav>
@@ -316,6 +371,16 @@
             </li>
             <li class="tsd-kind-method tsd-parent-kind-class">
               <span class="tsd-kind-icon">Method</span>
+            </li>
+          </ul>
+          <ul class="tsd-legend">
+            <li
+              class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"
+            >
+              <span class="tsd-kind-icon">Inherited constructor</span>
+            </li>
+            <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+              <span class="tsd-kind-icon">Inherited method</span>
             </li>
           </ul>
           <ul class="tsd-legend">

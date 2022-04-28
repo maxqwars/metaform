@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>CoreQueryParamsBuilder | @maxqwars/metaform</title>
+    <title>Database | @maxqwars/metaform</title>
     <meta name="description" content="Documentation for @maxqwars/metaform" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -75,32 +75,24 @@
         <div class="container">
           <ul class="tsd-breadcrumb">
             <li><a href="../modules.html">@maxqwars/metaform</a></li>
-            <li>
-              <a href="CoreQueryParamsBuilder.html">CoreQueryParamsBuilder</a>
-            </li>
+            <li><a href="Database.html">Database</a></li>
           </ul>
-          <h1>Class CoreQueryParamsBuilder</h1>
+          <h1>Class Database</h1>
         </div>
       </div>
     </header>
     <div class="container container-main">
       <div class="row">
         <div class="col-8 col-content">
-          <section class="tsd-panel tsd-comment">
-            <div class="tsd-comment tsd-typography">
-              <div class="lead">
-                <p>Core class for create query params builders</p>
-              </div>
-              <dl class="tsd-comment-tags">
-                <dt>export</dt>
-                <dd></dd>
-              </dl>
-            </div>
-          </section>
           <section class="tsd-panel tsd-hierarchy">
             <h3>Hierarchy</h3>
             <ul class="tsd-hierarchy">
-              <li><span class="target">CoreQueryParamsBuilder</span></li>
+              <li>
+                <span class="tsd-signature-type">default</span>
+                <ul class="tsd-hierarchy">
+                  <li><span class="target">Database</span></li>
+                </ul>
+              </li>
             </ul>
           </section>
           <section class="tsd-panel-group tsd-index-group">
@@ -110,25 +102,25 @@
                 <section class="tsd-index-section">
                   <h3>Constructors</h3>
                   <ul class="tsd-index-list">
-                    <li class="tsd-kind-constructor tsd-parent-kind-class">
-                      <a
-                        href="CoreQueryParamsBuilder.html#constructor"
-                        class="tsd-kind-icon"
+                    <li
+                      class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"
+                    >
+                      <a href="Database.html#constructor" class="tsd-kind-icon"
                         >constructor</a
                       >
                     </li>
                   </ul>
                 </section>
-                <section class="tsd-index-section tsd-is-private-protected">
+                <section
+                  class="tsd-index-section tsd-is-private tsd-is-private-protected"
+                >
                   <h3>Properties</h3>
                   <ul class="tsd-index-list">
                     <li
-                      class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"
+                      class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                     >
-                      <a
-                        href="CoreQueryParamsBuilder.html#params"
-                        class="tsd-kind-icon"
-                        >params</a
+                      <a href="Database.html#options" class="tsd-kind-icon"
+                        >options</a
                       >
                     </li>
                   </ul>
@@ -137,19 +129,17 @@
                   <h3>Methods</h3>
                   <ul class="tsd-index-list">
                     <li
-                      class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"
+                      class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"
                     >
                       <a
-                        href="CoreQueryParamsBuilder.html#addParameter"
+                        href="Database.html#fetchWithTimeout"
                         class="tsd-kind-icon"
-                        >add<wbr />Parameter</a
+                        >fetch<wbr />With<wbr />Timeout</a
                       >
                     </li>
                     <li class="tsd-kind-method tsd-parent-kind-class">
-                      <a
-                        href="CoreQueryParamsBuilder.html#build"
-                        class="tsd-kind-icon"
-                        >build</a
+                      <a href="Database.html#getTitle" class="tsd-kind-icon"
+                        >get<wbr />Title</a
                       >
                     </li>
                   </ul>
@@ -160,7 +150,7 @@
           <section class="tsd-panel-group tsd-member-group">
             <h2>Constructors</h2>
             <section
-              class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"
+              class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"
             >
               <a id="constructor" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
@@ -188,31 +178,52 @@
                 ></a>
               </h3>
               <ul
-                class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class"
+                class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"
               >
                 <li class="tsd-signature tsd-kind-icon">
-                  new <wbr />Core<wbr />Query<wbr />Params<wbr />Builder<span
-                    class="tsd-signature-symbol"
-                    >(</span
+                  new <wbr />Database<span class="tsd-signature-symbol">(</span
+                  >options<span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">DatabaseOptions</span
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
                   ><a
-                    href="CoreQueryParamsBuilder.html"
+                    href="Database.html"
                     class="tsd-signature-type"
                     data-tsd-kind="Class"
-                    >CoreQueryParamsBuilder</a
+                    >Database</a
                   >
                 </li>
               </ul>
               <ul class="tsd-descriptions">
                 <li class="tsd-description">
+                  <aside class="tsd-sources">
+                    <p>Overrides ModuleBase.constructor</p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/modules/Database.ts#L24"
+                          >modules/Database.ts:24</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                  <h4 class="tsd-parameters-title">Parameters</h4>
+                  <ul class="tsd-parameters">
+                    <li>
+                      <h5>
+                        options:
+                        <span class="tsd-signature-type">DatabaseOptions</span>
+                      </h5>
+                    </li>
+                  </ul>
                   <h4 class="tsd-returns-title">
                     Returns
                     <a
-                      href="CoreQueryParamsBuilder.html"
+                      href="Database.html"
                       class="tsd-signature-type"
                       data-tsd-kind="Class"
-                      >CoreQueryParamsBuilder</a
+                      >Database</a
                     >
                   </h4>
                 </li>
@@ -220,17 +231,16 @@
             </section>
           </section>
           <section
-            class="tsd-panel-group tsd-member-group tsd-is-private-protected"
+            class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected"
           >
             <h2>Properties</h2>
             <section
-              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected"
+              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"
             >
-              <a id="params" class="tsd-anchor"></a>
+              <a id="options" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <span class="tsd-flag ts-flagProtected">Protected</span>
-                params<a
-                  href="#params"
+                <span class="tsd-flag ts-flagPrivate">Private</span> options<a
+                  href="#options"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg
@@ -253,46 +263,31 @@
                 ></a>
               </h3>
               <div class="tsd-signature tsd-kind-icon">
-                params<span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-symbol">{}</span
-                ><span class="tsd-signature-symbol"> = {}</span>
+                options<span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">DatabaseOptions</span>
               </div>
               <aside class="tsd-sources">
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/e924334/src/core/CoreQueryParamsBuilder.ts#L13"
-                      >core/CoreQueryParamsBuilder.ts:13</a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/modules/Database.ts#L22"
+                      >modules/Database.ts:22</a
                     >
                   </li>
                 </ul>
               </aside>
-              <div class="tsd-type-declaration">
-                <h4>Type declaration</h4>
-                <ul class="tsd-parameters">
-                  <li class="tsd-parameter-index-signature">
-                    <h5>
-                      <span class="tsd-signature-symbol">[</span>key:
-                      <span class="tsd-signature-type">string</span
-                      ><span class="tsd-signature-symbol">]: </span
-                      ><span class="tsd-signature-type">unknown</span>
-                    </h5>
-                  </li>
-                </ul>
-              </div>
             </section>
           </section>
           <section class="tsd-panel-group tsd-member-group">
             <h2>Methods</h2>
             <section
-              class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected"
+              class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited"
             >
-              <a id="addParameter" class="tsd-anchor"></a>
+              <a id="fetchWithTimeout" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <span class="tsd-flag ts-flagProtected">Protected</span>
-                add<wbr />Parameter<a
-                  href="#addParameter"
+                fetch<wbr />With<wbr />Timeout<a
+                  href="#fetchWithTimeout"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg
@@ -315,57 +310,67 @@
                 ></a>
               </h3>
               <ul
-                class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected"
+                class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited"
               >
                 <li class="tsd-signature tsd-kind-icon">
-                  add<wbr />Parameter<span class="tsd-signature-symbol">(</span
-                  >key<span class="tsd-signature-symbol">: </span
-                  ><span class="tsd-signature-type">string</span>, value<span
+                  fetch<wbr />With<wbr />Timeout<span
+                    class="tsd-signature-symbol"
+                    >(</span
+                  >url<span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">string</span>, timeout<span
                     class="tsd-signature-symbol"
                     >: </span
-                  ><span class="tsd-signature-type">unknown</span
+                  ><span class="tsd-signature-type">number</span>, options<span
+                    class="tsd-signature-symbol"
+                    >?: </span
+                  ><span class="tsd-signature-symbol">{}</span
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
-                  ><span class="tsd-signature-type">void</span>
+                  ><span class="tsd-signature-type">Promise</span
+                  ><span class="tsd-signature-symbol">&lt;</span
+                  ><span class="tsd-signature-type">Response</span
+                  ><span class="tsd-signature-symbol">&gt;</span>
                 </li>
               </ul>
               <ul class="tsd-descriptions">
                 <li class="tsd-description">
                   <aside class="tsd-sources">
+                    <p>Inherited from ModuleBase.fetchWithTimeout</p>
                     <ul>
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/CoreQueryParamsBuilder.ts#L23"
-                          >core/CoreQueryParamsBuilder.ts:23</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/modules/ModuleBase.ts#L8"
+                          >modules/ModuleBase.ts:8</a
                         >
                       </li>
                     </ul>
                   </aside>
-                  <div class="tsd-comment tsd-typography">
-                    <div class="lead">
-                      <p>Add new parameter to query</p>
-                    </div>
-                    <dl class="tsd-comment-tags">
-                      <dt>memberof</dt>
-                      <dd><p>CoreQueryParamsBuilder</p></dd>
-                    </dl>
-                  </div>
                   <h4 class="tsd-parameters-title">Parameters</h4>
                   <ul class="tsd-parameters">
                     <li>
                       <h5>
-                        key: <span class="tsd-signature-type">string</span>
+                        url: <span class="tsd-signature-type">string</span>
                       </h5>
                     </li>
                     <li>
                       <h5>
-                        value: <span class="tsd-signature-type">unknown</span>
+                        timeout: <span class="tsd-signature-type">number</span>
                       </h5>
+                    </li>
+                    <li>
+                      <h5>
+                        options: <span class="tsd-signature-symbol">{}</span
+                        ><span class="tsd-signature-symbol"> = {}</span>
+                      </h5>
+                      <ul class="tsd-parameters"></ul>
                     </li>
                   </ul>
                   <h4 class="tsd-returns-title">
-                    Returns <span class="tsd-signature-type">void</span>
+                    Returns <span class="tsd-signature-type">Promise</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><span class="tsd-signature-type">Response</span
+                    ><span class="tsd-signature-symbol">&gt;</span>
                   </h4>
                 </li>
               </ul>
@@ -373,10 +378,10 @@
             <section
               class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"
             >
-              <a id="build" class="tsd-anchor"></a>
+              <a id="getTitle" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                build<a
-                  href="#build"
+                get<wbr />Title<a
+                  href="#getTitle"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg
@@ -400,10 +405,27 @@
               </h3>
               <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
                 <li class="tsd-signature tsd-kind-icon">
-                  build<span class="tsd-signature-symbol">(</span
+                  get<wbr />Title<span class="tsd-signature-symbol">(</span
+                  >params<span class="tsd-signature-symbol">: </span
+                  ><a
+                    href="../interfaces/IGetTitleQueryParams.html"
+                    class="tsd-signature-type"
+                    data-tsd-kind="Interface"
+                    >IGetTitleQueryParams</a
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
-                  ><span class="tsd-signature-type">string</span>
+                  ><span class="tsd-signature-type">Promise</span
+                  ><span class="tsd-signature-symbol">&lt;</span
+                  ><a
+                    href="../modules.html#Title"
+                    class="tsd-signature-type"
+                    data-tsd-kind="Type alias"
+                    >Title</a
+                  ><span class="tsd-signature-symbol"> | </span
+                  ><span class="tsd-signature-type">APIError</span
+                  ><span class="tsd-signature-symbol"> | </span
+                  ><span class="tsd-signature-type">Error</span
+                  ><span class="tsd-signature-symbol">&gt;</span>
                 </li>
               </ul>
               <ul class="tsd-descriptions">
@@ -413,25 +435,40 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/CoreQueryParamsBuilder.ts#L33"
-                          >core/CoreQueryParamsBuilder.ts:33</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/modules/Database.ts#L30"
+                          >modules/Database.ts:30</a
                         >
                       </li>
                     </ul>
                   </aside>
-                  <div class="tsd-comment tsd-typography">
-                    <div class="lead">
-                      <p>Build query params string</p>
-                    </div>
-                    <dl class="tsd-comment-tags">
-                      <dt>memberof</dt>
-                      <dd><p>CoreQueryParamsBuilder</p></dd>
-                    </dl>
-                  </div>
+                  <h4 class="tsd-parameters-title">Parameters</h4>
+                  <ul class="tsd-parameters">
+                    <li>
+                      <h5>
+                        params:
+                        <a
+                          href="../interfaces/IGetTitleQueryParams.html"
+                          class="tsd-signature-type"
+                          data-tsd-kind="Interface"
+                          >IGetTitleQueryParams</a
+                        >
+                      </h5>
+                    </li>
+                  </ul>
                   <h4 class="tsd-returns-title">
-                    Returns <span class="tsd-signature-type">string</span>
+                    Returns <span class="tsd-signature-type">Promise</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><a
+                      href="../modules.html#Title"
+                      class="tsd-signature-type"
+                      data-tsd-kind="Type alias"
+                      >Title</a
+                    ><span class="tsd-signature-symbol"> | </span
+                    ><span class="tsd-signature-type">APIError</span
+                    ><span class="tsd-signature-symbol"> | </span
+                    ><span class="tsd-signature-type">Error</span
+                    ><span class="tsd-signature-symbol">&gt;</span>
                   </h4>
-                  <div><p>{string}</p></div>
                 </li>
               </ul>
             </section>
@@ -446,40 +483,34 @@
           <nav class="tsd-navigation secondary menu-sticky">
             <ul>
               <li class="current tsd-kind-class">
-                <a href="CoreQueryParamsBuilder.html" class="tsd-kind-icon"
-                  >Core<wbr />Query<wbr />Params<wbr />Builder</a
-                >
+                <a href="Database.html" class="tsd-kind-icon">Database</a>
                 <ul>
-                  <li class="tsd-kind-constructor tsd-parent-kind-class">
-                    <a
-                      href="CoreQueryParamsBuilder.html#constructor"
-                      class="tsd-kind-icon"
+                  <li
+                    class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"
+                  >
+                    <a href="Database.html#constructor" class="tsd-kind-icon"
                       >constructor</a
                     >
                   </li>
                   <li
-                    class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"
+                    class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                   >
-                    <a
-                      href="CoreQueryParamsBuilder.html#params"
-                      class="tsd-kind-icon"
-                      >params</a
+                    <a href="Database.html#options" class="tsd-kind-icon"
+                      >options</a
                     >
                   </li>
                   <li
-                    class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"
+                    class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"
                   >
                     <a
-                      href="CoreQueryParamsBuilder.html#addParameter"
+                      href="Database.html#fetchWithTimeout"
                       class="tsd-kind-icon"
-                      >add<wbr />Parameter</a
+                      >fetch<wbr />With<wbr />Timeout</a
                     >
                   </li>
                   <li class="tsd-kind-method tsd-parent-kind-class">
-                    <a
-                      href="CoreQueryParamsBuilder.html#build"
-                      class="tsd-kind-icon"
-                      >build</a
+                    <a href="Database.html#getTitle" class="tsd-kind-icon"
+                      >get<wbr />Title</a
                     >
                   </li>
                 </ul>
@@ -499,6 +530,16 @@
             </li>
             <li class="tsd-kind-method tsd-parent-kind-class">
               <span class="tsd-kind-icon">Method</span>
+            </li>
+          </ul>
+          <ul class="tsd-legend">
+            <li
+              class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"
+            >
+              <span class="tsd-kind-icon">Inherited constructor</span>
+            </li>
+            <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+              <span class="tsd-kind-icon">Inherited method</span>
             </li>
           </ul>
           <ul class="tsd-legend">

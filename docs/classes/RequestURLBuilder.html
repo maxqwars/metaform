@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>UrlBuilder | @maxqwars/metaform</title>
+    <title>RequestURLBuilder | @maxqwars/metaform</title>
     <meta name="description" content="Documentation for @maxqwars/metaform" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -75,9 +75,9 @@
         <div class="container">
           <ul class="tsd-breadcrumb">
             <li><a href="../modules.html">@maxqwars/metaform</a></li>
-            <li><a href="UrlBuilder.html">UrlBuilder</a></li>
+            <li><a href="RequestURLBuilder.html">RequestURLBuilder</a></li>
           </ul>
-          <h1>Class UrlBuilder</h1>
+          <h1>Class RequestURLBuilder</h1>
         </div>
       </div>
     </header>
@@ -98,7 +98,7 @@
           <section class="tsd-panel tsd-hierarchy">
             <h3>Hierarchy</h3>
             <ul class="tsd-hierarchy">
-              <li><span class="target">UrlBuilder</span></li>
+              <li><span class="target">RequestURLBuilder</span></li>
             </ul>
           </section>
           <section class="tsd-panel-group tsd-index-group">
@@ -110,7 +110,7 @@
                   <ul class="tsd-index-list">
                     <li class="tsd-kind-constructor tsd-parent-kind-class">
                       <a
-                        href="UrlBuilder.html#constructor"
+                        href="RequestURLBuilder.html#constructor"
                         class="tsd-kind-icon"
                         >constructor</a
                       >
@@ -125,14 +125,27 @@
                     <li
                       class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                     >
-                      <a href="UrlBuilder.html#baseUrl" class="tsd-kind-icon"
+                      <a
+                        href="RequestURLBuilder.html#apiVersion"
+                        class="tsd-kind-icon"
+                        >api<wbr />Version</a
+                      >
+                    </li>
+                    <li
+                      class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
+                    >
+                      <a
+                        href="RequestURLBuilder.html#baseUrl"
+                        class="tsd-kind-icon"
                         >base<wbr />Url</a
                       >
                     </li>
                     <li
                       class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                     >
-                      <a href="UrlBuilder.html#endpoint" class="tsd-kind-icon"
+                      <a
+                        href="RequestURLBuilder.html#endpoint"
+                        class="tsd-kind-icon"
                         >endpoint</a
                       >
                     </li>
@@ -140,7 +153,7 @@
                       class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                     >
                       <a
-                        href="UrlBuilder.html#queryParams"
+                        href="RequestURLBuilder.html#queryParams"
                         class="tsd-kind-icon"
                         >query<wbr />Params</a
                       >
@@ -148,7 +161,9 @@
                     <li
                       class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                     >
-                      <a href="UrlBuilder.html#useHttps" class="tsd-kind-icon"
+                      <a
+                        href="RequestURLBuilder.html#useHttps"
+                        class="tsd-kind-icon"
                         >use<wbr />Https</a
                       >
                     </li>
@@ -161,13 +176,15 @@
                       class="tsd-kind-method tsd-parent-kind-class tsd-is-private"
                     >
                       <a
-                        href="UrlBuilder.html#assignBaseUrl"
+                        href="RequestURLBuilder.html#assignBaseUrl"
                         class="tsd-kind-icon"
                         >assign<wbr />Base<wbr />Url</a
                       >
                     </li>
                     <li class="tsd-kind-method tsd-parent-kind-class">
-                      <a href="UrlBuilder.html#build" class="tsd-kind-icon"
+                      <a
+                        href="RequestURLBuilder.html#build"
+                        class="tsd-kind-icon"
                         >build</a
                       >
                     </li>
@@ -175,21 +192,21 @@
                       class="tsd-kind-method tsd-parent-kind-class tsd-is-private"
                     >
                       <a
-                        href="UrlBuilder.html#isEmptyString"
+                        href="RequestURLBuilder.html#isEmptyString"
                         class="tsd-kind-icon"
                         >is<wbr />Empty<wbr />String</a
                       >
                     </li>
                     <li class="tsd-kind-method tsd-parent-kind-class">
                       <a
-                        href="UrlBuilder.html#setEndpoint"
+                        href="RequestURLBuilder.html#setEndpoint"
                         class="tsd-kind-icon"
                         >set<wbr />Endpoint</a
                       >
                     </li>
                     <li class="tsd-kind-method tsd-parent-kind-class">
                       <a
-                        href="UrlBuilder.html#setQueryParams"
+                        href="RequestURLBuilder.html#setQueryParams"
                         class="tsd-kind-icon"
                         >set<wbr />Query<wbr />Params</a
                       >
@@ -233,20 +250,26 @@
                 class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class"
               >
                 <li class="tsd-signature tsd-kind-icon">
-                  new <wbr />Url<wbr />Builder<span class="tsd-signature-symbol"
+                  new <wbr />RequestURLBuilder<span class="tsd-signature-symbol"
                     >(</span
                   >baseUrl<span class="tsd-signature-symbol">: </span
-                  ><span class="tsd-signature-type">string</span>, useHttps<span
+                  ><span class="tsd-signature-type">string</span>, version<span
                     class="tsd-signature-symbol"
-                    >?: </span
+                    >: </span
+                  ><a
+                    href="../enums/API_VERSION.html#V2"
+                    class="tsd-signature-type"
+                    data-tsd-kind="Enumeration member"
+                    >V2</a
+                  >, useHttps<span class="tsd-signature-symbol">?: </span
                   ><span class="tsd-signature-type">boolean</span
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
                   ><a
-                    href="UrlBuilder.html"
+                    href="RequestURLBuilder.html"
                     class="tsd-signature-type"
                     data-tsd-kind="Class"
-                    >UrlBuilder</a
+                    >RequestURLBuilder</a
                   >
                 </li>
               </ul>
@@ -257,8 +280,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L31"
-                          >core/UrlBuilder.ts:31</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L34"
+                          >core/RequestURLBuilder.ts:34</a
                         >
                       </li>
                     </ul>
@@ -289,6 +312,17 @@
                     </li>
                     <li>
                       <h5>
+                        version:
+                        <a
+                          href="../enums/API_VERSION.html#V2"
+                          class="tsd-signature-type"
+                          data-tsd-kind="Enumeration member"
+                          >V2</a
+                        >
+                      </h5>
+                    </li>
+                    <li>
+                      <h5>
                         useHttps: <span class="tsd-signature-type">boolean</span
                         ><span class="tsd-signature-symbol"> = true</span>
                       </h5>
@@ -297,10 +331,10 @@
                   <h4 class="tsd-returns-title">
                     Returns
                     <a
-                      href="UrlBuilder.html"
+                      href="RequestURLBuilder.html"
                       class="tsd-signature-type"
                       data-tsd-kind="Class"
-                      >UrlBuilder</a
+                      >RequestURLBuilder</a
                     >
                   </h4>
                 </li>
@@ -311,6 +345,57 @@
             class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected"
           >
             <h2>Properties</h2>
+            <section
+              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"
+            >
+              <a id="apiVersion" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span class="tsd-flag ts-flagPrivate">Private</span>
+                <span class="tsd-flag ts-flagReadonly">Readonly</span>
+                api<wbr />Version<a
+                  href="#apiVersion"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-link"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"
+                    ></path>
+                    <path
+                      d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"
+                    ></path></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature tsd-kind-icon">
+                api<wbr />Version<span class="tsd-signature-symbol">:</span>
+                <a
+                  href="../enums/API_VERSION.html#V2"
+                  class="tsd-signature-type"
+                  data-tsd-kind="Enumeration member"
+                  >V2</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L22"
+                      >core/RequestURLBuilder.ts:22</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
             <section
               class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"
             >
@@ -350,8 +435,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L17"
-                      >core/UrlBuilder.ts:17</a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L18"
+                      >core/RequestURLBuilder.ts:18</a
                     >
                   </li>
                 </ul>
@@ -399,8 +484,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L21"
-                      >core/UrlBuilder.ts:21</a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L24"
+                      >core/RequestURLBuilder.ts:24</a
                     >
                   </li>
                 </ul>
@@ -444,8 +529,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L23"
-                      >core/UrlBuilder.ts:23</a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L26"
+                      >core/RequestURLBuilder.ts:26</a
                     >
                   </li>
                 </ul>
@@ -490,8 +575,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L19"
-                      >core/UrlBuilder.ts:19</a
+                      href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L20"
+                      >core/RequestURLBuilder.ts:20</a
                     >
                   </li>
                 </ul>
@@ -549,8 +634,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L49"
-                          >core/UrlBuilder.ts:49</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L53"
+                          >core/RequestURLBuilder.ts:53</a
                         >
                       </li>
                     </ul>
@@ -628,8 +713,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L95"
-                          >core/UrlBuilder.ts:95</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L101"
+                          >core/RequestURLBuilder.ts:101</a
                         >
                       </li>
                     </ul>
@@ -699,8 +784,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L61"
-                          >core/UrlBuilder.ts:61</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L67"
+                          >core/RequestURLBuilder.ts:67</a
                         >
                       </li>
                     </ul>
@@ -769,10 +854,10 @@
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
                   ><a
-                    href="UrlBuilder.html"
+                    href="RequestURLBuilder.html"
                     class="tsd-signature-type"
                     data-tsd-kind="Class"
-                    >UrlBuilder</a
+                    >RequestURLBuilder</a
                   >
                 </li>
               </ul>
@@ -783,8 +868,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L72"
-                          >core/UrlBuilder.ts:72</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L78"
+                          >core/RequestURLBuilder.ts:78</a
                         >
                       </li>
                     </ul>
@@ -815,10 +900,10 @@
                   <h4 class="tsd-returns-title">
                     Returns
                     <a
-                      href="UrlBuilder.html"
+                      href="RequestURLBuilder.html"
                       class="tsd-signature-type"
                       data-tsd-kind="Class"
-                      >UrlBuilder</a
+                      >RequestURLBuilder</a
                     >
                   </h4>
                   <div><p>{UrlBuilder}</p></div>
@@ -862,10 +947,10 @@
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">: </span
                   ><a
-                    href="UrlBuilder.html"
+                    href="RequestURLBuilder.html"
                     class="tsd-signature-type"
                     data-tsd-kind="Class"
-                    >UrlBuilder</a
+                    >RequestURLBuilder</a
                   >
                 </li>
               </ul>
@@ -876,8 +961,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/maxqwars/metaform/blob/e924334/src/core/UrlBuilder.ts#L84"
-                          >core/UrlBuilder.ts:84</a
+                          href="https://github.com/maxqwars/metaform/blob/87ef1e0/src/core/RequestURLBuilder.ts#L90"
+                          >core/RequestURLBuilder.ts:90</a
                         >
                       </li>
                     </ul>
@@ -902,10 +987,10 @@
                   <h4 class="tsd-returns-title">
                     Returns
                     <a
-                      href="UrlBuilder.html"
+                      href="RequestURLBuilder.html"
                       class="tsd-signature-type"
                       data-tsd-kind="Class"
-                      >UrlBuilder</a
+                      >RequestURLBuilder</a
                     >
                   </h4>
                   <div><p>{UrlBuilder}</p></div>
@@ -923,40 +1008,59 @@
           <nav class="tsd-navigation secondary menu-sticky">
             <ul>
               <li class="current tsd-kind-class">
-                <a href="UrlBuilder.html" class="tsd-kind-icon"
-                  >Url<wbr />Builder</a
+                <a href="RequestURLBuilder.html" class="tsd-kind-icon"
+                  >RequestURLBuilder</a
                 >
                 <ul>
                   <li class="tsd-kind-constructor tsd-parent-kind-class">
-                    <a href="UrlBuilder.html#constructor" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#constructor"
+                      class="tsd-kind-icon"
                       >constructor</a
                     >
                   </li>
                   <li
                     class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                   >
-                    <a href="UrlBuilder.html#baseUrl" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#apiVersion"
+                      class="tsd-kind-icon"
+                      >api<wbr />Version</a
+                    >
+                  </li>
+                  <li
+                    class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
+                  >
+                    <a
+                      href="RequestURLBuilder.html#baseUrl"
+                      class="tsd-kind-icon"
                       >base<wbr />Url</a
                     >
                   </li>
                   <li
                     class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                   >
-                    <a href="UrlBuilder.html#endpoint" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#endpoint"
+                      class="tsd-kind-icon"
                       >endpoint</a
                     >
                   </li>
                   <li
                     class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                   >
-                    <a href="UrlBuilder.html#queryParams" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#queryParams"
+                      class="tsd-kind-icon"
                       >query<wbr />Params</a
                     >
                   </li>
                   <li
                     class="tsd-kind-property tsd-parent-kind-class tsd-is-private"
                   >
-                    <a href="UrlBuilder.html#useHttps" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#useHttps"
+                      class="tsd-kind-icon"
                       >use<wbr />Https</a
                     >
                   </li>
@@ -964,13 +1068,13 @@
                     class="tsd-kind-method tsd-parent-kind-class tsd-is-private"
                   >
                     <a
-                      href="UrlBuilder.html#assignBaseUrl"
+                      href="RequestURLBuilder.html#assignBaseUrl"
                       class="tsd-kind-icon"
                       >assign<wbr />Base<wbr />Url</a
                     >
                   </li>
                   <li class="tsd-kind-method tsd-parent-kind-class">
-                    <a href="UrlBuilder.html#build" class="tsd-kind-icon"
+                    <a href="RequestURLBuilder.html#build" class="tsd-kind-icon"
                       >build</a
                     >
                   </li>
@@ -978,19 +1082,21 @@
                     class="tsd-kind-method tsd-parent-kind-class tsd-is-private"
                   >
                     <a
-                      href="UrlBuilder.html#isEmptyString"
+                      href="RequestURLBuilder.html#isEmptyString"
                       class="tsd-kind-icon"
                       >is<wbr />Empty<wbr />String</a
                     >
                   </li>
                   <li class="tsd-kind-method tsd-parent-kind-class">
-                    <a href="UrlBuilder.html#setEndpoint" class="tsd-kind-icon"
+                    <a
+                      href="RequestURLBuilder.html#setEndpoint"
+                      class="tsd-kind-icon"
                       >set<wbr />Endpoint</a
                     >
                   </li>
                   <li class="tsd-kind-method tsd-parent-kind-class">
                     <a
-                      href="UrlBuilder.html#setQueryParams"
+                      href="RequestURLBuilder.html#setQueryParams"
                       class="tsd-kind-icon"
                       >set<wbr />Query<wbr />Params</a
                     >
@@ -1012,6 +1118,16 @@
             </li>
             <li class="tsd-kind-method tsd-parent-kind-class">
               <span class="tsd-kind-icon">Method</span>
+            </li>
+          </ul>
+          <ul class="tsd-legend">
+            <li
+              class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"
+            >
+              <span class="tsd-kind-icon">Inherited constructor</span>
+            </li>
+            <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+              <span class="tsd-kind-icon">Inherited method</span>
             </li>
           </ul>
           <ul class="tsd-legend">
