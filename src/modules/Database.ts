@@ -63,9 +63,8 @@ export default class Database extends ModuleBase {
 
     const FINAL_URL = U_BUILD.build();
 
+    // eslint-disable-next-line no-unused-vars
     const result = await this.fetchWithTimeout(FINAL_URL, timeout);
-
-    console.log(result);
 
     throw new Error('Not implemented');
   }
