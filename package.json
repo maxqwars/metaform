@@ -1,24 +1,41 @@
 {
   "name": "@maxqwars/metaform",
   "version": "0.0.3",
-  "description": "Metaform - next step of Xconnect",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "description": "An open library for working with the Anilibria REST API.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "readme": "https://github.com/maxqwars/metaform#readme",
   "keywords": [
     "anilibria",
     "rest-api",
     "typescript"
   ],
-  "repository": "https://github.com/maxqwars/metaform.git",
-  "author": "Maxim 'maxqwars' Maximenko <maxqwars@gmail.com>",
-  "license": "MIT",
-  "private": false,
+  "bugs": "https://github.com/maxqwars/metaform/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxqwars/metaform.git"
+  },
+  "author": {
+    "name": "Maxim Maximenko (maxqwars)",
+    "email": "maxqwars@gmail.com"
+  },
   "files": [
-    "build/**/*"
+    "dist"
   ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "lint": "eslint ./src --ext ts",
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "lint": "rm -rf dist && eslint ./src --ext ts",
+    "lint:fix": "eslint --fix",
     "format": "yarn prettier --write src",
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build && husky install",
@@ -43,9 +60,15 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.4",
+    "node-fetch": "^3.2.4",
+    "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.2",
+    "rollup-plugin-typescript2": "^0.31.2",
     "serve": "^13.0.2",
     "ts-jest": "^27.1.3",
+    "ts-node": "^10.7.0",
     "typedoc": "^0.22.11",
     "typescript": "^4.5.5"
   },

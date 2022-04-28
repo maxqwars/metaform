@@ -8,7 +8,7 @@ import { IFormatQueryParams, ISelectQueryParams } from './SharedTypes';
 import TITLE_CONTENT_TYPE from '../enums/TITLE_CONTENT_TYPE';
 import TITLE_SEASON from '../enums/TITLE_SEASON';
 import TITLE_STATUS from '../enums/TITLE_STATUS';
-import { WEEK_DAY } from '..';
+import WEEK_DAY from '../enums/WEEK_DAY';
 
 /* -------------------------------------------------------------------------- */
 /*                              Query parameters                              */
@@ -31,63 +31,63 @@ export interface IGetTitleQueryParams
 /* -------------------------------------------------------------------------- */
 /*                                  Response                                  */
 /* -------------------------------------------------------------------------- */
-export interface INames {
+export type TitleNames = {
   alternative: string | null;
   en: string | null;
   ru: string | null;
-}
+};
 
-export interface IStatus {
+export type TitleStatus = {
   code: TITLE_STATUS | null;
   string: string | null;
-}
+};
 
-export interface IPoster {
+export type Poster = {
   rawBase64File: string | null;
   url: string | null;
-}
+};
 
-export interface IPosters {
-  small: IPoster | null;
-  medium: IPoster | null;
-  original: IPoster | null;
-}
+export type TitlePosters = {
+  small: Poster | null;
+  medium: Poster | null;
+  original: Poster | null;
+};
 
-export interface IType {
+export type TitleType = {
   code: TITLE_CONTENT_TYPE | null;
   fullString: string | null;
   length: string | null;
   series: number | null;
   string: string | null;
-}
+};
 
-export interface ITeam {
+export type TitleTeam = {
   decor: string[] | null;
   editing: string[] | null;
   timing: string[] | null;
   translator: string[] | null;
   voice: string[] | null;
-}
+};
 
-export interface ISeason {
+export type TitleSeason = {
   code: TITLE_SEASON | null;
   string: string | null;
   weekDay: WEEK_DAY | null;
   year: number | null;
-}
+};
 
-export interface IBlocked {
+export type TitleBlocked = {
   bakanim: boolean | null;
   blocked: boolean | null;
-}
+};
 
-export interface ISeries {
+export type TitleSeries = {
   first: number | null;
   last: number | null;
   string: string | null;
-}
+};
 
-export interface IObjectPlaylist {
+export type ObjectPlaylist = {
   [key: number]: {
     id: number;
     createdTimestamp: number;
@@ -97,43 +97,43 @@ export interface IObjectPlaylist {
       sd: string | null;
     } | null;
   };
-}
+};
 
-export interface IPlayer {
+export type TitlePlayer = {
   alternativePlayer: string | null;
   host: string | null;
-  playlist: IObjectPlaylist | null;
-  series: ISeries | null;
-}
+  playlist: ObjectPlaylist | null;
+  series: TitleSeries | null;
+};
 
-export interface ITorrentQuality {
+export type TorrentQuality = {
   encoder: string | null;
   lq_audio: boolean | null;
   resolution: number | null;
   string: string | null;
   type: string | null;
-}
+};
 
-export interface ITorrent {
-  quality: ITorrentQuality;
+export type Torrent = {
+  quality: TorrentQuality;
   downloads: number | number;
   leechers: number | number;
   metadata: null;
   raw_base64_file: string | null;
   seeders: number | number;
-  series: ISeries | null;
+  series: TitleSeries | null;
   torrentId: number | null;
   totalSize: number | number;
   uploadedTimestamp: number | null;
   url: string | null;
-}
+};
 
-export interface ITorrents {
-  list: ITorrent[] | null;
-  series: ISeries | null;
-}
+export type TitleTorrents = {
+  list: Torrent[] | null;
+  series: TitleSeries | null;
+};
 
-export interface ITitle {
+export type Title = {
   announce: string | null;
   code: string | null;
   description: string | null;
@@ -142,13 +142,13 @@ export interface ITitle {
   inFavorites: number | null;
   lastChange: number | null;
   updated: number | null;
-  blocked: IBlocked | null;
-  names: INames | null;
-  player: IPlayer | null;
-  posters: IPosters | null;
-  season: ISeason | null;
-  status: IStatus | null;
-  team: ITeam | null;
-  torrents: ITorrents | null;
-  type: IType | null;
-}
+  blocked: TitleBlocked | null;
+  names: TitleNames | null;
+  player: TitlePlayer | null;
+  posters: TitlePosters | null;
+  season: TitleSeason | null;
+  status: TitleStatus | null;
+  team: TitleTeam | null;
+  torrents: TitleTorrents | null;
+  type: TitleType | null;
+};

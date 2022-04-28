@@ -6,6 +6,7 @@
 /* eslint-disable class-methods-use-this */
 
 import API_ENDPOINTS from '../enums/API_ENDPOINTS';
+import API_VERSION from '../enums/API_VERSION';
 
 /**
  * Class for creating urls for API requests
@@ -13,10 +14,12 @@ import API_ENDPOINTS from '../enums/API_ENDPOINTS';
  * @export
  * @class UrlBuilder
  */
-export default class UrlBuilder {
+export default class RequestURLBuilder {
   private readonly baseUrl: string;
 
   private readonly useHttps: boolean;
+
+  private readonly apiVersion: API_VERSION;
 
   private endpoint: API_ENDPOINTS;
 
@@ -28,11 +31,12 @@ export default class UrlBuilder {
    * @param {boolean} [useHttps=true] Use security transfer protocol
    * @memberof UrlBuilder
    */
-  constructor(baseUrl: string, useHttps = true) {
-    this.baseUrl = this.assignBaseUrl(baseUrl);
+  constructor(baseUrl: string, version: API_VERSION, useHttps = true) {
+    this.apiVersion = version;
     this.useHttps = useHttps;
     this.endpoint = API_ENDPOINTS.NONE;
     this.queryParams = '';
+    this.baseUrl = this.assignBaseUrl(baseUrl);
   }
 
   /**
@@ -47,7 +51,9 @@ export default class UrlBuilder {
    * @memberof UrlBuilder
    */
   private assignBaseUrl(url: string): string {
-    return url[url.length - 1] !== '/' ? `${url}/` : url;
+    return url[url.length - 1] !== '/'
+      ? `${url}/${this.apiVersion}/`
+      : `${url}/${this.apiVersion}`;
   }
 
   /**
@@ -69,7 +75,7 @@ export default class UrlBuilder {
    * @return {*}  {UrlBuilder}
    * @memberof UrlBuilder
    */
-  public setEndpoint(endpoint: API_ENDPOINTS): UrlBuilder {
+  public setEndpoint(endpoint: API_ENDPOINTS): RequestURLBuilder {
     this.endpoint = endpoint;
     return this;
   }
@@ -81,7 +87,7 @@ export default class UrlBuilder {
    * @return {*}  {UrlBuilder}
    * @memberof UrlBuilder
    */
-  public setQueryParams(query: string): UrlBuilder {
+  public setQueryParams(query: string): RequestURLBuilder {
     this.queryParams = query;
     return this;
   }
@@ -103,7 +109,7 @@ export default class UrlBuilder {
     url += this.useHttps ? 'https://' : 'http://';
     url += this.baseUrl;
     url += this.endpoint;
-    url += !this.isEmptyString(this.queryParams) ? `?${this.queryParams}` : '';
+    url += this.isEmptyString(this.queryParams) ? `?${this.queryParams}` : '';
 
     return url;
   }

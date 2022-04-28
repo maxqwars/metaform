@@ -23,3 +23,8 @@ export interface IShiftQueryParams {
   since?: number;
   after?: number;
 }
+
+export type APIError = {
+  code: number;
+  message: string;
+};
