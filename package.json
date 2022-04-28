@@ -1,6 +1,6 @@
 {
   "name": "@maxqwars/metaform",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An open library for working with the Anilibria REST API.",
   "type": "module",
   "license": "MIT",
