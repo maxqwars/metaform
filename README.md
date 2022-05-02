@@ -1,4 +1,4 @@
-# Metaform
+# METAFORM
 
 Metaform - the next stage of XConnect development
 
@@ -11,20 +11,33 @@ Metaform - the next stage of XConnect development
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
 
-## What is Metaform?
+## What is a metaform?
 
-Metaform is an open library for processing (or building) requests to servers compatible with the AniLibria REST API.
+Metaform is an open library for working with the Anilibria REST API. Reincarnation and reinterpretation of the outdated XConnect project.
 
-## Browse documentation:
+### METAFORM VS. XConnect
 
-- [TypeDoc powered documentation](https://maxqwars.github.io/metaform/)
+| Feature            | METAFORM | XConnect |
+| ------------------ | -------- | -------- |
+| Request timeout    | ✅       | ❌       |
+| TypeScript         | ✅       | ✅       |
+| `commonJS` support | ✅       | ❌       |
+| `UMD` support      | ✅       | ❌       |
+| `ESM` support      | ✅       | ✅       |
+| Handing API Errors | ✅       | ❌       |
+| Modular            | ✅       | ✅       |
+| Alive              | ✅       | ❌       |
 
-## Metaform in action
+## ⚠️ Risks when using the `alpha` version
 
-Try writing a project using Metaform and these templates
+The metaform is at an early stage of development and has an unstable API, so it is highly not recommended for writing real projects. I advise you to wait for the first stable release.
 
-- [CodeSandbox + React](https://codesandbox.io/s/gallant-galois-0puc4i)
+### 📦 Installation
 
-## Metaform in real projects (showcase)
+```shell
+$ npm install @maxqwars/metaform
+```
 
-> Not found :(
+```shell
+$ yarn add @maxqwars/metaform
+```
