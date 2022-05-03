@@ -6,16 +6,27 @@
 export type RawTitle = {
   id?: number;
   code?: string;
+  announce?: string | null;
+  updated?: number;
+  last_change?: number;
+  genres?: string[];
+  description?: string;
+  in_favorites?: number;
+
+  /* names */
   names?: {
     ru?: string;
     en?: string;
     alternative?: string | null;
   };
-  announce?: string | null;
+
+  /* status */
   status?: {
     string?: string | null;
     code?: number;
   };
+
+  /* poster */
   posters?: {
     small?: {
       url?: string;
@@ -30,8 +41,8 @@ export type RawTitle = {
       raw_base64_file?: string | null;
     };
   };
-  updated?: number;
-  last_change?: number;
+
+  /* type */
   type?: {
     full_string?: string;
     code?: number;
@@ -39,7 +50,8 @@ export type RawTitle = {
     series?: number;
     length?: number;
   };
-  genres?: string[];
+
+  /* team */
   team?: {
     voice?: string[];
     translator?: string[];
@@ -47,18 +59,22 @@ export type RawTitle = {
     decor?: string[];
     timing?: string[];
   };
+
+  /* season */
   season?: {
     string?: string;
     code?: number;
     year?: number;
     week_day?: number;
   };
-  description?: string;
-  in_favorites?: number;
+
+  /* blocked */
   blocked?: {
     blocked?: boolean;
     bakanim?: boolean;
   };
+
+  /* player */
   player?: {
     alternative_player?: string;
     host?: string;

@@ -8,7 +8,7 @@ import TITLE_CONTENT_TYPE from '../constants/TITLE_CONTENT_TYPE';
 export type TitleType = {
   code: TITLE_CONTENT_TYPE | null;
   fullString: string | null;
-  length: string | null;
+  length: number | null;
   series: number | null;
   string: string | null;
 };

@@ -8,7 +8,7 @@ import API_ENDPOINT from '../constants/API_ENDPOINTS';
 import * as DatabaseTypes from '../typings/Title';
 import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
 import RequestUrlBuilder from '../core/RequestURLBuilder';
-import ModuleBase from './ModuleBase';
+import CoreModule from './CoreModule';
 import titleParser from '../functions/TitleParser';
 import { RawTitle } from '../typings/RawTitle';
 import { APIError } from '../typings/APIError';
@@ -21,7 +21,7 @@ type DatabaseOptions = {
   timeout: number;
 };
 
-export default class Database extends ModuleBase {
+export default class Database extends CoreModule {
   private options: DatabaseOptions;
 
   constructor(options: DatabaseOptions) {
