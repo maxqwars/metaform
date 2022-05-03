@@ -91,6 +91,11 @@
                       >
                     </li>
                     <li class="tsd-kind-enum">
+                      <a href="enums/API_ERROR.html" class="tsd-kind-icon"
+                        >API_<wbr />ERROR</a
+                      >
+                    </li>
+                    <li class="tsd-kind-enum">
                       <a href="enums/API_VERSION.html" class="tsd-kind-icon"
                         >API_<wbr />VERSION</a
                       >
@@ -213,6 +218,11 @@
                   <h3>Type aliases</h3>
                   <ul class="tsd-index-list">
                     <li class="tsd-kind-type-alias">
+                      <a href="modules.html#APIError" class="tsd-kind-icon"
+                        >APIError</a
+                      >
+                    </li>
+                    <li class="tsd-kind-type-alias">
                       <a
                         href="modules.html#ObjectPlaylist"
                         class="tsd-kind-icon"
@@ -293,11 +303,102 @@
                     </li>
                   </ul>
                 </section>
+                <section class="tsd-index-section">
+                  <h3>Functions</h3>
+                  <ul class="tsd-index-list">
+                    <li class="tsd-kind-function">
+                      <a href="modules.html#TitleParser" class="tsd-kind-icon"
+                        >Title<wbr />Parser</a
+                      >
+                    </li>
+                  </ul>
+                </section>
               </div>
             </section>
           </section>
           <section class="tsd-panel-group tsd-member-group">
             <h2>Type aliases</h2>
+            <section class="tsd-panel tsd-member tsd-kind-type-alias">
+              <a id="APIError" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                APIError<a
+                  href="#APIError"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-link"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"
+                    ></path>
+                    <path
+                      d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"
+                    ></path></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature tsd-kind-icon">
+                APIError<span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-symbol">{ </span>error<span
+                  class="tsd-signature-symbol"
+                  >: </span
+                ><span class="tsd-signature-symbol">{ </span>code<span
+                  class="tsd-signature-symbol"
+                  >: </span
+                ><span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">; </span>message<span
+                  class="tsd-signature-symbol"
+                  >: </span
+                ><span class="tsd-signature-type">string</span
+                ><span class="tsd-signature-symbol"> }</span
+                ><span class="tsd-signature-symbol"> }</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>Defined in typings/APIError.ts:6</li>
+                </ul>
+              </aside>
+              <div class="tsd-type-declaration">
+                <h4>Type declaration</h4>
+                <ul class="tsd-parameters">
+                  <li class="tsd-parameter">
+                    <h5>
+                      error<span class="tsd-signature-symbol">: </span
+                      ><span class="tsd-signature-symbol">{ </span>code<span
+                        class="tsd-signature-symbol"
+                        >: </span
+                      ><span class="tsd-signature-type">number</span
+                      ><span class="tsd-signature-symbol">; </span>message<span
+                        class="tsd-signature-symbol"
+                        >: </span
+                      ><span class="tsd-signature-type">string</span
+                      ><span class="tsd-signature-symbol"> }</span>
+                    </h5>
+                    <ul class="tsd-parameters">
+                      <li class="tsd-parameter">
+                        <h5>
+                          code<span class="tsd-signature-symbol">: </span
+                          ><span class="tsd-signature-type">number</span>
+                        </h5>
+                      </li>
+                      <li class="tsd-parameter">
+                        <h5>
+                          message<span class="tsd-signature-symbol">: </span
+                          ><span class="tsd-signature-type">string</span>
+                        </h5>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </section>
             <section class="tsd-panel tsd-member tsd-kind-type-alias">
               <a id="ObjectPlaylist" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
@@ -330,13 +431,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L90"
-                      >typings/DatabaseTypes.ts:90</a
-                    >
-                  </li>
+                  <li>Defined in typings/ObjectPlaylist.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -471,13 +566,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L45"
-                      >typings/DatabaseTypes.ts:45</a
-                    >
-                  </li>
+                  <li>Defined in typings/Poster.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -534,13 +623,13 @@
                 Title<span class="tsd-signature-symbol">:</span>
                 <span class="tsd-signature-symbol">{ </span>announce<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">string</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>blocked<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleBlocked"
                   class="tsd-signature-type"
@@ -550,44 +639,44 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>code<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">string</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>description<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">string</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>genres<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">string</span
                 ><span class="tsd-signature-symbol">[]</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>id<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">number</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>inFavorites<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">number</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>lastChange<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">number</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>names<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleNames"
                   class="tsd-signature-type"
@@ -597,7 +686,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>player<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitlePlayer"
                   class="tsd-signature-type"
@@ -607,7 +696,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>posters<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitlePosters"
                   class="tsd-signature-type"
@@ -617,7 +706,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>season<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleSeason"
                   class="tsd-signature-type"
@@ -627,7 +716,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>status<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleStatus"
                   class="tsd-signature-type"
@@ -637,7 +726,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>team<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleTeam"
                   class="tsd-signature-type"
@@ -647,7 +736,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>torrents<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleTorrents"
                   class="tsd-signature-type"
@@ -657,7 +746,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>type<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><a
                   href="modules.html#TitleType"
                   class="tsd-signature-type"
@@ -667,7 +756,7 @@
                 ><span class="tsd-signature-type">null</span
                 ><span class="tsd-signature-symbol">; </span>updated<span
                   class="tsd-signature-symbol"
-                  >: </span
+                  >?: </span
                 ><span class="tsd-signature-type">number</span
                 ><span class="tsd-signature-symbol"> | </span
                 ><span class="tsd-signature-type">null</span
@@ -675,13 +764,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L136"
-                      >typings/DatabaseTypes.ts:136</a
-                    >
-                  </li>
+                  <li>Defined in typings/Title.ts:16</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -689,7 +772,8 @@
                 <ul class="tsd-parameters">
                   <li class="tsd-parameter">
                     <h5>
-                      announce<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      announce<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">string</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -697,7 +781,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      blocked<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      blocked<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleBlocked"
                         class="tsd-signature-type"
@@ -709,7 +794,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      code<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      code<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">string</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -717,7 +803,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      description<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      description<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">string</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -725,7 +812,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      genres<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      genres<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">string</span
                       ><span class="tsd-signature-symbol">[]</span
                       ><span class="tsd-signature-symbol"> | </span
@@ -734,7 +822,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      id<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      id<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">number</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -742,8 +831,9 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
                       in<wbr />Favorites<span class="tsd-signature-symbol"
-                        >: </span
+                        >?: </span
                       ><span class="tsd-signature-type">number</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -751,8 +841,9 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
                       last<wbr />Change<span class="tsd-signature-symbol"
-                        >: </span
+                        >?: </span
                       ><span class="tsd-signature-type">number</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -760,7 +851,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      names<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      names<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleNames"
                         class="tsd-signature-type"
@@ -772,7 +864,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      player<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      player<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitlePlayer"
                         class="tsd-signature-type"
@@ -784,7 +877,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      posters<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      posters<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitlePosters"
                         class="tsd-signature-type"
@@ -796,7 +890,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      season<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      season<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleSeason"
                         class="tsd-signature-type"
@@ -808,7 +903,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      status<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      status<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleStatus"
                         class="tsd-signature-type"
@@ -820,7 +916,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      team<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      team<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleTeam"
                         class="tsd-signature-type"
@@ -832,7 +929,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      torrents<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      torrents<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleTorrents"
                         class="tsd-signature-type"
@@ -844,7 +942,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      type<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      type<span class="tsd-signature-symbol">?: </span
                       ><a
                         href="modules.html#TitleType"
                         class="tsd-signature-type"
@@ -856,7 +955,8 @@
                   </li>
                   <li class="tsd-parameter">
                     <h5>
-                      updated<span class="tsd-signature-symbol">: </span
+                      <span class="tsd-flag ts-flagOptional">Optional</span>
+                      updated<span class="tsd-signature-symbol">?: </span
                       ><span class="tsd-signature-type">number</span
                       ><span class="tsd-signature-symbol"> | </span
                       ><span class="tsd-signature-type">null</span>
@@ -909,13 +1009,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L79"
-                      >typings/DatabaseTypes.ts:79</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleBlocked.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -990,13 +1084,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L34"
-                      >typings/DatabaseTypes.ts:34</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleNames.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1092,13 +1180,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L102"
-                      >typings/DatabaseTypes.ts:102</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitlePlayer.ts:9</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1210,13 +1292,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L50"
-                      >typings/DatabaseTypes.ts:50</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitlePosters.ts:8</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1325,13 +1401,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L72"
-                      >typings/DatabaseTypes.ts:72</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleSeason.ts:9</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1430,13 +1500,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L84"
-                      >typings/DatabaseTypes.ts:84</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleSeries.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1513,13 +1577,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L40"
-                      >typings/DatabaseTypes.ts:40</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleStatus.ts:8</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1611,13 +1669,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L64"
-                      >typings/DatabaseTypes.ts:64</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleTeam.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1724,13 +1776,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L131"
-                      >typings/DatabaseTypes.ts:131</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleTorrents.ts:9</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1830,13 +1876,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L56"
-                      >typings/DatabaseTypes.ts:56</a
-                    >
-                  </li>
+                  <li>Defined in typings/TitleType.ts:8</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -1990,13 +2030,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L117"
-                      >typings/DatabaseTypes.ts:117</a
-                    >
-                  </li>
+                  <li>Defined in typings/Torrent.ts:9</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -2165,13 +2199,7 @@
               </div>
               <aside class="tsd-sources">
                 <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/2f349ff/src/typings/DatabaseTypes.ts#L109"
-                      >typings/DatabaseTypes.ts:109</a
-                    >
-                  </li>
+                  <li>Defined in typings/TorrentQuality.ts:6</li>
                 </ul>
               </aside>
               <div class="tsd-type-declaration">
@@ -2221,6 +2249,77 @@
               </div>
             </section>
           </section>
+          <section class="tsd-panel-group tsd-member-group">
+            <h2>Functions</h2>
+            <section class="tsd-panel tsd-member tsd-kind-function">
+              <a id="TitleParser" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                Title<wbr />Parser<a
+                  href="#TitleParser"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-link"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"
+                    ></path>
+                    <path
+                      d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"
+                    ></path></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-kind-function">
+                <li class="tsd-signature tsd-kind-icon">
+                  Title<wbr />Parser<span class="tsd-signature-symbol">(</span
+                  >data<span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">RawTitle</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">: </span
+                  ><a
+                    href="modules.html#Title"
+                    class="tsd-signature-type"
+                    data-tsd-kind="Type alias"
+                    >Title</a
+                  >
+                </li>
+              </ul>
+              <ul class="tsd-descriptions">
+                <li class="tsd-description">
+                  <aside class="tsd-sources">
+                    <ul>
+                      <li>Defined in functions/TitleParser.ts:11</li>
+                    </ul>
+                  </aside>
+                  <h4 class="tsd-parameters-title">Parameters</h4>
+                  <ul class="tsd-parameters">
+                    <li>
+                      <h5>
+                        data: <span class="tsd-signature-type">RawTitle</span>
+                      </h5>
+                    </li>
+                  </ul>
+                  <h4 class="tsd-returns-title">
+                    Returns
+                    <a
+                      href="modules.html#Title"
+                      class="tsd-signature-type"
+                      data-tsd-kind="Type alias"
+                      >Title</a
+                    >
+                  </h4>
+                </li>
+              </ul>
+            </section>
+          </section>
         </div>
         <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
           <nav class="tsd-navigation primary">
@@ -2233,6 +2332,11 @@
               <li class="tsd-kind-enum">
                 <a href="enums/API_ENDPOINTS.html" class="tsd-kind-icon"
                   >API_<wbr />ENDPOINTS</a
+                >
+              </li>
+              <li class="tsd-kind-enum">
+                <a href="enums/API_ERROR.html" class="tsd-kind-icon"
+                  >API_<wbr />ERROR</a
                 >
               </li>
               <li class="tsd-kind-enum">
@@ -2333,6 +2437,11 @@
                 >
               </li>
               <li class="tsd-kind-type-alias">
+                <a href="modules.html#APIError" class="tsd-kind-icon"
+                  >APIError</a
+                >
+              </li>
+              <li class="tsd-kind-type-alias">
                 <a href="modules.html#ObjectPlaylist" class="tsd-kind-icon"
                   >Object<wbr />Playlist</a
                 >
@@ -2399,6 +2508,11 @@
               <li class="tsd-kind-type-alias">
                 <a href="modules.html#TorrentQuality" class="tsd-kind-icon"
                   >Torrent<wbr />Quality</a
+                >
+              </li>
+              <li class="tsd-kind-function">
+                <a href="modules.html#TitleParser" class="tsd-kind-icon"
+                  >Title<wbr />Parser</a
                 >
               </li>
             </ul>

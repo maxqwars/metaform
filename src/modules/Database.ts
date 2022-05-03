@@ -3,13 +3,16 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import API_VERSION from '../enums/API_VERSION';
-import API_ENDPOINT from '../enums/API_ENDPOINTS';
-import * as DatabaseTypes from '../typings/DatabaseTypes';
-import * as SharedTypes from '../typings/SharedTypes';
+import API_VERSION from '../constants/API_VERSION';
+import API_ENDPOINT from '../constants/API_ENDPOINTS';
+import * as DatabaseTypes from '../typings/Title';
 import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
 import RequestUrlBuilder from '../core/RequestURLBuilder';
 import ModuleBase from './ModuleBase';
+import titleParser from '../functions/TitleParser';
+import { RawTitle } from '../typings/RawTitle';
+import { APIError } from '../typings/APIError';
+import { IGetTitleQueryParams } from '../typings/IGetTitleQueryParams';
 
 type DatabaseOptions = {
   baseUrl: string;
@@ -27,49 +30,44 @@ export default class Database extends ModuleBase {
   }
 
   async getTitle(
-    params: DatabaseTypes.IGetTitleQueryParams
-  ): Promise<DatabaseTypes.Title | SharedTypes.APIError | Error> {
-    const { baseUrl, version, useHttps, timeout } = this.options;
-
-    const {
-      id,
-      code,
-      filter,
-      remove,
-      include,
-      torrentId,
-      playlistType,
-      descriptionType,
-    } = params;
+    params: IGetTitleQueryParams
+  ): Promise<DatabaseTypes.Title | APIError | Error> {
+    let apiResponse: Object;
 
     const Q_BUILD = new GetTitleQueryBuilder();
-    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
+
+    const U_BUILD = new RequestUrlBuilder(
+      this.options.baseUrl,
+      this.options.version,
+      this.options.useHttps
+    );
 
     U_BUILD.setEndpoint(API_ENDPOINT.GET_TITLE);
 
-    Q_BUILD.setId(id)
-      .setCode(code)
-      .setFilter(filter)
-      .setRemove(remove)
-      .setInclude(include)
-      .setTorrentId(torrentId)
-      .setPlaylistType(playlistType)
-      .setDescriptionType(descriptionType);
+    Q_BUILD.setId(params.id)
+      .setCode(params.code)
+      .setFilter(params.filter)
+      .setRemove(params.remove)
+      .setInclude(params.include)
+      .setTorrentId(params.torrentId)
+      .setPlaylistType(params.playlistType)
+      .setDescriptionType(params.descriptionType);
 
     U_BUILD.setQueryParams(Q_BUILD.build());
 
     const FINAL_URL = U_BUILD.build();
 
     try {
-      const response = await this.fetchWithTimeout(FINAL_URL, timeout);
-      console.log(await response.json());
+      apiResponse = await (
+        await this.fetchWithTimeout(FINAL_URL, this.options.timeout)
+      ).json();
     } catch (e) {
-      throw new Error('Connection timemout');
+      throw new Error('Unexpected error');
     }
 
-    return {
-      code: 0,
-      message: 'Not implemented',
-    };
+    // eslint-disable-next-line no-prototype-builtins
+    return apiResponse.hasOwnProperty('error')
+      ? (apiResponse as APIError)
+      : titleParser(apiResponse as RawTitle);
   }
 }

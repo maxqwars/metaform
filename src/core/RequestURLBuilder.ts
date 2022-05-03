@@ -5,8 +5,8 @@
 
 /* eslint-disable class-methods-use-this */
 
-import API_ENDPOINTS from '../enums/API_ENDPOINTS';
-import API_VERSION from '../enums/API_VERSION';
+import API_ENDPOINTS from '../constants/API_ENDPOINTS';
+import API_VERSION from '../constants/API_VERSION';
 
 /**
  * Class for creating urls for API requests

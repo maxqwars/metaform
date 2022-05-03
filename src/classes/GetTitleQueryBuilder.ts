@@ -5,11 +5,11 @@
 
 /* eslint-disable no-unused-vars */
 
-import { IGetTitleQueryParams } from '../typings/DatabaseTypes';
+import { IGetTitleQueryParams } from '../typings/IGetTitleQueryParams';
 import QueryBuilderBase from '../core/QueryBuilderBase';
-import INCLUDE_RESOURCES from '../enums/INCLUDED_RESOURCES';
-import DESCRIPTION_TYPE from '../enums/DESCRIPTION_TYPE';
-import PLAYLIST_TYPE from '../enums/PLAYLIST_TYPE';
+import INCLUDE_RESOURCES from '../constants/INCLUDED_RESOURCES';
+import DESCRIPTION_TYPE from '../constants/DESCRIPTION_TYPE';
+import PLAYLIST_TYPE from '../constants/PLAYLIST_TYPE';
 
 export interface IGetTitleQueryBuilder extends IGetTitleQueryParams {
   build(): string;
