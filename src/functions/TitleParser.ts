@@ -15,7 +15,7 @@ import { TitleBlocked } from '../typings/TitleBlocked';
 
 /* eslint-disable no-extra-boolean-cast */
 
-function TitleParser(data: RawTitle): Title {
+export default function TitleParser(data: RawTitle): Title {
   const names: TitleNames | null = ((): TitleNames | null => {
     if (!!data.names) {
       return {
@@ -144,5 +144,3 @@ function TitleParser(data: RawTitle): Title {
     blocked,
   };
 }
-
-export default TitleParser;
