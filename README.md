@@ -28,6 +28,31 @@ Metaform is an open library for working with the Anilibria REST API. Reincarnati
 | Modular            | ✅       | ✅       |
 | Alive              | ✅       | ❌       |
 
+<br />
+
+## Supported API 🔌
+
+| Method          | Is supported |
+| --------------- | ------------ |
+| getTitle        | ✅           |
+| getRandomTitle  | ✅           |
+| getTitles       | ❌           |
+| getUpdates      | ❌           |
+| getChanges      | ❌           |
+| getSchedule     | ❌           |
+| getYouTube      | ❌           |
+| getFeed         | ❌           |
+| getYears        | ❌           |
+| getGenres       | ❌           |
+| getCachingNodes | ❌           |
+| getTeam         | ❌           |
+| getSeedStats    | ❌           |
+| getRSS          | ❌           |
+| searchTitles    | ❌           |
+| advancedSearch  | ❌           |
+
+<br />
+
 ## ⚠️ Risks when using the `alpha` version
 
 The metaform is at an early stage of development and has an unstable API, so it is highly not recommended for writing real projects. I advise you to wait for the first stable release.
@@ -41,3 +66,9 @@ $ npm install @maxqwars/metaform
 ```shell
 $ yarn add @maxqwars/metaform
 ```
+
+<br />
+
+## Support development 💸
+
+[![Support with Boosty.to](./boosty.png)](https://boosty.to/maxqwars)
