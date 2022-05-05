@@ -10,15 +10,20 @@ import API_ENDPOINT from '../constants/API_ENDPOINTS';
 import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
 import RequestUrlBuilder from '../core/RequestURLBuilder';
 import CoreModule from './CoreModule';
-import { RawTitle, Title, IGetTitleQueryParams } from '../typings';
+import { RawTitle, Title, IGetTitleQueryParams, APIError } from '../typings';
 import { TitleParser } from '../functions';
-import { RequestTimeoutError } from '../errors';
 
 type DatabaseOptions = {
   baseUrl: string;
   version: API_VERSION;
   useHttps: boolean;
   timeout: number;
+};
+
+type GetTitleResults = {
+  error: boolean;
+  content?: Title;
+  errorDetails?: APIError;
 };
 
 export default class Database extends CoreModule {
@@ -29,10 +34,9 @@ export default class Database extends CoreModule {
     this.options = options;
   }
 
-  // eslint-disable-next-line prettier/prettier
-  async getRandomTitle2(
+  async getRandomTitle(
     params?: IGetTitleQueryParams
-  ): Promise<Title | null | never> {
+  ): Promise<GetTitleResults | never> {
     const { baseUrl, version, useHttps, timeout } = this.options;
 
     const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
@@ -56,98 +60,55 @@ export default class Database extends CoreModule {
     const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
     const DATA = (await API_REQUEST.json()) as Object;
 
-    if (!DATA.hasOwnProperty('error')) {
-      return TitleParser(DATA as RawTitle);
+    if (DATA.hasOwnProperty('error')) {
+      return {
+        error: true,
+        errorDetails: DATA as APIError,
+      };
     }
 
-    throw new RequestTimeoutError(timeout);
-
-    // return null;
+    return {
+      error: false,
+      content: TitleParser(DATA as RawTitle),
+    };
   }
 
-  // async getRandomTitle(
-  //   params?: IGetTitleQueryParams
-  // ): Promise<Title | APIError | Error> {
-  //   let apiResponse: Object;
+  async getTitle(
+    params: IGetTitleQueryParams
+  ): Promise<GetTitleResults | never> {
+    const { baseUrl, version, useHttps, timeout } = this.options;
 
-  //   const Q_BUILD = new GetTitleQueryBuilder();
+    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
+    const Q_BUILD = new GetTitleQueryBuilder();
 
-  //   const U_BUILD = new RequestUrlBuilder(
-  //     this.options.baseUrl,
-  //     this.options.version,
-  //     this.options.useHttps
-  //   );
+    if (typeof params !== 'undefined') {
+      Q_BUILD.setId(params.id)
+        .setCode(params.code)
+        .setFilter(params.filter)
+        .setRemove(params.remove)
+        .setInclude(params.include)
+        .setTorrentId(params.torrentId)
+        .setPlaylistType(params.playlistType)
+        .setDescriptionType(params.descriptionType);
+    }
 
-  //   U_BUILD.setEndpoint(API_ENDPOINT.GET_RANDOM_TITLE);
+    U_BUILD.setEndpoint(API_ENDPOINT.GET_TITLE);
+    U_BUILD.setQueryParams(Q_BUILD.build());
 
-  //   if (typeof params !== 'undefined') {
-  //     Q_BUILD.setId(params.id)
-  //       .setCode(params.code)
-  //       .setFilter(params.filter)
-  //       .setRemove(params.remove)
-  //       .setInclude(params.include)
-  //       .setTorrentId(params.torrentId)
-  //       .setPlaylistType(params.playlistType)
-  //       .setDescriptionType(params.descriptionType);
-  //   }
+    const REQUEST_URL = U_BUILD.build();
+    const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
+    const DATA = (await API_REQUEST.json()) as Object;
 
-  //   U_BUILD.setQueryParams(Q_BUILD.build());
+    if (DATA.hasOwnProperty('error')) {
+      return {
+        error: true,
+        errorDetails: DATA as APIError,
+      };
+    }
 
-  //   const FINAL_URL = U_BUILD.build();
-
-  //   try {
-  //     apiResponse = await (
-  //       await this.fetchWithTimeout(FINAL_URL, this.options.timeout)
-  //     ).json();
-  //   } catch (e) {
-  //     throw new Error('Unexpected error');
-  //   }
-
-  //   // eslint-disable-next-line no-prototype-builtins
-  //   return apiResponse.hasOwnProperty('error')
-  //     ? (apiResponse as APIError)
-  //     : titleParser(apiResponse as RawTitle);
-  // }
-
-  // async getTitle(
-  //   params: IGetTitleQueryParams
-  // ): Promise<Title | APIError | Error> {
-  //   let apiResponse: Object;
-
-  //   const Q_BUILD = new GetTitleQueryBuilder();
-
-  //   const U_BUILD = new RequestUrlBuilder(
-  //     this.options.baseUrl,
-  //     this.options.version,
-  //     this.options.useHttps
-  //   );
-
-  //   U_BUILD.setEndpoint(API_ENDPOINT.GET_TITLE);
-
-  //   Q_BUILD.setId(params.id)
-  //     .setCode(params.code)
-  //     .setFilter(params.filter)
-  //     .setRemove(params.remove)
-  //     .setInclude(params.include)
-  //     .setTorrentId(params.torrentId)
-  //     .setPlaylistType(params.playlistType)
-  //     .setDescriptionType(params.descriptionType);
-
-  //   U_BUILD.setQueryParams(Q_BUILD.build());
-
-  //   const FINAL_URL = U_BUILD.build();
-
-  //   try {
-  //     apiResponse = await (
-  //       await this.fetchWithTimeout(FINAL_URL, this.options.timeout)
-  //     ).json();
-  //   } catch (e) {
-  //     throw new Error('Unexpected error');
-  //   }
-
-  //   // eslint-disable-next-line no-prototype-builtins
-  //   return apiResponse.hasOwnProperty('error')
-  //     ? (apiResponse as APIError)
-  //     : titleParser(apiResponse as RawTitle);
-  // }
+    return {
+      error: false,
+      content: TitleParser(DATA as RawTitle),
+    };
+  }
 }
