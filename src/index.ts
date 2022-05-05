@@ -3,10 +3,11 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-export * as core from './core';
-export * as functions from './functions';
-export * as utils from './utils';
-export * as constants from './constants';
-export * as types from './typings';
-export * as classes from './classes';
-export * as modules from './modules';
+export * as Core from './core';
+export * as Functions from './functions';
+export * as Utils from './utils';
+export * as Constants from './constants';
+export * as Types from './typings';
+export * as Classes from './classes';
+export * as Modules from './modules';
+export * as Errors from './errors';

@@ -24,3 +24,4 @@ export { ISelectQueryParams } from './ISelectQueryParams';
 export { IFormatQueryParams } from './IFormatQueryParams';
 export { IShiftQueryParams } from './IShiftQueryParams';
 export { APIError } from './APIError';
+export { RawTitle } from './RawTitle';
