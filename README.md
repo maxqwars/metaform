@@ -42,8 +42,8 @@ Metaform is an open library for working with the Anilibria REST API. Reincarnati
 | getSchedule     | ❌           |
 | getYouTube      | ❌           |
 | getFeed         | ❌           |
-| getYears        | ❌           |
-| getGenres       | ❌           |
+| getYears        | ✅           |
+| getGenres       | ✅           |
 | getCachingNodes | ❌           |
 | getTeam         | ❌           |
 | getSeedStats    | ❌           |
