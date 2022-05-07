@@ -32,24 +32,24 @@ Metaform is an open library for working with the Anilibria REST API. Reincarnati
 
 ## Supported API 🔌
 
-| Method          | Is supported |
-| --------------- | ------------ |
-| getTitle        | ✅           |
-| getRandomTitle  | ✅           |
-| getTitles       | ❌           |
-| getUpdates      | ❌           |
-| getChanges      | ❌           |
-| getSchedule     | ❌           |
-| getYouTube      | ❌           |
-| getFeed         | ❌           |
-| getYears        | ✅           |
-| getGenres       | ✅           |
-| getCachingNodes | ❌           |
-| getTeam         | ❌           |
-| getSeedStats    | ❌           |
-| getRSS          | ❌           |
-| searchTitles    | ❌           |
-| advancedSearch  | ❌           |
+| API             | Status            | Notice                                        |
+| --------------- | ----------------- | --------------------------------------------- |
+| getTitle        | `Partial` support | A revision of the response parser is required |
+| getRandomTitle  | `Partial` support | A revision of the response parser is required |
+| getTitles       | Not supported     |                                               |
+| getUpdates      | Not supported     |                                               |
+| getChanges      | Not supported     |                                               |
+| getSchedule     | Not supported     |                                               |
+| getYouTube      | Not supported     |                                               |
+| getFeed         | Not supported     |                                               |
+| getYears        | `Full` support    | Ready to use                                  |
+| getGenres       | `Full` support    | Ready to use                                  |
+| getCachingNodes | Not supported     |                                               |
+| getTeam         | Not supported     |                                               |
+| getSeedStats    | Not supported     |                                               |
+| getRSS          | Not supported     |                                               |
+| searchTitles    | Not supported     |                                               |
+| advancedSearch  | Not supported     |                                               |
 
 <br />
 
