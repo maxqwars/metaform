@@ -11,3 +11,8 @@ export * as Types from './typings';
 export * as Classes from './classes';
 export * as Modules from './modules';
 export * as Errors from './errors';
+
+// eslint-disable-next-line prefer-destructuring
+export const METAFORM_VERSION = process.env.METAFORM_VERSION;
+
+// TODO: Maybe move getYears and getGenres to search module?

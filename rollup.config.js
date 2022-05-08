@@ -1,4 +1,5 @@
 import typescriptPlugin from 'rollup-plugin-typescript2';
+import envFiles from '@jjldxz/rollup-plugin-env-files';
 
 const dist = 'dist';
 
@@ -23,6 +24,9 @@ export default {
         return undefined;
       },
     },
+    envFiles({
+      preventAssignment: true,
+    }),
   ],
   output: [
     {

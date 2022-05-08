@@ -29,17 +29,21 @@ type GetTitleResults = {
 export default class Database extends CoreModule {
   private options: DatabaseOptions;
 
+  private requestUrlBuilder: RequestUrlBuilder;
+
   constructor(options: DatabaseOptions) {
     super();
     this.options = options;
+    const { baseUrl, version, useHttps } = options;
+    this.requestUrlBuilder = new RequestUrlBuilder(baseUrl, version, useHttps);
   }
 
   async getRandomTitle(
     params?: IGetTitleQueryParams
   ): Promise<GetTitleResults | never> {
-    const { baseUrl, version, useHttps, timeout } = this.options;
+    const { timeout } = this.options;
 
-    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
+    const U_BUILD = this.requestUrlBuilder;
     const Q_BUILD = new GetTitleQueryBuilder();
 
     if (typeof params !== 'undefined') {
@@ -76,9 +80,9 @@ export default class Database extends CoreModule {
   async getTitle(
     params: IGetTitleQueryParams
   ): Promise<GetTitleResults | never> {
-    const { baseUrl, version, useHttps, timeout } = this.options;
+    const { timeout } = this.options;
 
-    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
+    const U_BUILD = this.requestUrlBuilder;
     const Q_BUILD = new GetTitleQueryBuilder();
 
     if (typeof params !== 'undefined') {
