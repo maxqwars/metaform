@@ -25,3 +25,5 @@ export { IFormatQueryParams } from './IFormatQueryParams';
 export { IShiftQueryParams } from './IShiftQueryParams';
 export { APIError } from './APIError';
 export { RawTitle } from './RawTitle';
+export { ModuleOptions } from './ModuleOptions';
+export { ISearchTitlesQueryParams } from './ISearchTitlesQueryParams';

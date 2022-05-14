@@ -5,20 +5,18 @@
 
 /* eslint-disable no-prototype-builtins */
 
-import API_VERSION from '../constants/API_VERSION';
 import API_ENDPOINT from '../constants/API_ENDPOINTS';
 import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
 import RequestUrlBuilder from '../core/RequestURLBuilder';
 import CoreModule from './CoreModule';
-import { RawTitle, Title, IGetTitleQueryParams, APIError } from '../typings';
+import {
+  RawTitle,
+  Title,
+  IGetTitleQueryParams,
+  APIError,
+  ModuleOptions,
+} from '../typings';
 import { TitleParser } from '../functions';
-
-type DatabaseOptions = {
-  baseUrl: string;
-  version: API_VERSION;
-  useHttps: boolean;
-  timeout: number;
-};
 
 type GetTitleResults = {
   error: boolean;
@@ -27,15 +25,9 @@ type GetTitleResults = {
 };
 
 export default class Database extends CoreModule {
-  private options: DatabaseOptions;
-
-  private requestUrlBuilder: RequestUrlBuilder;
-
-  constructor(options: DatabaseOptions) {
-    super();
-    this.options = options;
-    const { baseUrl, version, useHttps } = options;
-    this.requestUrlBuilder = new RequestUrlBuilder(baseUrl, version, useHttps);
+  // eslint-disable-next-line no-useless-constructor
+  constructor(options: ModuleOptions) {
+    super(options);
   }
 
   async getRandomTitle(
@@ -43,7 +35,7 @@ export default class Database extends CoreModule {
   ): Promise<GetTitleResults | never> {
     const { timeout } = this.options;
 
-    const U_BUILD = this.requestUrlBuilder;
+    const U_BUILD = this.requestURLBuilder;
     const Q_BUILD = new GetTitleQueryBuilder();
 
     if (typeof params !== 'undefined') {
@@ -82,7 +74,7 @@ export default class Database extends CoreModule {
   ): Promise<GetTitleResults | never> {
     const { timeout } = this.options;
 
-    const U_BUILD = this.requestUrlBuilder;
+    const U_BUILD = this.requestURLBuilder;
     const Q_BUILD = new GetTitleQueryBuilder();
 
     if (typeof params !== 'undefined') {

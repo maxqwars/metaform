@@ -5,13 +5,14 @@
 
 /* eslint-disable no-unused-vars */
 
-import { IGetTitleQueryParams } from '../typings/IGetTitleQueryParams';
+// TODO: Refactor
+
 import QueryBuilderBase from '../core/QueryBuilderBase';
 import INCLUDE_RESOURCES from '../constants/INCLUDED_RESOURCES';
 import DESCRIPTION_TYPE from '../constants/DESCRIPTION_TYPE';
 import PLAYLIST_TYPE from '../constants/PLAYLIST_TYPE';
 
-export interface IGetTitleQueryBuilder extends IGetTitleQueryParams {
+export interface IGetTitleQueryBuilder {
   build(): string;
   setId(id?: number): IGetTitleQueryBuilder;
   setCode(code?: string): IGetTitleQueryBuilder;

@@ -3,5 +3,5 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// eslint-disable-next-line import/prefer-default-export
 export { default as GetTitleQueryBuilder } from './GetTitleQueryBuilder';
+export { default as SearchTitlesQueryBuilder } from './SearchTitlesQueryBuilder';
