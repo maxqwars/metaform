@@ -60,7 +60,7 @@ export default class SearchTitlesQueryBuilder
   }
 
   setVoice(list?: string[]): ISearchTitleQueryBuilder {
-    super.addParam('voice', list);
+    if (list) super.addParam('voice', list);
     return this;
   }
 

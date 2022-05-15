@@ -3,5 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-export { default as Database } from './Database';
-export { default as Search } from './Search';
+import { APIError } from './APIError';
+
+export type ModuleResults<T> = {
+  error: boolean;
+  content?: T;
+  errorDetails?: APIError;
+};

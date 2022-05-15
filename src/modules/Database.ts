@@ -7,7 +7,6 @@
 
 import API_ENDPOINT from '../constants/API_ENDPOINTS';
 import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
-import RequestUrlBuilder from '../core/RequestURLBuilder';
 import CoreModule from './CoreModule';
 import {
   RawTitle,
@@ -106,37 +105,5 @@ export default class Database extends CoreModule {
       error: false,
       content: TitleParser(DATA as RawTitle),
     };
-  }
-
-  async getGenres(): Promise<string[] | never> {
-    const { baseUrl, version, useHttps, timeout } = this.options;
-    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
-    U_BUILD.setEndpoint(API_ENDPOINT.GET_GENRES);
-
-    const REQUEST_URL = U_BUILD.build();
-
-    try {
-      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
-      const DATA = (await API_REQUEST.json()) as string[];
-      return DATA;
-    } catch (e) {
-      throw new Error('Failed fetch genres list');
-    }
-  }
-
-  async getYears(): Promise<number[] | never> {
-    const { baseUrl, version, useHttps, timeout } = this.options;
-    const U_BUILD = new RequestUrlBuilder(baseUrl, version, useHttps);
-    U_BUILD.setEndpoint(API_ENDPOINT.GET_YEARS);
-
-    const REQUEST_URL = U_BUILD.build();
-
-    try {
-      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
-      const DATA = (await API_REQUEST.json()) as number[];
-      return DATA;
-    } catch (e) {
-      throw new Error('Failed fetch genres list');
-    }
   }
 }

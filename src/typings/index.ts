@@ -27,3 +27,4 @@ export { APIError } from './APIError';
 export { RawTitle } from './RawTitle';
 export { ModuleOptions } from './ModuleOptions';
 export { ISearchTitlesQueryParams } from './ISearchTitlesQueryParams';
+export { ModuleResults } from './ModuleResults';
