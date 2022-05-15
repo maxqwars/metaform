@@ -5,3 +5,4 @@
 
 export { default as GetTitleQueryBuilder } from './GetTitleQueryBuilder';
 export { default as SearchTitlesQueryBuilder } from './SearchTitlesQueryBuilder';
+export { default as GetUpdatesQueryBuilder } from './GetUpdatesQueryBuilder';

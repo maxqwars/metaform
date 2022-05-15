@@ -12,13 +12,13 @@ export interface ISearchTitlesQueryParams
   extends ISelectQueryParams,
     IShiftQueryParams,
     IFormatQueryParams {
-  search: string;
-  year: number;
-  seasonCode: TITLE_SEASON;
-  genres: string[];
-  voice: string[];
-  translator: string[];
-  editing: string[];
-  decor: string[];
-  timing: string[];
+  search?: string;
+  year?: number;
+  seasonCode?: TITLE_SEASON;
+  genres?: string[];
+  voice?: string[];
+  translator?: string[];
+  editing?: string[];
+  decor?: string[];
+  timing?: string[];
 }

@@ -3,9 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+/* Types */
 export { Title } from './Title';
-export { IGetTitleQueryParams } from './IGetTitleQueryParams';
-export { IGetTitlesQueryParams } from './IGetTitlesQueryParams';
 export { TitleNames } from './TitleNames';
 export { TitleStatus } from './TitleStatus';
 export { Poster } from './Poster';
@@ -20,11 +19,16 @@ export { TitlePlayer } from './TitlePlayer';
 export { TorrentQuality } from './TorrentQuality';
 export { Torrent } from './Torrent';
 export { TitleTorrents } from './TitleTorrents';
-export { ISelectQueryParams } from './ISelectQueryParams';
-export { IFormatQueryParams } from './IFormatQueryParams';
-export { IShiftQueryParams } from './IShiftQueryParams';
 export { APIError } from './APIError';
 export { RawTitle } from './RawTitle';
 export { ModuleOptions } from './ModuleOptions';
-export { ISearchTitlesQueryParams } from './ISearchTitlesQueryParams';
 export { ModuleResults } from './ModuleResults';
+
+/* Interfaces */
+export { IGetTitleQueryParams } from './IGetTitleQueryParams';
+export { IGetTitlesQueryParams } from './IGetTitlesQueryParams';
+export { ISearchTitlesQueryParams } from './ISearchTitlesQueryParams';
+export { ISelectQueryParams } from './ISelectQueryParams';
+export { IFormatQueryParams } from './IFormatQueryParams';
+export { IShiftQueryParams } from './IShiftQueryParams';
+export { IGetUpdatesQueryParams } from './IGetUpdatesQueryParams';

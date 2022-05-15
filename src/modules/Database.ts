@@ -5,8 +5,8 @@
 
 /* eslint-disable no-prototype-builtins */
 
-import API_ENDPOINT from '../constants/API_ENDPOINTS';
-import GetTitleQueryBuilder from '../classes/GetTitleQueryBuilder';
+import { API_ENDPOINTS } from '../constants';
+import { GetTitleQueryBuilder, GetUpdatesQueryBuilder } from '../classes';
 import CoreModule from './CoreModule';
 import {
   RawTitle,
@@ -14,14 +14,10 @@ import {
   IGetTitleQueryParams,
   APIError,
   ModuleOptions,
+  IGetUpdatesQueryParams,
+  ModuleResults,
 } from '../typings';
 import { TitleParser } from '../functions';
-
-type GetTitleResults = {
-  error: boolean;
-  content?: Title;
-  errorDetails?: APIError;
-};
 
 export default class Database extends CoreModule {
   // eslint-disable-next-line no-useless-constructor
@@ -31,7 +27,7 @@ export default class Database extends CoreModule {
 
   async getRandomTitle(
     params?: IGetTitleQueryParams
-  ): Promise<GetTitleResults | never> {
+  ): Promise<ModuleResults<Title> | never> {
     const { timeout } = this.options;
 
     const U_BUILD = this.requestURLBuilder;
@@ -48,7 +44,7 @@ export default class Database extends CoreModule {
         .setDescriptionType(params.descriptionType);
     }
 
-    U_BUILD.setEndpoint(API_ENDPOINT.GET_RANDOM_TITLE);
+    U_BUILD.setEndpoint(API_ENDPOINTS.GET_RANDOM_TITLE);
     U_BUILD.setQueryParams(Q_BUILD.build());
 
     const REQUEST_URL = U_BUILD.build();
@@ -70,7 +66,7 @@ export default class Database extends CoreModule {
 
   async getTitle(
     params: IGetTitleQueryParams
-  ): Promise<GetTitleResults | never> {
+  ): Promise<ModuleResults<Title> | never> {
     const { timeout } = this.options;
 
     const U_BUILD = this.requestURLBuilder;
@@ -87,7 +83,7 @@ export default class Database extends CoreModule {
         .setDescriptionType(params.descriptionType);
     }
 
-    U_BUILD.setEndpoint(API_ENDPOINT.GET_TITLE);
+    U_BUILD.setEndpoint(API_ENDPOINTS.GET_TITLE);
     U_BUILD.setQueryParams(Q_BUILD.build());
 
     const REQUEST_URL = U_BUILD.build();
@@ -106,4 +102,53 @@ export default class Database extends CoreModule {
       content: TitleParser(DATA as RawTitle),
     };
   }
+
+  async getUpdates(
+    params?: IGetUpdatesQueryParams
+  ): Promise<ModuleResults<Title[]> | never> {
+    const { timeout } = this.options;
+
+    const U_BUILD = this.requestURLBuilder;
+    const Q_BUILD = new GetUpdatesQueryBuilder();
+
+    if (params) {
+      Q_BUILD.setAfter(params.after)
+        .setDescriptionType(params.descriptionType)
+        .setFilter(params.filter)
+        .setInclude(params.include)
+        .setLimit(params.limit)
+        .setPlaylistType(params.playlistType)
+        .setRemove(params.remove)
+        .setSince(params.since);
+    }
+
+    /*  */
+    U_BUILD.setEndpoint(API_ENDPOINTS.GET_UPDATES);
+    U_BUILD.setQueryParams(Q_BUILD.build());
+
+    /*  */
+    const REQUEST_URL = U_BUILD.build();
+    const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
+    const DATA = await API_REQUEST.json();
+
+    if (DATA.hasOwnProperty('error') as Object) {
+      return {
+        error: true,
+        errorDetails: DATA as APIError,
+      };
+    }
+
+    function handler(title: RawTitle): Title {
+      return TitleParser(title);
+    }
+
+    return {
+      error: false,
+      content: DATA.map(handler),
+    };
+  }
+
+  // async getChanges() {
+  //   throw new Error('Method not implemented');
+  // }
 }
