@@ -48,7 +48,7 @@ Metaform is an open library for working with the Anilibria REST API. Reincarnati
 | getTeam         | Not supported     |                                               |
 | getSeedStats    | Not supported     |                                               |
 | getRSS          | Not supported     |                                               |
-| searchTitles    | Not supported     |                                               |
+| searchTitles    | `Partial` support | A revision of the response parser is required |
 | advancedSearch  | Not supported     |                                               |
 
 <br />
