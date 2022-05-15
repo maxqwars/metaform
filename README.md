@@ -37,7 +37,7 @@ Metaform is an open library for working with the Anilibria REST API. Reincarnati
 | getTitle        | `Partial` support | A revision of the response parser is required |
 | getRandomTitle  | `Partial` support | A revision of the response parser is required |
 | getTitles       | Not supported     |                                               |
-| getUpdates      | Not supported     |                                               |
+| getUpdates      | `Partial` support | A revision of the response parser is required |
 | getChanges      | Not supported     |                                               |
 | getSchedule     | Not supported     |                                               |
 | getYouTube      | Not supported     |                                               |
