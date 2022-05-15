@@ -5,6 +5,8 @@
 
 /* eslint-disable no-unused-vars */
 
+// TODO: Optimize this shit
+
 import { QueryBuilderBase } from '../core';
 import {
   INCLUDED_RESOURCES,

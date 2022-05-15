@@ -6,11 +6,14 @@
 /* eslint-disable no-unused-vars */
 
 // TODO: Refactor
+// TODO: Optimize this shit
 
-import QueryBuilderBase from '../core/QueryBuilderBase';
-import INCLUDE_RESOURCES from '../constants/INCLUDED_RESOURCES';
-import DESCRIPTION_TYPE from '../constants/DESCRIPTION_TYPE';
-import PLAYLIST_TYPE from '../constants/PLAYLIST_TYPE';
+import { QueryBuilderBase } from '../core';
+import {
+  INCLUDED_RESOURCES,
+  DESCRIPTION_TYPE,
+  PLAYLIST_TYPE,
+} from '../constants';
 
 export interface IGetTitleQueryBuilder {
   build(): string;
@@ -18,7 +21,7 @@ export interface IGetTitleQueryBuilder {
   setCode(code?: string): IGetTitleQueryBuilder;
   setFilter(keys?: string[]): IGetTitleQueryBuilder;
   setRemove(keys?: string[]): IGetTitleQueryBuilder;
-  setInclude(resources?: INCLUDE_RESOURCES[]): IGetTitleQueryBuilder;
+  setInclude(resources?: INCLUDED_RESOURCES[]): IGetTitleQueryBuilder;
   setTorrentId(id?: number): IGetTitleQueryBuilder;
   setDescriptionType(type?: DESCRIPTION_TYPE): IGetTitleQueryBuilder;
   setPlaylistType(type?: PLAYLIST_TYPE): IGetTitleQueryBuilder;
@@ -48,7 +51,7 @@ export default class GetTitleQueryBuilder
     return this;
   }
 
-  setInclude(keys?: INCLUDE_RESOURCES[]): IGetTitleQueryBuilder {
+  setInclude(keys?: INCLUDED_RESOURCES[]): IGetTitleQueryBuilder {
     if (keys) super.addParam('include', keys);
     return this;
   }

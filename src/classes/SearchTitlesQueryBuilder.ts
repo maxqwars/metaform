@@ -5,11 +5,15 @@
 
 /* eslint-disable no-unused-vars */
 
-import QueryBuilderBase from '../core/QueryBuilderBase';
-import INCLUDE_RESOURCES from '../constants/INCLUDED_RESOURCES';
-import DESCRIPTION_TYPE from '../constants/DESCRIPTION_TYPE';
-import PLAYLIST_TYPE from '../constants/PLAYLIST_TYPE';
-import TITLE_SEASON from '../constants/TITLE_SEASON';
+// TODO: Optimize this shit
+
+import { QueryBuilderBase } from '../core';
+import {
+  INCLUDED_RESOURCES,
+  DESCRIPTION_TYPE,
+  PLAYLIST_TYPE,
+  TITLE_SEASON,
+} from '../constants';
 
 export interface ISearchTitleQueryBuilder {
   build(): string;
@@ -24,7 +28,7 @@ export interface ISearchTitleQueryBuilder {
   setTiming(list?: string[]): ISearchTitleQueryBuilder;
   setFilter(list?: string[]): ISearchTitleQueryBuilder;
   setRemove(list?: string[]): ISearchTitleQueryBuilder;
-  setInclude(list?: INCLUDE_RESOURCES[]): ISearchTitleQueryBuilder;
+  setInclude(list?: INCLUDED_RESOURCES[]): ISearchTitleQueryBuilder;
   setDescriptionType(type?: DESCRIPTION_TYPE): ISearchTitleQueryBuilder;
   setPlaylistType(type?: PLAYLIST_TYPE): ISearchTitleQueryBuilder;
   setLimit(limit?: number): ISearchTitleQueryBuilder;
@@ -94,7 +98,7 @@ export default class SearchTitlesQueryBuilder
     return this;
   }
 
-  setInclude(list?: INCLUDE_RESOURCES[]): ISearchTitleQueryBuilder {
+  setInclude(list?: INCLUDED_RESOURCES[]): ISearchTitleQueryBuilder {
     if (list) super.addParam('include', list);
     return this;
   }
