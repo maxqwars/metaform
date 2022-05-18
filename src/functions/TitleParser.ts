@@ -3,15 +3,22 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { Title } from '../typings/Title';
-import { RawTitle } from '../typings/RawTitle';
-import { TitleType } from '../typings/TitleType';
-import { TitleTeam } from '../typings/TitleTeam';
-import { TitleNames } from '../typings/TitleNames';
-import { TitleSeason } from '../typings/TitleSeason';
-import { TitleStatus } from '../typings/TitleStatus';
-import { TitlePosters } from '../typings/TitlePosters';
-import { TitleBlocked } from '../typings/TitleBlocked';
+// TODO: Add array playlist support
+
+import {
+  Title,
+  RawTitle,
+  TitleType,
+  TitleTeam,
+  TitleNames,
+  TitleSeason,
+  TitleStatus,
+  TitlePosters,
+  TitleBlocked,
+  TitlePlayer,
+  ObjectPlaylist,
+  TitleSeries,
+} from '../typings';
 
 /* eslint-disable no-extra-boolean-cast */
 
@@ -125,6 +132,53 @@ export default function TitleParser(data: RawTitle): Title {
     return null;
   })();
 
+  const player: TitlePlayer | null = ((): TitlePlayer | null => {
+    if (!!data.player) {
+      const playlist: ObjectPlaylist = {};
+
+      if (!!data.player.playlist) {
+        // eslint-disable-next-line guard-for-in, no-restricted-syntax
+        for (const index in data.player.playlist) {
+          const episode = data.player.playlist[index];
+          playlist[index] = {
+            serie: !!episode.serie ? episode.serie : null,
+            createdTimestamp: !!episode.created_timestamp
+              ? episode.created_timestamp
+              : null,
+            preview: null,
+            skips: {
+              opening: null,
+              ending: null,
+            },
+            hls: {
+              fhd: !!episode.hls?.fhd ? episode.hls?.fhd : null,
+              hd: !!episode.hls?.hd ? episode.hls?.hd : null,
+              sd: !!episode.hls?.sd ? episode.hls?.sd : null,
+            },
+          };
+        }
+      }
+
+      const series: TitleSeries | null = {
+        first: !!data.player.series?.first ? data.player.series?.first : null,
+        last: !!data.player.series?.last ? data.player.series?.last : null,
+        string: !!data.player.series?.string
+          ? data.player.series?.string
+          : null,
+      };
+
+      return {
+        alternativePlayer: !!data.player.alternative_player
+          ? data.player.alternative_player
+          : null,
+        host: !!data.player.host ? data.player.host : null,
+        series,
+        playlist,
+      };
+    }
+    return null;
+  })();
+
   return {
     /* Primitive */
     id: !!data.id ? data.id : null,
@@ -142,5 +196,6 @@ export default function TitleParser(data: RawTitle): Title {
     team,
     season,
     blocked,
+    player,
   };
 }

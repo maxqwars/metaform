@@ -5,8 +5,13 @@
 
 export type ObjectPlaylist = {
   [key: number]: {
-    id: number;
-    createdTimestamp: number;
+    serie: number | null;
+    createdTimestamp: number | null;
+    preview: null;
+    skips: {
+      opening: [] | null;
+      ending: [] | null;
+    } | null;
     hls: {
       fhd: string | null;
       hd: string | null;

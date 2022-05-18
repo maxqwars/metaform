@@ -83,7 +83,22 @@ export type RawTitle = {
       last?: number;
       string?: string;
     };
-    // TODO: Add playlist
+    playlist?: null | {
+      [key: number]: {
+        serie?: number;
+        created_timestamp?: number;
+        preview?: null;
+        skips?: {
+          opening?: [];
+          ending?: [];
+        };
+        hls?: {
+          fhd?: string;
+          hd?: string;
+          sd?: string;
+        };
+      };
+    };
   };
   // TODO: Add torrents
 };
