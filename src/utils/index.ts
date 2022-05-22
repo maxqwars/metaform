@@ -5,3 +5,4 @@
 
 // eslint-disable-next-line import/prefer-default-export
 export { default as UrlTools } from './UrlTools';
+export { default as BlobTools } from './BlobTools';
