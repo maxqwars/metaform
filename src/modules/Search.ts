@@ -6,25 +6,25 @@
 import { API_ENDPOINTS } from '../constants';
 import { SearchTitlesQueryBuilder } from '../classes';
 import {
-  ModuleOptions,
+  MetaModuleOptions,
   ISearchTitlesQueryParams,
   RawTitle,
   Title,
-  ModuleResults,
+  MetaModuleResults,
   APIError,
 } from '../typings';
-import CoreModule from './CoreModule';
+import CoreModule from './MetaModule';
 import { TitleParser } from '../functions';
 
 export default class Search extends CoreModule {
   // eslint-disable-next-line no-useless-constructor
-  constructor(options: ModuleOptions) {
+  constructor(options: MetaModuleOptions) {
     super(options);
   }
 
   async searchTitles(
     params: ISearchTitlesQueryParams
-  ): Promise<ModuleResults<Title[]> | never> {
+  ): Promise<MetaModuleResults<Title[]> | never> {
     const { timeout } = this.options;
 
     /* Init required modules */
@@ -55,7 +55,7 @@ export default class Search extends CoreModule {
 
     /* Request data */
     const REQUEST_URL = U_BUILD.build();
-    const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
+    const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, { timeout });
     const DATA = await API_REQUEST.json();
 
     // eslint-disable-next-line no-prototype-builtins
@@ -84,7 +84,7 @@ export default class Search extends CoreModule {
     const REQUEST_URL = U_BUILD.build();
 
     try {
-      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
+      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, { timeout });
       const DATA = (await API_REQUEST.json()) as string[];
       return DATA;
     } catch (e) {
@@ -100,7 +100,7 @@ export default class Search extends CoreModule {
     const REQUEST_URL = U_BUILD.build();
 
     try {
-      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, timeout);
+      const API_REQUEST = await this.fetchWithTimeout(REQUEST_URL, { timeout });
       const DATA = (await API_REQUEST.json()) as number[];
       return DATA;
     } catch (e) {

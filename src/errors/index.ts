@@ -4,4 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 // eslint-disable-next-line import/prefer-default-export
-export { default as RequestTimeoutError } from './RequestTimeoutError';
+export {
+  ResponseTimeoutExceeded,
+  RESPONSE_TIMEOUT_EXCEEDED,
+} from './ResponseTimeoutExceeded';

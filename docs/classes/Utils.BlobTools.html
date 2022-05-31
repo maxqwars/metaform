@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>IShiftQueryParams | @maxqwars/metaform</title>
+    <title>BlobTools | @maxqwars/metaform</title>
     <meta name="description" content="Documentation for @maxqwars/metaform" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -75,12 +75,10 @@
         <div class="container">
           <ul class="tsd-breadcrumb">
             <li><a href="../modules.html">@maxqwars/metaform</a></li>
-            <li><a href="../modules/Types.html">Types</a></li>
-            <li>
-              <a href="Types.IShiftQueryParams.html">IShiftQueryParams</a>
-            </li>
+            <li><a href="../modules/Utils.html">Utils</a></li>
+            <li><a href="Utils.BlobTools.html">BlobTools</a></li>
           </ul>
-          <h1>Interface IShiftQueryParams</h1>
+          <h1>Class BlobTools</h1>
         </div>
       </div>
     </header>
@@ -90,27 +88,7 @@
           <section class="tsd-panel tsd-hierarchy">
             <h3>Hierarchy</h3>
             <ul class="tsd-hierarchy">
-              <li>
-                <span class="target">IShiftQueryParams</span>
-                <ul class="tsd-hierarchy">
-                  <li>
-                    <a
-                      href="Types.ISearchTitlesQueryParams.html"
-                      class="tsd-signature-type"
-                      data-tsd-kind="Interface"
-                      >ISearchTitlesQueryParams</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="Types.IGetUpdatesQueryParams.html"
-                      class="tsd-signature-type"
-                      data-tsd-kind="Interface"
-                      >IGetUpdatesQueryParams</a
-                    >
-                  </li>
-                </ul>
-              </li>
+              <li><span class="target">BlobTools</span></li>
             </ul>
           </section>
           <section class="tsd-panel-group tsd-index-group">
@@ -118,27 +96,36 @@
             <section class="tsd-panel tsd-index-panel">
               <div class="tsd-index-content">
                 <section class="tsd-index-section">
-                  <h3>Properties</h3>
+                  <h3>Constructors</h3>
                   <ul class="tsd-index-list">
-                    <li class="tsd-kind-property tsd-parent-kind-interface">
+                    <li class="tsd-kind-constructor tsd-parent-kind-class">
                       <a
-                        href="Types.IShiftQueryParams.html#after"
+                        href="Utils.BlobTools.html#constructor"
                         class="tsd-kind-icon"
-                        >after</a
+                        >constructor</a
                       >
                     </li>
-                    <li class="tsd-kind-property tsd-parent-kind-interface">
+                  </ul>
+                </section>
+                <section class="tsd-index-section">
+                  <h3>Methods</h3>
+                  <ul class="tsd-index-list">
+                    <li
+                      class="tsd-kind-method tsd-parent-kind-class tsd-is-static"
+                    >
                       <a
-                        href="Types.IShiftQueryParams.html#limit"
+                        href="Utils.BlobTools.html#convertBlobToBase64"
                         class="tsd-kind-icon"
-                        >limit</a
+                        >convert<wbr />Blob<wbr />To<wbr />Base64</a
                       >
                     </li>
-                    <li class="tsd-kind-property tsd-parent-kind-interface">
+                    <li
+                      class="tsd-kind-method tsd-parent-kind-class tsd-is-static"
+                    >
                       <a
-                        href="Types.IShiftQueryParams.html#since"
+                        href="Utils.BlobTools.html#fetchAsBlob"
                         class="tsd-kind-icon"
-                        >since</a
+                        >fetch<wbr />As<wbr />Blob</a
                       >
                     </li>
                   </ul>
@@ -147,14 +134,14 @@
             </section>
           </section>
           <section class="tsd-panel-group tsd-member-group">
-            <h2>Properties</h2>
+            <h2>Constructors</h2>
             <section
-              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"
+              class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"
             >
-              <a id="after" class="tsd-anchor"></a>
+              <a id="constructor" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <span class="tsd-flag ts-flagOptional">Optional</span> after<a
-                  href="#after"
+                constructor<a
+                  href="#constructor"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg
@@ -176,29 +163,123 @@
                     ></path></svg
                 ></a>
               </h3>
-              <div class="tsd-signature tsd-kind-icon">
-                after<span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
+              <ul
+                class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class"
+              >
+                <li class="tsd-signature tsd-kind-icon">
+                  new <wbr />Blob<wbr />Tools<span class="tsd-signature-symbol"
+                    >(</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">: </span
+                  ><a
+                    href="Utils.BlobTools.html"
+                    class="tsd-signature-type"
+                    data-tsd-kind="Class"
+                    >BlobTools</a
+                  >
+                </li>
+              </ul>
+              <ul class="tsd-descriptions">
+                <li class="tsd-description">
+                  <h4 class="tsd-returns-title">
+                    Returns
                     <a
-                      href="https://github.com/maxqwars/metaform/blob/bbe1b18/src/typings/IShiftQueryParams.ts#L9"
-                      >src/typings/IShiftQueryParams.ts:9</a
+                      href="Utils.BlobTools.html"
+                      class="tsd-signature-type"
+                      data-tsd-kind="Class"
+                      >BlobTools</a
                     >
-                  </li>
-                </ul>
-              </aside>
+                  </h4>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="tsd-panel-group tsd-member-group">
+            <h2>Methods</h2>
+            <section
+              class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"
+            >
+              <a id="convertBlobToBase64" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span class="tsd-flag ts-flagStatic">Static</span>
+                convert<wbr />Blob<wbr />To<wbr />Base64<a
+                  href="#convertBlobToBase64"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-link"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"
+                    ></path>
+                    <path
+                      d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"
+                    ></path></svg
+                ></a>
+              </h3>
+              <ul
+                class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"
+              >
+                <li class="tsd-signature tsd-kind-icon">
+                  convert<wbr />Blob<wbr />To<wbr />Base64<span
+                    class="tsd-signature-symbol"
+                    >(</span
+                  >blob<span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">Blob</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">Promise</span
+                  ><span class="tsd-signature-symbol">&lt;</span
+                  ><span class="tsd-signature-type">unknown</span
+                  ><span class="tsd-signature-symbol">&gt;</span>
+                </li>
+              </ul>
+              <ul class="tsd-descriptions">
+                <li class="tsd-description">
+                  <aside class="tsd-sources">
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/maxqwars/metaform/blob/bbe1b18/src/utils/BlobTools.ts#L16"
+                          >src/utils/BlobTools.ts:16</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                  <h4 class="tsd-parameters-title">Parameters</h4>
+                  <ul class="tsd-parameters">
+                    <li>
+                      <h5>
+                        blob: <span class="tsd-signature-type">Blob</span>
+                      </h5>
+                    </li>
+                  </ul>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">Promise</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><span class="tsd-signature-type">unknown</span
+                    ><span class="tsd-signature-symbol">&gt;</span>
+                  </h4>
+                </li>
+              </ul>
             </section>
             <section
-              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"
+              class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"
             >
-              <a id="limit" class="tsd-anchor"></a>
+              <a id="fetchAsBlob" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <span class="tsd-flag ts-flagOptional">Optional</span> limit<a
-                  href="#limit"
+                <span class="tsd-flag ts-flagStatic">Static</span>
+                fetch<wbr />As<wbr />Blob<a
+                  href="#fetchAsBlob"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg
@@ -220,65 +301,51 @@
                     ></path></svg
                 ></a>
               </h3>
-              <div class="tsd-signature tsd-kind-icon">
-                limit<span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/bbe1b18/src/typings/IShiftQueryParams.ts#L7"
-                      >src/typings/IShiftQueryParams.ts:7</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section
-              class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"
-            >
-              <a id="since" class="tsd-anchor"></a>
-              <h3 class="tsd-anchor-link">
-                <span class="tsd-flag ts-flagOptional">Optional</span> since<a
-                  href="#since"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-link"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path
-                      d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"
-                    ></path>
-                    <path
-                      d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"
-                    ></path></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature tsd-kind-icon">
-                since<span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/maxqwars/metaform/blob/bbe1b18/src/typings/IShiftQueryParams.ts#L8"
-                      >src/typings/IShiftQueryParams.ts:8</a
-                    >
-                  </li>
-                </ul>
-              </aside>
+              <ul
+                class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"
+              >
+                <li class="tsd-signature tsd-kind-icon">
+                  fetch<wbr />As<wbr />Blob<span class="tsd-signature-symbol"
+                    >(</span
+                  >url<span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">string</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">: </span
+                  ><span class="tsd-signature-type">Promise</span
+                  ><span class="tsd-signature-symbol">&lt;</span
+                  ><span class="tsd-signature-type">Blob</span
+                  ><span class="tsd-signature-symbol">&gt;</span>
+                </li>
+              </ul>
+              <ul class="tsd-descriptions">
+                <li class="tsd-description">
+                  <aside class="tsd-sources">
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/maxqwars/metaform/blob/bbe1b18/src/utils/BlobTools.ts#L12"
+                          >src/utils/BlobTools.ts:12</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                  <h4 class="tsd-parameters-title">Parameters</h4>
+                  <ul class="tsd-parameters">
+                    <li>
+                      <h5>
+                        url: <span class="tsd-signature-type">string</span>
+                      </h5>
+                    </li>
+                  </ul>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">Promise</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><span class="tsd-signature-type">Blob</span
+                    ><span class="tsd-signature-symbol">&gt;</span>
+                  </h4>
+                </li>
+              </ul>
             </section>
           </section>
         </div>
@@ -304,40 +371,44 @@
               <li class="tsd-kind-namespace">
                 <a href="../modules/Modules.html">Modules</a>
               </li>
-              <li class="current tsd-kind-namespace">
+              <li class="tsd-kind-namespace">
                 <a href="../modules/Types.html">Types</a>
               </li>
-              <li class="tsd-kind-namespace">
+              <li class="current tsd-kind-namespace">
                 <a href="../modules/Utils.html">Utils</a>
               </li>
             </ul>
           </nav>
           <nav class="tsd-navigation secondary menu-sticky">
             <ul>
-              <li class="current tsd-kind-interface tsd-parent-kind-namespace">
-                <a href="Types.IShiftQueryParams.html" class="tsd-kind-icon"
-                  >IShift<wbr />Query<wbr />Params</a
+              <li class="current tsd-kind-class tsd-parent-kind-namespace">
+                <a href="Utils.BlobTools.html" class="tsd-kind-icon"
+                  >Blob<wbr />Tools</a
                 >
                 <ul>
-                  <li class="tsd-kind-property tsd-parent-kind-interface">
+                  <li class="tsd-kind-constructor tsd-parent-kind-class">
                     <a
-                      href="Types.IShiftQueryParams.html#after"
+                      href="Utils.BlobTools.html#constructor"
                       class="tsd-kind-icon"
-                      >after</a
+                      >constructor</a
                     >
                   </li>
-                  <li class="tsd-kind-property tsd-parent-kind-interface">
+                  <li
+                    class="tsd-kind-method tsd-parent-kind-class tsd-is-static"
+                  >
                     <a
-                      href="Types.IShiftQueryParams.html#limit"
+                      href="Utils.BlobTools.html#convertBlobToBase64"
                       class="tsd-kind-icon"
-                      >limit</a
+                      >convert<wbr />Blob<wbr />To<wbr />Base64</a
                     >
                   </li>
-                  <li class="tsd-kind-property tsd-parent-kind-interface">
+                  <li
+                    class="tsd-kind-method tsd-parent-kind-class tsd-is-static"
+                  >
                     <a
-                      href="Types.IShiftQueryParams.html#since"
+                      href="Utils.BlobTools.html#fetchAsBlob"
                       class="tsd-kind-icon"
-                      >since</a
+                      >fetch<wbr />As<wbr />Blob</a
                     >
                   </li>
                 </ul>
@@ -352,8 +423,13 @@
         <h2>Legend</h2>
         <div class="tsd-legend-group">
           <ul class="tsd-legend">
-            <li class="tsd-kind-property tsd-parent-kind-interface">
-              <span class="tsd-kind-icon">Property</span>
+            <li class="tsd-kind-constructor tsd-parent-kind-class">
+              <span class="tsd-kind-icon">Constructor</span>
+            </li>
+          </ul>
+          <ul class="tsd-legend">
+            <li class="tsd-kind-method tsd-parent-kind-class tsd-is-static">
+              <span class="tsd-kind-icon">Static method</span>
             </li>
           </ul>
         </div>

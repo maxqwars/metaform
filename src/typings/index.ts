@@ -21,8 +21,8 @@ export { Torrent } from './Torrent';
 export { TitleTorrents } from './TitleTorrents';
 export { APIError } from './APIError';
 export { RawTitle } from './RawTitle';
-export { ModuleOptions } from './ModuleOptions';
-export { ModuleResults } from './ModuleResults';
+export { MetaModuleOptions } from './MetaModuleOptions';
+export { MetaModuleResults } from './MetaModuleResults';
 
 /* Interfaces */
 export { IGetTitleQueryParams } from './IGetTitleQueryParams';
