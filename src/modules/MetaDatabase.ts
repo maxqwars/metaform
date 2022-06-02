@@ -28,12 +28,11 @@ export default class MetaDatabase extends CoreModule {
     params?: IGetTitleQueryParams,
     timeout?: number
   ): Promise<MetaModuleResults<Title> | never> {
-    this.requestURLBuilder.setEndpoint(API_ENDPOINTS.GET_RANDOM_TITLE);
     const requestTimeout =
       typeof timeout !== 'undefined' ? timeout : this.options.timeout;
+    const queryBuilder = new GetTitleQueryBuilder();
 
     if (typeof params !== 'undefined') {
-      const queryBuilder = new GetTitleQueryBuilder();
       queryBuilder
         .setId(params.id)
         .setCode(params.code)
@@ -43,25 +42,17 @@ export default class MetaDatabase extends CoreModule {
         .setTorrentId(params.torrentId)
         .setPlaylistType(params.playlistType)
         .setDescriptionType(params.descriptionType);
-      this.requestURLBuilder.setQueryParams(queryBuilder.build());
     }
 
-    try {
-      const response = await (
-        await this.fetchWithTimeout(this.requestURLBuilder.build(), {
-          timeout: requestTimeout,
-        })
-      ).json();
+    const data = await this.fetchRaw(
+      API_ENDPOINTS.GET_RANDOM_TITLE,
+      queryBuilder.build(),
+      requestTimeout
+    );
 
-      return response.hasOwnProperty('error')
-        ? this.createResults<Title>(true, null, response as APIError)
-        : this.createResults(false, TitleParser(response as RawTitle), null);
-    } catch (e: unknown) {
-      if ((e as Error).name === 'AbortError')
-        throw new ResponseTimeoutExceeded();
-
-      throw e;
-    }
+    return data.hasOwnProperty('error')
+      ? this.createResults<Title>(true, null, data as APIError)
+      : this.createResults(false, TitleParser(data as RawTitle), null);
   }
 
   async getTitle(
@@ -71,46 +62,51 @@ export default class MetaDatabase extends CoreModule {
     const requestTimeout =
       typeof timeout !== 'undefined' ? timeout : this.options.timeout;
 
-    const U_BUILD = this.requestURLBuilder;
-    const Q_BUILD = new GetTitleQueryBuilder();
+    const queryBuilder = new GetTitleQueryBuilder();
+    queryBuilder
+      .setId(params.id)
+      .setCode(params.code)
+      .setFilter(params.filter)
+      .setRemove(params.remove)
+      .setInclude(params.include)
+      .setTorrentId(params.torrentId)
+      .setPlaylistType(params.playlistType)
+      .setDescriptionType(params.descriptionType);
 
-    if (typeof params !== 'undefined') {
-      Q_BUILD.setId(params.id)
-        .setCode(params.code)
-        .setFilter(params.filter)
-        .setRemove(params.remove)
-        .setInclude(params.include)
-        .setTorrentId(params.torrentId)
-        .setPlaylistType(params.playlistType)
-        .setDescriptionType(params.descriptionType);
-    }
+    const data = await this.fetchRaw(
+      API_ENDPOINTS.GET_TITLE,
+      queryBuilder.build(),
+      requestTimeout
+    );
 
-    U_BUILD.setEndpoint(API_ENDPOINTS.GET_TITLE);
-    U_BUILD.setQueryParams(Q_BUILD.build());
+    return data.hasOwnProperty('error')
+      ? this.createResults<Title>(true, null, data as APIError)
+      : this.createResults(false, TitleParser(data as RawTitle), null);
+  }
+
+  private async fetchRaw(
+    endpoint: API_ENDPOINTS,
+    query: string,
+    timeout: number
+  ): Promise<RawTitle | APIError | never> {
+    this.requestURLBuilder.setEndpoint(endpoint);
+    this.requestURLBuilder.setQueryParams(query);
 
     try {
-      const REQ = await this.fetchWithTimeout(U_BUILD.build(), {
-        timeout: requestTimeout,
-      });
+      const response = await (
+        await this.fetchWithTimeout(this.requestURLBuilder.build(), {
+          timeout,
+        })
+      ).json();
 
-      const RESPONSE = (await REQ.json()) as Object;
-
-      if (RESPONSE.hasOwnProperty('error')) {
-        return {
-          error: true,
-          errorDetails: RESPONSE as APIError,
-        };
-      }
-
-      return {
-        error: false,
-        content: TitleParser(RESPONSE as RawTitle),
-      };
-    } catch (e: unknown) {
-      if ((e as Error).name === 'AbortError')
+      return response.hasOwnProperty('error')
+        ? (response as APIError)
+        : (response as RawTitle);
+    } catch (error) {
+      if ((error as Error).name === 'AbortError')
         throw new ResponseTimeoutExceeded();
 
-      throw e;
+      throw error;
     }
   }
 
@@ -121,11 +117,12 @@ export default class MetaDatabase extends CoreModule {
     const requestTimeout =
       typeof timeout !== 'undefined' ? timeout : this.options.timeout;
 
-    const U_BUILD = this.requestURLBuilder;
-    const Q_BUILD = new GetUpdatesQueryBuilder();
+    this.requestURLBuilder.setEndpoint(API_ENDPOINTS.GET_UPDATES);
 
-    if (params) {
-      Q_BUILD.setAfter(params.after)
+    if (typeof params !== 'undefined') {
+      const queryBuilder = new GetUpdatesQueryBuilder();
+      queryBuilder
+        .setAfter(params.after)
         .setDescriptionType(params.descriptionType)
         .setFilter(params.filter)
         .setInclude(params.include)
@@ -133,6 +130,7 @@ export default class MetaDatabase extends CoreModule {
         .setPlaylistType(params.playlistType)
         .setRemove(params.remove)
         .setSince(params.since);
+      this.requestURLBuilder.setQueryParams(queryBuilder.build());
     }
 
     /*  */
@@ -140,28 +138,16 @@ export default class MetaDatabase extends CoreModule {
       return TitleParser(title);
     }
 
-    /*  */
-    U_BUILD.setEndpoint(API_ENDPOINTS.GET_UPDATES);
-    U_BUILD.setQueryParams(Q_BUILD.build());
-
     try {
-      const REQ = await this.fetchWithTimeout(U_BUILD.build(), {
-        timeout: requestTimeout,
-      });
+      const response = await (
+        await this.fetchWithTimeout(this.requestURLBuilder.build(), {
+          timeout: requestTimeout,
+        })
+      ).json();
 
-      const RESPONSE = await REQ.json();
-
-      if (RESPONSE.hasOwnProperty('error')) {
-        return {
-          error: true,
-          errorDetails: RESPONSE as APIError,
-        };
-      }
-
-      return {
-        error: false,
-        content: RESPONSE.map(handler),
-      };
+      return response.hasOwnProperty('error')
+        ? this.createResults<Title[]>(true, null, response as APIError)
+        : this.createResults(false, response.map(handler), null);
     } catch (e: unknown) {
       if ((e as Error).name === 'AbortError')
         throw new ResponseTimeoutExceeded();

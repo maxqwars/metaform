@@ -14,4 +14,4 @@ export * as Errors from './errors';
 
 // eslint-disable-next-line prefer-destructuring
 export const METAFORM_VERSION = process.env.METAFORM_VERSION;
-export const METAFORM_NODE_ENV = process.env.NODE_ENV;
+export const METAFORM_NODE_ENV = process.env.NODE_ENV || 'production';
