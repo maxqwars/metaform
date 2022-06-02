@@ -4,4 +4,4 @@
 // https://opensource.org/licenses/MIT
 
 export { default as MetaDatabase } from './MetaDatabase';
-export { default as Search } from './Search';
+export { default as MetaSearch } from './MetaSearch';
