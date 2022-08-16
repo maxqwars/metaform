@@ -15,15 +15,11 @@ import API_VERSION from '../constants/API_VERSION';
  * @class UrlBuilder
  */
 export default class RequestURLBuilder {
-  private readonly baseUrl: string;
-
   private readonly useHttps: boolean;
-
   private readonly apiVersion: API_VERSION;
-
   private endpoint: API_ENDPOINTS;
-
   private queryParams: string;
+  private baseUrl: string;
 
   /**
    * Creates an instance of UrlBuilder.
@@ -37,6 +33,11 @@ export default class RequestURLBuilder {
     this.endpoint = API_ENDPOINTS.NONE;
     this.queryParams = '';
     this.baseUrl = this.assignBaseUrl(baseUrl);
+  }
+
+  set setBaseUrl(url: string) {
+    // TODO: Add url validation / checking
+    this.baseUrl = url;
   }
 
   /**
