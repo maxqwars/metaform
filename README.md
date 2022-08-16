@@ -66,5 +66,3 @@ $ npm install @maxqwars/metaform
 ```shell
 $ yarn add @maxqwars/metaform
 ```
-
-<br />
