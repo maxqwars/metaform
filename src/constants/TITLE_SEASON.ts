@@ -6,10 +6,10 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-shadow
 enum TITLE_SEASON {
-  AUTUMN = 4,
+  WINTER = 1,
   SPRING = 2,
   SUMMER = 3,
-  WINTER = 1,
+  AUTUMN = 4,
 }
 
 export default TITLE_SEASON;

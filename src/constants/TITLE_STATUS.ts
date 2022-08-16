@@ -6,9 +6,9 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-shadow
 enum TITLE_STATUS {
+  IN_PROCESS = 1,
   COMPLETED = 2,
   HIDDEN = 3,
-  IN_PROCESS = 1,
   NOT_ONGOING = 4,
 }
 
