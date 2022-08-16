@@ -68,7 +68,3 @@ $ yarn add @maxqwars/metaform
 ```
 
 <br />
-
-<!-- ## Support development 💸
-
-[![Support with Boosty.to](./boosty.png)](https://boosty.to/maxqwars) -->

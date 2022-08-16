@@ -43,9 +43,7 @@
     "preversion": "npm run lint && npm run docs:build",
     "version": "npm run format && git add .",
     "postversion": "git push && git push --tags",
-    "husky:install": "husky install",
-    "docs:build": "typedoc src/index.ts",
-    "docs:serve": "serve docs/"
+    "husky:install": "husky install"
   },
   "devDependencies": {
     "@jjldxz/rollup-plugin-env-files": "^1.0.0",
@@ -69,7 +67,6 @@
     "serve": "^13.0.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
-    "typedoc": "^0.22.11",
     "typescript": "^4.5.5"
   },
   "lint-staged": {
