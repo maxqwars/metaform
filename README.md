@@ -4,16 +4,14 @@
 
 <br>
 
-<center>
-    <img src="https://img.shields.io/github/issues/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/forks/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/stars/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/license/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/librariesio/dependents/npm/@maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/release-date/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/contributors/maxqwars/metaform" alt="">
-    <img src="https://img.shields.io/github/package-json/v/maxqwars/metaform" alt="">
-</center>
+![](https://img.shields.io/github/issues/maxqwars/metaform)
+![](https://img.shields.io/github/forks/maxqwars/metaform)
+![](https://img.shields.io/github/stars/maxqwars/metaform)
+![](https://img.shields.io/github/license/maxqwars/metaform)
+![](https://img.shields.io/librariesio/dependents/npm/@maxqwars/metaform)
+![](https://img.shields.io/github/release-date/maxqwars/metaform)
+![](https://img.shields.io/github/contributors/maxqwars/metaform)
+![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
 
 <br>
 
