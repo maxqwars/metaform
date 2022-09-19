@@ -1,63 +1,33 @@
-# METAFORM
+<center>
+    <img src="banner.png" alt="">
+</center>
 
-Metaform - the next stage of XConnect development
+<br>
 
-![](https://img.shields.io/github/issues/maxqwars/metaform)
-![](https://img.shields.io/github/forks/maxqwars/metaform)
-![](https://img.shields.io/github/stars/maxqwars/metaform)
-![](https://img.shields.io/github/license/maxqwars/metaform)
-![](https://img.shields.io/librariesio/dependents/npm/@maxqwars/metaform)
-![](https://img.shields.io/github/release-date/maxqwars/metaform)
-![](https://img.shields.io/github/contributors/maxqwars/metaform)
-![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
+<center>
+    <img src="https://img.shields.io/github/issues/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/forks/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/stars/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/license/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/librariesio/dependents/npm/@maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/release-date/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/contributors/maxqwars/metaform" alt="">
+    <img src="https://img.shields.io/github/package-json/v/maxqwars/metaform" alt="">
+</center>
 
-## What is a metaform?
+<br>
 
-Metaform is an open library for working with the Anilibria REST API. Reincarnation and reinterpretation of the outdated XConnect project.
+## Structure of the metaform
 
-### METAFORM VS. XConnect
+### Core
 
-| Feature            | METAFORM | XConnect |
-| ------------------ | -------- | -------- |
-| Request timeout    | ✅       | ❌       |
-| TypeScript         | ✅       | ✅       |
-| `commonJS` support | ✅       | ❌       |
-| `UMD` support      | ✅       | ❌       |
-| `ESM` support      | ✅       | ✅       |
-| Handing API Errors | ✅       | ❌       |
-| Modular            | ✅       | ✅       |
-| Alive              | ✅       | ❌       |
+Core - a set of entities for building URLs to API endpoints, queries and data parsing you do yourself
 
-<br />
+### Modules
 
-## Supported API 🔌
+Modules - is a set of classes that implements the API methods, including requesting and processing data. The names of the methods do not correspond to the original API methods. To work in the NodeJS environment you will need to use cross-fetch or its equivalent.
 
-| API             | Status            | Notice                                        |
-| --------------- | ----------------- | --------------------------------------------- |
-| getTitle        | `Partial` support | A revision of the response parser is required |
-| getRandomTitle  | `Partial` support | A revision of the response parser is required |
-| getTitles       | Not supported     |                                               |
-| getUpdates      | `Partial` support | A revision of the response parser is required |
-| getChanges      | Not supported     |                                               |
-| getSchedule     | Not supported     |                                               |
-| getYouTube      | Not supported     |                                               |
-| getFeed         | Not supported     |                                               |
-| getYears        | `Full` support    | Ready to use                                  |
-| getGenres       | `Full` support    | Ready to use                                  |
-| getCachingNodes | Not supported     |                                               |
-| getTeam         | Not supported     |                                               |
-| getSeedStats    | Not supported     |                                               |
-| getRSS          | Not supported     |                                               |
-| searchTitles    | `Partial` support | A revision of the response parser is required |
-| advancedSearch  | Not supported     |                                               |
-
-<br />
-
-## ⚠️ Risks when using the `alpha` version
-
-The metaform is at an early stage of development and has an unstable API, so it is highly not recommended for writing real projects. I advise you to wait for the first stable release.
-
-### 📦 Installation
+## 📦 Installation
 
 ```shell
 $ npm install @maxqwars/metaform
@@ -66,3 +36,52 @@ $ npm install @maxqwars/metaform
 ```shell
 $ yarn add @maxqwars/metaform
 ```
+
+## Examples of use
+
+### Getting release data using the MetaDatabase module
+
+```typescript
+import { Modules, Constants } from '@maxqwars/metaform';
+
+const id = 0; // release id
+
+const database = new Modules.MetaDatabase({
+  host: 'api.anilibria.tv',
+  version: Constants.API_VER.V2,
+  // timeout: default 6000ms
+  // useHttps: default `true`
+});
+
+database
+  .get({ id })
+  .then(release => console.log(release))
+  .catch(e => console.error(e));
+```
+
+### Getting release data using Core modules
+
+```typescript
+import { Constants, Core } from '@maxqwars/metaform';
+
+const id = 0; // release id
+
+const urlBuilder = new Core.UrlBuilder({
+  host: 'api.anilibria.tv',
+  useHttps: true,
+});
+const queryBuilder = new Core.GetTitleQueryBuilder();
+
+queryBuilder.setId(id);
+
+const reqUrl = urlBuilder
+  .setMethod(Constants.API_METHOD.GET_TITLE)
+  .setQuery(queryBuilder.build())
+  .build();
+
+// Retrieve data in any convenient way using the collected Url
+```
+
+## License
+
+MetaForm is an open source library licensed under the MIT license.
