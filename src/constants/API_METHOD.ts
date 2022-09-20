@@ -1,11 +1,4 @@
-// Copyright (c) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
-
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-shadow
-enum API_ENDPOINTS {
+export enum API_METHOD {
   ADVANCED_SEARCH = 'advancedSearch',
   GET_CACHING_NODES = 'getCachingNodes',
   GET_CHANGES = 'getChanges',
@@ -21,7 +14,4 @@ enum API_ENDPOINTS {
   GET_YEARS = 'getYears',
   GET_YOUTUBE = 'getYouTube',
   SEARCH_TITLES = 'searchTitles',
-  NONE = '',
 }
-
-export default API_ENDPOINTS;
