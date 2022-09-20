@@ -13,18 +13,6 @@
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
 
-<br>
-
-## Structure of the metaform
-
-### Core
-
-Core - a set of entities for building URLs to API endpoints, queries and data parsing you do yourself
-
-### Modules
-
-Modules - is a set of classes that implements the API methods, including requesting and processing data. The names of the methods do not correspond to the original API methods. To work in the NodeJS environment you will need to use cross-fetch or its equivalent.
-
 ## 📦 Installation
 
 ```shell
@@ -35,17 +23,31 @@ $ npm install @maxqwars/metaform
 $ yarn add @maxqwars/metaform
 ```
 
-## Examples of use
+## 🧬 Structure of the metaform
+
+### Core
+
+Core - a set of entities for building URLs to API endpoints, queries and data parsing you do yourself
+
+### Modules
+
+Modules - is a set of classes that implements the API methods, including requesting and processing data. The names of the methods do not correspond to the original API methods. To work in the NodeJS environment you will need to use cross-fetch or its equivalent.
+
+### Utils
+
+Useful utilities for working with API: query builders, format converters, etc.
+
+## ✨ Examples of use
 
 ### Getting release data using the MetaDatabase module
 
 ```typescript
-import { Modules, Constants } from '@maxqwars/metaform';
+import { Modules, Constants } from "@maxqwars/metaform";
 
 const id = 0; // release id
 
 const database = new Modules.MetaDatabase({
-  host: 'api.anilibria.tv',
+  host: "api.anilibria.tv",
   version: Constants.API_VER.V2,
   // timeout: default 6000ms
   // useHttps: default `true`
@@ -53,19 +55,19 @@ const database = new Modules.MetaDatabase({
 
 database
   .get({ id })
-  .then(release => console.log(release))
-  .catch(e => console.error(e));
+  .then((release) => console.log(release))
+  .catch((e) => console.error(e));
 ```
 
 ### Getting release data using Core modules
 
 ```typescript
-import { Constants, Core } from '@maxqwars/metaform';
+import { Constants, Core } from "@maxqwars/metaform";
 
 const id = 0; // release id
 
 const urlBuilder = new Core.UrlBuilder({
-  host: 'api.anilibria.tv',
+  host: "api.anilibria.tv",
   useHttps: true,
 });
 const queryBuilder = new Core.GetTitleQueryBuilder();
