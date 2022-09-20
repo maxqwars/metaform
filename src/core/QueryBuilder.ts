@@ -1,11 +1,11 @@
 export class QueryBuilder {
   private _storage: { [key: string]: unknown } = {};
 
-  protected add<T>(key: string, value: T) {
+  protected _add(key: string, value: unknown) {
     this._storage[key] = value;
   }
 
-  protected build(): string {
+  protected _build(): string {
     return Object.keys(this._storage)
       .map((key) => `${key}=${this._storage[key]}`)
       .join("&");

@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "editorconfig.editorconfig",
+    "igorsbitnev.error-gutters",
+    "usernamehw.errorlens",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
+    "rbbit.typescript-hero"
+  ]
+}
