@@ -1,4 +1,4 @@
-import { DESC_FORMAT, PLAYLIST_FORMAT } from "../constants";
+import { DESC_FORMAT, PLAYLIST_FORMAT } from "../enums";
 
 export interface IFormatQuery {
   descriptionFormat?: DESC_FORMAT;

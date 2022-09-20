@@ -1,5 +1,5 @@
 import { QueryBuilder } from "../core";
-import { RAW_RESOURCE, DESC_FORMAT, PLAYLIST_FORMAT } from "../constants";
+import { RAW_RESOURCE, DESC_FORMAT, PLAYLIST_FORMAT } from "../enums";
 
 export interface IGetReleaseQueryBuilder {
   build(): string;

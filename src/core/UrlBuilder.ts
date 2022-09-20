@@ -1,4 +1,4 @@
-import { API_METHOD, API_VER } from "../constants";
+import { API_METHOD, API_VER } from "../enums";
 
 export class UrlBuilder {
   private _https: boolean;

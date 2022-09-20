@@ -1,4 +1,4 @@
-import { RAW_RESOURCE } from "../constants";
+import { RAW_RESOURCE } from "../enums";
 
 export interface ISamplingQuery {
   filter?: string[];
