@@ -1,3 +1,3 @@
 export enum API_VER {
-  V2 = 'v2',
+  V2 = "v2",
 }

@@ -1,4 +1,4 @@
-import { API_METHOD, API_VER } from '../constants';
+import { API_METHOD, API_VER } from "../constants";
 
 export class UrlBuilder {
   private _https: boolean;
@@ -11,7 +11,7 @@ export class UrlBuilder {
     this._https = https;
     this._apiVersion = version;
     this._method = API_METHOD.GET_TITLE;
-    this._query = '';
+    this._query = "";
     this._host = this._setHost(host);
   }
 
@@ -36,7 +36,7 @@ export class UrlBuilder {
   }
 
   private _setHost(url: string): string {
-    return url[url.length - 1] !== '/'
+    return url[url.length - 1] !== "/"
       ? `${url}/${this._apiVersion}/`
       : `${url}/${this._apiVersion}`;
   }
@@ -52,11 +52,11 @@ export class UrlBuilder {
   }
 
   public build(): string {
-    let url = '';
-    url += this._https ? 'https://' : 'http://';
+    let url = "";
+    url += this._https ? "https://" : "http://";
     url += this._host;
     url += this._method;
-    url += this._isEmptyString(this._query) ? `?${this._query}` : '';
+    url += this._isEmptyString(this._query) ? `?${this._query}` : "";
 
     return url;
   }
