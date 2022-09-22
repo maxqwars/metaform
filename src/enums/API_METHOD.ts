@@ -14,4 +14,7 @@ export enum API_METHOD {
   GET_YEARS = "getYears",
   GET_YOUTUBE = "getYouTube",
   SEARCH_TITLES = "searchTitles",
+  GET_FAVORITES = "getFavorites",
+  DEL_FAVORITES = "delFavorites",
+  ADD_FAVORITES = "addFavorites",
 }
