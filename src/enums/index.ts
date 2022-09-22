@@ -6,3 +6,4 @@ export { RELEASE_SEASON } from "./RELEASE_SEASON";
 export { CONTENT_FORMAT } from "./CONTENT_FORMAT";
 export { RELEASE_STATUS } from "./RELEASE_STATUS";
 export { RAW_RESOURCE } from "./RAW_RESOURCE";
+export { MOD_ERR } from "./MOD_ERR";
