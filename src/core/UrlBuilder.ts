@@ -31,6 +31,10 @@ export class UrlBuilder {
     this._host = this._setHost(host);
   }
 
+  get host(): string {
+    return this._host;
+  }
+
   private _isEmptyString(str: string): boolean {
     return !!str || str.length === 0;
   }
