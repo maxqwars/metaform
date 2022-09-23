@@ -1,5 +1,5 @@
-export interface IShiftQuery {
+export type ShiftQueryParams = {
   limit?: number;
   since?: number;
   after?: number;
-}
+};

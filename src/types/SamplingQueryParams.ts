@@ -1,7 +1,7 @@
 import { RAW_RESOURCE } from "../enums";
 
-export interface ISamplingQuery {
+export type SamplingQueryParams = {
   filter?: string[];
   include?: RAW_RESOURCE[];
   remove?: string[];
-}
+};
