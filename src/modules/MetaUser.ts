@@ -1,7 +1,7 @@
 import { MetaModule } from "../core";
 import { UrlTools } from "../utils";
-import { MetaModuleOptions } from "../types";
-import { API_METHOD } from "../enums";
+import { MetaModuleOptions, MetaModuleResponse } from "../types";
+import { API_METHOD, MOD_ERR } from "../enums";
 
 export class MetaUser extends MetaModule {
   private _loginUrl: string;
@@ -9,38 +9,49 @@ export class MetaUser extends MetaModule {
 
   constructor(options?: MetaModuleOptions) {
     if (options) super(options);
-
     super();
-
     const rootDomain = UrlTools.extractRootDomain(this._urlBuilder.host);
-
     this._loginUrl = `https://${rootDomain}/public/login.php`;
     this._logoutUrl = `https://${rootDomain}/public/logout.php`;
   }
 
-  async login(email: string, passwd: string) {
-    const regex = new RegExp(/PHPSESSID=\w*/gm);
+  async login(
+    email: string,
+    password: string
+  ): Promise<MetaModuleResponse<string | null>> {
+    const sessionRe = new RegExp(/PHPSESSID=\w*/gm);
 
     try {
-      const response = await fetch(this._loginUrl, {
+      const res = await this._fetchWithTimeout(this._loginUrl, {
+        timeout: 6000,
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
-        body: this._encodeLoginData(email, passwd),
+        body: this._encodeLoginData(email, password),
       });
 
-      const setPhpSessions = response.headers.get("set-cookie")?.match(regex);
+      const setCookieHead = res.headers.get("set-cookie");
 
-      if (!setPhpSessions) {
-        throw Error("Not Working");
+      // Incorrect user data
+      if (!setCookieHead) {
+        const body = await res.json();
+        const MODULE_ERR: MOD_ERR =
+          body.key === "invalidUser"
+            ? MOD_ERR.INVALID_USER
+            : MOD_ERR.WRONG_PASSWD;
+        return this._makeResponse(true, null, MODULE_ERR);
       }
 
-      console.log(setPhpSessions[0].split("=")[1]);
+      const sessionId = setCookieHead.match(sessionRe);
+      if (!sessionId)
+        return this._makeResponse(true, null, MOD_ERR.UNKNOWN_ERROR);
 
-      return setPhpSessions[0].split("=")[1];
+      const sessionKey = sessionId[0].split("=")[1];
+
+      return this._makeResponse<string | null>(false, sessionKey, undefined);
     } catch (e) {
-      console.log(e);
+      return this._makeResponse<null>(true, null, MOD_ERR.NET_ERROR);
     }
   }
 
