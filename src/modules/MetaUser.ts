@@ -1,6 +1,15 @@
 import { MetaModule } from "../core";
-import { UrlTools } from "../utils";
-import { MetaModuleOptions, MetaModuleResponse } from "../types";
+import {
+  UrlTools,
+  GetFavoritesQueryBuilder,
+  SamplingQueryBuilder,
+  FormatQueryBuilder,
+} from "../utils";
+import {
+  MetaModuleOptions,
+  MetaModuleResponse,
+  GetFavoritesQueryParams,
+} from "../types";
 import { API_METHOD, MOD_ERR } from "../enums";
 
 export class MetaUser extends MetaModule {
@@ -85,18 +94,39 @@ export class MetaUser extends MetaModule {
     throw Error("Not implemented");
   }
 
-  async getFavorites(sessionId: string) {
-    // Configure url builder
-    const reqUrl = this._urlBuilder
+  async getFavorites(params: GetFavoritesQueryParams) {
+    const getFavoritesChunk = new GetFavoritesQueryBuilder()
+      .session(params.session)
+      .build();
+
+    const samplingChink = new SamplingQueryBuilder()
+      .filter(params.filter)
+      .include(params.include)
+      .remove(params.remove)
+      .build();
+
+    const formatQueryChunk = new FormatQueryBuilder()
+      .descriptionFormat(params.descriptionFormat)
+      .playlistFormat(params.playlistFormat)
+      .build();
+
+    // TODO: Refactoring this shit
+    const query = `${getFavoritesChunk}${
+      samplingChink ? "&" + samplingChink : ""
+    }${formatQueryChunk ? "&" + formatQueryChunk : ""}`;
+
+    const url = this._urlBuilder
       .useMethod(API_METHOD.GET_FAVORITES) // Set used API method
-      .useQuery(`session=${sessionId}`) // TODO: Implement `GetFavoritesQuery`
+      .useQuery(query)
       .build();
 
     try {
-      const response = await this._fetchWithTimeout(reqUrl, {});
-      return await response.json();
+      const res = await this._fetchWithTimeout(url, {
+        timeout: this._options.timeout,
+      });
+      return this._makeResponse(false, await res.json(), undefined);
     } catch (e) {
-      console.log(e);
+      return this._makeResponse(true, null, MOD_ERR.UNKNOWN_ERROR);
     }
   }
 
