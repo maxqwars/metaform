@@ -1,5 +1,5 @@
 <center>
-    <img src="banner.png" alt="">
+    <img src="https://github.com/maxqwars/metaform/raw/V2/banner.png" alt="">
 </center>
 
 <br>
@@ -36,6 +36,34 @@ Modules - is a set of classes that implements the API methods, including request
 ### Utils
 
 Useful utilities for working with API: query builders, format converters, etc.
+
+## API Coverage
+
+State of supported API methods
+
+| method          | status | module       | name             |
+| --------------- | ------ | ------------ | ---------------- |
+| getTitle        | x      | MetaDatabase | get              |
+| getTitles       | x      | MetaDatabase | getFromList      |
+| getUpdates      | x      | MetaDatabase | getUpdates       |
+| getChanges      | x      | MetaDatabase | getChanged       |
+| getGenres       | x      | MetaDatabase | getGenresList    |
+| getRandomTitle  | x      | MetaDatabase | getRandomRelease |
+| getYears        | x      | MetaDatabase | getYearsList     |
+| searchTitles    | x      | MetaDatabase | find             |
+| advancedSearch  | x      | MetaDatabase | search           |
+| login           | x      | MetaUser     | login            |
+| logout          | x      | MetaUser     | logout           |
+| getFavorites    | x      | MetaUser     | getFavorites     |
+| addFavorites    | x      | MetaUser     | addFavorites     |
+| delFavorites    | x      | MetaUser     | delFavorites     |
+| getTeam         | x      | MetaAbout    | getTeam          |
+| getCachingNodes | x      | MetaService  | getCachingNodes  |
+| getSeedStats    | x      | MetaService  | getSeedStats     |
+| getSchedule     | x      | MetaFeed     | getSchedule      |
+| getYoutube      | x      | MetaFeed     | getYoutube       |
+| getFeed         | x      | MetaFeed     | getFeed          |
+| getRSS          | x      | MetaFeed     | getRSS           |
 
 ## ✨ Examples of use
 
