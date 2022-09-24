@@ -6,3 +6,19 @@ export { FormatQueryParams } from "./FormatQueryParams";
 export { GetFavoritesQueryParams } from "./GetFavoritesQueryParams";
 export { GetReleaseQueryParams } from "./GetReleaseQueryParams";
 export { Title } from "./Title";
+export {
+  Release,
+  ReleaseBlocked,
+  ReleaseNames,
+  ReleasePlayer,
+  ReleasePoster,
+  ReleaseSeason,
+  ReleaseStatus,
+  ReleaseTorrents,
+  ReleaseType,
+  RutubePlaylist,
+  ObjectPlaylist,
+  TorrentFile,
+  TorrentInfo,
+  TorrentMeta,
+} from "./Release";
