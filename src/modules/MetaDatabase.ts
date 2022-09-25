@@ -83,7 +83,17 @@ export class MetaDatabase extends MetaModule {
     throw Error("Not implemented");
   }
 
-  getUpdates() {
-    throw Error("Not implemented");
+  async getUpdated(): Promise<MetaModuleResponse<Title[] | null>> {
+    const requestUrl = this._urlBuilder
+      .useMethod(API_METHOD.GET_UPDATES)
+      .useQuery("")
+      .build();
+
+    try {
+      const response = await this._fetchWithTimeout(requestUrl, {});
+      return this._makeResponse<Title[]>(false, await response.json());
+    } catch (e) {
+      return this._makeResponse<null>(true, null, MOD_ERR.UNKNOWN_ERROR);
+    }
   }
 }
