@@ -24,7 +24,7 @@ export class TypesConverter {
       id,
       code,
       description,
-      genres,
+      genresList: genres,
       inFavorites: in_favorites,
       lastChange: last_change,
       updated,
