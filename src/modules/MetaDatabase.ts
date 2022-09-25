@@ -7,8 +7,30 @@ export class MetaDatabase extends MetaModule {
     super(options);
   }
 
-  async getTitle() {
-    throw Error("Not implemented");
+  async get(params: {
+    code?: string;
+    id?: number;
+  }): Promise<MetaModuleResponse<Title | null>> {
+    if (typeof params.code === "undefined" && typeof params.id === "undefined")
+      return this._makeResponse(true, null, MOD_ERR.REQUIRED_PARAM_IS_EMPTY);
+
+    const requestUrl = this._urlBuilder
+      .useMethod(API_METHOD.GET_TITLE)
+      .useQuery(`id=${params.id}`)
+      .build();
+
+    try {
+      const response = await this._fetchWithTimeout(requestUrl, {});
+      const data = await response.json();
+
+      if (data["error"]) {
+        return this._makeResponse<null>(true, null, MOD_ERR.RELEASE_NOT_FOUND);
+      }
+
+      return this._makeResponse<Title>(false, data);
+    } catch (e) {
+      return this._makeResponse<null>(true, null, MOD_ERR.UNKNOWN_ERROR);
+    }
   }
 
   async getFromList() {
