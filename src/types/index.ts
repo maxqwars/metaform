@@ -10,7 +10,7 @@ export {
   Release,
   ReleaseBlocked,
   ReleaseNames,
-  ReleasePlayer,
+  ReleaseMedia,
   ReleasePoster,
   ReleaseSeason,
   ReleaseStatus,
