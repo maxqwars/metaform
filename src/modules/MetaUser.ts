@@ -9,6 +9,7 @@ import {
   MetaModuleOptions,
   MetaModuleResponse,
   GetFavoritesQueryParams,
+  Title,
 } from "../types";
 import { API_METHOD, MOD_ERR } from "../enums";
 
@@ -94,7 +95,9 @@ export class MetaUser extends MetaModule {
     throw Error("Not implemented");
   }
 
-  async getFavorites(params: GetFavoritesQueryParams) {
+  async getFavorites(
+    params: GetFavoritesQueryParams
+  ): Promise<MetaModuleResponse<Title[] | null>> {
     const getFavoritesChunk = new GetFavoritesQueryBuilder()
       .session(params.session)
       .build();
@@ -124,7 +127,11 @@ export class MetaUser extends MetaModule {
       const res = await this._fetchWithTimeout(url, {
         timeout: this._options.timeout,
       });
-      return this._makeResponse(false, await res.json(), undefined);
+      return this._makeResponse(
+        false,
+        (await res.json()) as Title[],
+        undefined
+      );
     } catch (e) {
       return this._makeResponse(true, null, MOD_ERR.UNKNOWN_ERROR);
     }

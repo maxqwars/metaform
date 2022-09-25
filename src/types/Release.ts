@@ -36,8 +36,8 @@ export type ReleaseBlocked = {
   bakanim?: boolean;
 };
 
-export type ReleasePlayer = {
-  alternativePlayer?: string | null;
+export type ReleaseMedia = {
+  webPlayer?: string | null;
   host?: string;
   series?: {
     first?: number;
@@ -69,7 +69,7 @@ export type RutubePlaylist = {
   [key: string]: {
     serie?: number;
     createdTimestamp?: number;
-    rutube_id?: string;
+    rutubeId?: string;
   };
 };
 
@@ -100,7 +100,7 @@ export type TorrentInfo = {
   leechers?: number;
   seeders?: number;
   downloads?: number;
-  total_size?: number;
+  totalSize?: number;
   url?: string;
   uploadedTimestamp?: number;
   hash?: string;
@@ -131,7 +131,7 @@ export type Release = {
   updated?: number;
   lastChange?: number;
   type?: ReleaseType;
-  genres?: string[];
+  genresList?: string[];
   team?: {
     voice?: string[];
     translator?: string[];
@@ -143,6 +143,6 @@ export type Release = {
   description?: string;
   inFavorites?: number;
   blocked?: ReleaseBlocked;
-  player?: ReleasePlayer;
+  media?: ReleaseMedia;
   torrents?: ReleaseTorrents;
 };
