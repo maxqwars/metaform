@@ -22,3 +22,4 @@ export {
   TorrentInfo,
   TorrentMeta,
 } from "./Release";
+export { TeamInfo } from "./TeamInfo";
