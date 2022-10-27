@@ -10,6 +10,7 @@ export enum API_METHOD {
   GET_SEED_STATS = "getSeedStats",
   GET_TITLE = "getTitle",
   GET_TITLES = "getTitles",
+  GET_TEAM = "getTeam",
   GET_UPDATES = "getUpdates",
   GET_YEARS = "getYears",
   GET_YOUTUBE = "getYouTube",
