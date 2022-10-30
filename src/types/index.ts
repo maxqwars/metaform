@@ -23,3 +23,5 @@ export {
   TorrentMeta,
 } from "./Release";
 export { TeamInfo } from "./TeamInfo";
+export { GetScheduleQueryParams } from "./GetScheduleQueryParams";
+export { ScheduleItem } from "./ScheduleItem";
