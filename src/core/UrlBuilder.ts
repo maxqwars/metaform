@@ -74,10 +74,6 @@ export class UrlBuilder {
     return this._host;
   }
 
-  private _isEmptyString(str: string): boolean {
-    return !!str || str.length === 0;
-  }
-
   private _setHost(url: string): string {
     return url[url.length - 1] !== "/"
       ? `${url}/${this._apiVersion}/`
@@ -119,7 +115,7 @@ export class UrlBuilder {
     url += this._https ? "https://" : "http://";
     url += this._host;
     url += this._method;
-    url += this._isEmptyString(this._query) ? "" : `?${this._query}`;
+    url += this._query ? `?${this._query}` : "";
 
     return url;
   }
