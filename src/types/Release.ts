@@ -1,4 +1,5 @@
 import { RELEASE_STATUS, RELEASE_SEASON, CONTENT_FORMAT } from "../enums";
+import { TeamInfo } from "./";
 
 export type ReleaseNames = {
   ru?: string;
@@ -132,13 +133,7 @@ export type Release = {
   lastChange?: number;
   type?: ReleaseType;
   genresList?: string[];
-  team?: {
-    voice?: string[];
-    translator?: string[];
-    editing?: string[];
-    decor?: string[];
-    timing?: string[];
-  };
+  team?: TeamInfo;
   season?: ReleaseSeason;
   description?: string;
   inFavorites?: number;
