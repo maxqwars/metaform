@@ -25,6 +25,12 @@ export class MetaUser extends MetaModule {
     this._logoutUrl = `https://${rootDomain}/public/logout.php`;
   }
 
+  /**
+   *
+   * @param email Account email
+   * @param password Account password
+   * @returns Session key
+   */
   async login(
     email: string,
     password: string
@@ -74,6 +80,10 @@ export class MetaUser extends MetaModule {
     return keys.join("&");
   }
 
+  /**
+   * Logout from account, destroy session key
+   * @param sessionId Session key
+   */
   async logout(sessionId: string) {
     try {
       const req = await this._fetchWithTimeout(this._logoutUrl, {
@@ -87,17 +97,34 @@ export class MetaUser extends MetaModule {
     }
   }
 
+  /**
+   * Add new release to favorites list
+   */
   addFavorites() {
+    // TODO: Implement MetaUser.getFavorites()
     throw Error("Not implemented");
   }
 
+  /**
+   * Remove release from favorites list
+   */
   delFavorites() {
+    // TODO: Implement MetaUser.delFavorites()
     throw Error("Not implemented");
   }
 
+  /**
+   * Get user favorites list
+   * @param params
+   * @returns
+   */
   async getFavorites(
     params: GetFavoritesQueryParams
   ): Promise<MetaModuleResponse<Title[] | null>> {
+    /*
+     * Prepare query params
+     */
+
     const getFavoritesChunk = new GetFavoritesQueryBuilder()
       .session(params.session)
       .build();
@@ -113,20 +140,28 @@ export class MetaUser extends MetaModule {
       .playlistFormat(params.playlistFormat)
       .build();
 
-    // TODO: Refactoring this shit
     const query = `${getFavoritesChunk}${
       samplingChink ? "&" + samplingChink : ""
     }${formatQueryChunk ? "&" + formatQueryChunk : ""}`;
 
+    /*
+     * Construct request URL
+     */
     const url = this._urlBuilder
       .useMethod(API_METHOD.GET_FAVORITES) // Set used API method
       .useQuery(query)
       .build();
 
+    /*
+     * Execute request
+     */
     try {
+      // Send request
       const res = await this._fetchWithTimeout(url, {
         timeout: this._options.timeout,
       });
+
+      // Handle request
       return this._makeResponse(
         false,
         (await res.json()) as Title[],
@@ -138,6 +173,7 @@ export class MetaUser extends MetaModule {
   }
 
   sessionIsActive() {
+    // TODO: Implement MetaUser.sessionIsActive()
     throw Error("Not implemented");
   }
 }

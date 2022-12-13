@@ -34,6 +34,7 @@ export class MetaDatabase extends MetaModule {
   }
 
   async getFromList() {
+    // TODO: Implement MetaDatabase.getFromList()
     throw Error("Not implemented");
   }
 
@@ -98,10 +99,12 @@ export class MetaDatabase extends MetaModule {
   }
 
   find() {
+    // TODO: Implement MetaDatabase.find()
     throw Error("Not implemented");
   }
 
   search() {
+    // TODO: Implement MetaDatabase.search()
     throw Error("Not implemented");
   }
 
