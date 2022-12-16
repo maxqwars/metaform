@@ -26,3 +26,4 @@ export { TeamInfo } from "./TeamInfo";
 export { GetScheduleQueryParams } from "./GetScheduleQueryParams";
 export { ScheduleItem } from "./ScheduleItem";
 export { YouTubeEmbedVideo } from "./YouTubeEmbedVideo";
+export { GetYouTubeQueryParams } from "./GetYouTubeQueryParams";
