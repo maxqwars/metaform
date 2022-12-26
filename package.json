@@ -1,7 +1,7 @@
 {
   "name": "@maxqwars/metaform",
   "version": "0.0.11",
-  "description": "An open library for working with the Anilibria REST API.",
+  "description": "Metaform is an open library for working with the Anilibria API without external dependencies.",
   "license": "MIT",
   "private": false,
   "readme": "https://github.com/maxqwars/metaform#readme",
@@ -40,7 +40,7 @@
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build && husky install",
     "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint && npm run docs:build",
+    "preversion": "npm run lint",
     "version": "npm run format && git add .",
     "postversion": "git push && git push --tags",
     "husky:install": "husky install"
