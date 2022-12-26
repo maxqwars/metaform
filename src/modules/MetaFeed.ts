@@ -4,9 +4,25 @@ import {
   MetaModuleResponse,
   GetScheduleQueryParams,
   ScheduleItem,
+  YouTubeEmbedVideo,
+  GetYouTubeQueryParams,
 } from "../types";
 import { API_METHOD, MOD_ERR } from "../enums";
 import { SamplingQueryBuilder, FormatQueryBuilder } from "../utils";
+
+type YouTubeEmbedRaw = {
+  id?: number;
+  title?: string;
+  image?: string;
+  preview?: {
+    src?: string;
+    thumbnail?: string;
+  };
+  youtube_id?: string;
+  comments?: number;
+  views?: number;
+  timestamp?: number;
+};
 
 export class MetaFeed extends MetaModule {
   constructor(options?: MetaModuleOptions) {
@@ -55,9 +71,26 @@ export class MetaFeed extends MetaModule {
     }
   }
 
-  getYouTube() {
-    // TODO: Implement MetaFeed.getYouTube()
-    throw Error("Not implemented");
+  async getYouTube(
+    params?: GetYouTubeQueryParams
+  ): Promise<MetaModuleResponse<YouTubeEmbedVideo[] | null>> {
+    // Construct request url
+    const API_REQUEST_URL = this._urlBuilder
+      .useMethod(API_METHOD.GET_YOUTUBE)
+      .build();
+
+    try {
+      const req = await this._fetchWithTimeout(API_REQUEST_URL, {});
+      const data: YouTubeEmbedRaw[] = await req.json();
+
+      const transformed = data.map((embedRaw) =>
+        this._youtubeEmbedRawToYouTubeEmbedVid(embedRaw)
+      );
+
+      return this._makeResponse<YouTubeEmbedVideo[]>(false, transformed);
+    } catch (e) {
+      return this._makeResponse<null>(true, null, MOD_ERR.UNKNOWN_ERROR);
+    }
   }
 
   getFeed() {
@@ -68,5 +101,23 @@ export class MetaFeed extends MetaModule {
   getRSS() {
     // TODO: Implement MetaFeed.getRSS()
     throw Error("Not implemented");
+  }
+
+  private _youtubeEmbedRawToYouTubeEmbedVid(
+    raw: YouTubeEmbedRaw
+  ): YouTubeEmbedVideo {
+    return {
+      id: raw.id || undefined,
+      title: raw.title || undefined,
+      image: raw.image || undefined,
+      preview: {
+        src: raw.preview?.src || undefined,
+        thumbnail: raw.preview?.src || undefined,
+      },
+      youtubeId: raw.youtube_id || undefined,
+      comments: raw.comments || undefined,
+      views: raw.views || undefined,
+      timestamp: raw.timestamp || undefined,
+    };
   }
 }
