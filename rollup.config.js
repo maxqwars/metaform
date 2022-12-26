@@ -1,23 +1,23 @@
-import typescriptPlugin from 'rollup-plugin-typescript2';
-import envFiles from '@jjldxz/rollup-plugin-env-files';
+import typescriptPlugin from "rollup-plugin-typescript2";
+import envFiles from "@jjldxz/rollup-plugin-env-files";
 
-const dist = 'dist';
+const dist = "dist";
 
 export default {
-  input: './src/index.ts',
+  input: "./src/index.ts",
   plugins: [
     typescriptPlugin(),
     {
-      name: 'retain-import-expression',
+      name: "retain-import-expression",
       resolveDynamicImport(specifier) {
-        if (specifier === 'node-fetch') return false;
+        if (specifier === "node-fetch") return false;
         return null;
       },
       renderDynamicImport({ targetModuleId }) {
-        if (targetModuleId === 'node-fetch') {
+        if (targetModuleId === "node-fetch") {
           return {
-            left: 'import(',
-            right: ')',
+            left: "import(",
+            right: ")",
           };
         }
 
@@ -31,16 +31,16 @@ export default {
   output: [
     {
       file: `${dist}/index.js`,
-      format: 'cjs',
+      format: "cjs",
     },
     {
       file: `${dist}/index.mjs`,
-      format: 'esm',
+      format: "esm",
     },
     {
-      name: 'metaform',
+      name: "metaform",
       file: `${dist}/index.umd.js`,
-      format: 'umd',
+      format: "umd",
     },
   ],
 };
