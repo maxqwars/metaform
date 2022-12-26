@@ -1,5 +1,5 @@
 <center>
-    <img src="https://github.com/maxqwars/metaform/raw/V2/banner.png" alt="">
+    <img src="https://github.com/maxqwars/metaform/raw/main/banner.png" alt="">
 </center>
 
 <br>
