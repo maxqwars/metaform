@@ -1,8 +1,15 @@
-export * as Enums from "./enums";
-export * as Core from "./core";
-export * as Types from "./types";
-export * as Utils from "./utils";
-export * as Modules from "./modules";
-export * as Constants from "./constants";
+import * as Enums from "./enums";
+import * as Core from "./core";
+import * as Types from "./types";
+import * as Utils from "./utils";
+import * as Modules from "./modules";
+import * as Constants from "./constants";
 
-export const METAFORM_VER = process.env.METAFORM_VERSION;
+export const Metaform2 = {
+  Enums,
+  Core,
+  Types,
+  Utils,
+  Modules,
+  Constants,
+};
