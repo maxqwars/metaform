@@ -22,6 +22,8 @@
 Metaform is an open source library for working with the AniLibria Web API. Developed **without using third-party dependencies** in the production version.
 Metaform works in the browser and Nodejs.
 
+This document has a [translated version in Russian](http://simp.ly/p/crbFMP)
+
 ## Usage
 
 Install metaform from npm
