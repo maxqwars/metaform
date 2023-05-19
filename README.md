@@ -1,19 +1,19 @@
 <center>
-    <img src="https://raw.githubusercontent.com/maxqwars/metaform/main/banner.png" alt="">
+    <img src="https://raw.githubusercontent.com/syndtek/metaform/main/banner.png" alt="">
 </center>
 
 <br>
 
 <center>
 
-![](https://img.shields.io/github/issues/the-north-syndicate/metaform)
-![](https://img.shields.io/github/forks/the-north-syndicate/metaform)
-![](https://img.shields.io/github/stars/the-north-syndicate/metaform)
-![](https://img.shields.io/github/license/the-north-syndicate/metaform)
+![](https://img.shields.io/github/issues/syndtek/metaform)
+![](https://img.shields.io/github/forks/syndtek/metaform)
+![](https://img.shields.io/github/stars/syndtek/metaform)
+![](https://img.shields.io/github/license/syndtek/metaform)
 ![](https://img.shields.io/librariesio/dependents/npm/@tns/metaform)
-![](https://img.shields.io/github/release-date/the-north-syndicate/metaform)
-![](https://img.shields.io/github/contributors/the-north-syndicate/metaform)
-![](https://img.shields.io/github/package-json/v/the-north-syndicate/metaform)
+![](https://img.shields.io/github/release-date/syndtek/metaform)
+![](https://img.shields.io/github/contributors/syndtek/metaform)
+![](https://img.shields.io/github/package-json/v/syndtek/metaform)
 
 </center>
 
@@ -46,7 +46,7 @@ Metaform is a project written in JS and uses the [Rollup](https://rollupjs.org/)
 
 First, get the current version of the source code
 
-> $ git clone https://github.com/the-north-syndicate/metaform
+> $ git clone https://github.com/syndtek/metaform
 
 After that, open the commands window in the folder with the Metaform source code. In Linux you can use the popup menu option, in Windows open the menu with `Shift` pressed.
 
