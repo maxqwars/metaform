@@ -17,19 +17,25 @@
     "url": "git+https://github.com/maxqwars/metaform.git"
   },
   "author": {
-    "name": "Maxim Maximenko (maxqwars)",
+    "name": "Maxim \"maxqwars\"Maximenko",
     "email": "maxqwars@gmail.com"
   },
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+  "typesVersions": {
+    "*": {
+      "metaform3": [
+        "dist/metaform3.d.ts"
+      ],
+      "metaform2": [
+        "dist/metaform2.d.ts"
+      ]
     }
+  },
+  "exports": {
+    "./metaform3": "./dist/metaform3",
+    "./metaform2": "./dist/metaform2"
   },
   "scripts": {
     "prebuild": "rimraf dist",
@@ -68,5 +74,9 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown src/"
+  },
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.3",
+    "rollup-plugin-multi-input": "^1.4.1"
   }
 }
