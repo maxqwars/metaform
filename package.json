@@ -34,8 +34,8 @@
     }
   },
   "exports": {
-    "./metaform3": "./dist/metaform3",
-    "./metaform2": "./dist/metaform2"
+    "./metaform3": "./dist/metaform3/metaform3.js",
+    "./metaform2": "./dist/metaform2/metaform2.js"
   },
   "scripts": {
     "prebuild": "rimraf dist",
