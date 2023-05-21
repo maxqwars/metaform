@@ -21,7 +21,7 @@ export interface IMetaform3 {
   // getYoutube(): Promise<void>;
   // getFeed(): Promise<void>;
   getYears(): Promise<Responses.GetYearsResponse>;
-  // getGenres(): Promise<void>;
+  getGenres(): Promise<Responses.GetGenresResponse>;
   // getTeam(): Promise<void>;
   // getTorrentSeedStat(): Promise<void>;
   // getTorrentRSS(): Promise<void>;
@@ -155,6 +155,39 @@ export class Metaform3 implements IMetaform3 {
 
     try {
       const data = await this._fetch<number[]>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getGenres(): Promise<Responses.GetGenresResponse> {
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_GENRES)
+      .construct();
+
+    try {
+      const data = await this._fetch<string[]>(reqUrl, {});
       return {
         error: null,
         data,

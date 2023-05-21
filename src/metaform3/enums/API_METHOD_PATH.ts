@@ -11,7 +11,7 @@ export enum API_METHOD_PATH {
   // GET_YOUTUBE,
   // GET_FEED,
   GET_YEARS = "years",
-  // GET_GENRES,
+  GET_GENRES = "genres",
   // GET_TEAM,
   // GET_TORRENT_SEED_STATS,
   // GET_TORRENT_RSS,
