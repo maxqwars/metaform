@@ -1,6 +1,6 @@
 export enum API_METHOD_PATH {
   GET_TITLE = "getTitle",
-  // GET_TITLE_LIST,
+  GET_TITLE_LIST = "title/list",
   // GET_TITLE_UPDATES,
   // GET_TITLE_CHANGES,
   // GET_TITLE_SCHEDULE,

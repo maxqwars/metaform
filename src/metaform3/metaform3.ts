@@ -1,4 +1,4 @@
-import { API_METHOD_PATH } from "./enums";
+import { API_METHOD_PATH, METAFORM_ERROR } from "./enums";
 
 import { URLConstructor } from "./core";
 import { Object2QueryString } from "./Utils";
@@ -8,7 +8,9 @@ import { Params, Objects, Responses } from "./schemas";
 
 export interface IMetaform3 {
   getTitle(params: Params.GetTitleParams): Promise<Responses.GetTitleResponse>;
-  // getTitleList: Options.IGetTitleListOptions;
+  getTitleList(
+    params: Params.GetTitleListParams
+  ): Promise<Responses.GetTitleListResponse>;
   // getTitleUpdates: Options.IGetTitleUpdatesOptions;
   // getTitleChanges: Options.IGetTitleChangesOption;
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
@@ -65,8 +67,6 @@ export class Metaform3 implements IMetaform3 {
 
     // Remove timeout
     clearTimeout(abortTimer);
-
-    // Return data
     return (await response.json()) as T;
   }
 
@@ -83,12 +83,68 @@ export class Metaform3 implements IMetaform3 {
       .setQueryString(queryStr)
       .construct();
 
-    console.log(reqUrl);
+    try {
+      const data = await this._fetch<Objects.Title>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
 
-    const data = await this._fetch<Objects.Title>(reqUrl, { timeout: 1000 });
-    return {
-      error: null,
-      data,
-    };
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getTitleList(
+    params: Params.GetTitleListParams
+  ): Promise<Responses.GetTitleListResponse> {
+    const queryStr = this._getQuery(params);
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_LIST)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.Title[]>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
   }
 }

@@ -8,3 +8,7 @@ export type MetaformResponse = {
 export type GetTitleResponse = MetaformResponse & {
   data: Objects.Title | null;
 };
+
+export type GetTitleListResponse = MetaformResponse & {
+  data: Objects.Title[] | null;
+};
