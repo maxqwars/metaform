@@ -1,5 +1,7 @@
 import { API_METHOD_PATH } from "./enums";
+
 import { URLConstructor } from "./core";
+import { Object2QueryString } from "./Utils";
 
 /* Schemas */
 import { Params, Objects, Responses } from "./schemas";
@@ -68,10 +70,14 @@ export class Metaform3 implements IMetaform3 {
     return (await response.json()) as T;
   }
 
+  protected _getQuery(params: unknown) {
+    return Object2QueryString(params as { [key: string]: unknown });
+  }
+
   async getTitle(
     params: Params.GetTitleParams
   ): Promise<Responses.GetTitleResponse> {
-    const queryStr = "id=9000";
+    const queryStr = this._getQuery(params);
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE)
       .setQueryString(queryStr)
