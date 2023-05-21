@@ -12,3 +12,7 @@ export type GetTitleResponse = MetaformResponse & {
 export type GetTitleListResponse = MetaformResponse & {
   data: Objects.Title[] | null;
 };
+
+export type GetYearsResponse = MetaformResponse & {
+  data: number[] | null;
+};

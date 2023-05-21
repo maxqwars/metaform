@@ -10,7 +10,7 @@ export enum API_METHOD_PATH {
   // GET_TITLE_FRANCHISES,
   // GET_YOUTUBE,
   // GET_FEED,
-  // GET_YEARS,
+  GET_YEARS = "years",
   // GET_GENRES,
   // GET_TEAM,
   // GET_TORRENT_SEED_STATS,
