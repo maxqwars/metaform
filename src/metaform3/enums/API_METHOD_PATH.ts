@@ -12,7 +12,7 @@ export enum API_METHOD_PATH {
   // GET_FEED,
   GET_YEARS = "years",
   GET_GENRES = "genres",
-  // GET_TEAM,
+  GET_TEAM = "team",
   // GET_TORRENT_SEED_STATS,
   // GET_TORRENT_RSS,
   // GET_FRANCHISE_LIST,

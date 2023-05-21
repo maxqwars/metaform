@@ -22,7 +22,7 @@ export interface IMetaform3 {
   // getFeed(): Promise<void>;
   getYears(): Promise<Responses.GetYearsResponse>;
   getGenres(): Promise<Responses.GetGenresResponse>;
-  // getTeam(): Promise<void>;
+  getTeam(): Promise<Responses.GetTeamResponse>;
   // getTorrentSeedStat(): Promise<void>;
   // getTorrentRSS(): Promise<void>;
   // getFranchiseList(): Promise<void>;
@@ -188,6 +188,39 @@ export class Metaform3 implements IMetaform3 {
 
     try {
       const data = await this._fetch<string[]>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getTeam(): Promise<Responses.GetTeamResponse> {
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TEAM)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.TitleTeam>(reqUrl, {});
       return {
         error: null,
         data,

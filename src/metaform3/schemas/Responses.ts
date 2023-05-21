@@ -20,3 +20,7 @@ export type GetYearsResponse = MetaformResponse & {
 export type GetGenresResponse = MetaformResponse & {
   data: string[] | null;
 };
+
+export type GetTeamResponse = MetaformResponse & {
+  data: Objects.TitleTeam | null;
+};
