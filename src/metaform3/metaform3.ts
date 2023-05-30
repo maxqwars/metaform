@@ -17,7 +17,9 @@ export interface IMetaform3 {
   // getTitleUpdates(params: Params.GetTitleUpdatesParams): Promise<void>;
   // getTitleChanges: Options.IGetTitleChangesOption;
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
-  // getTitleRandom: Options.IGetTitleRandomOptions;
+  getTitleRandom(
+    params: Params.GetTitleRandomParams
+  ): Promise<Responses.GetTitleResponse>;
   // getTitleSearch(): Promise<void>;
   // getTitleSearchAdvanced(): Promise<void>;
   // getTitleFranchises(): Promise<void>;
@@ -80,6 +82,44 @@ export class Metaform3 implements IMetaform3 {
     const queryStr = this._getQuery(params);
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.Title>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getTitleRandom(
+    params: Params.GetTitleRandomParams
+  ): Promise<Responses.GetTitleResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_RANDOM)
       .setQueryString(queryStr)
       .construct();
 
