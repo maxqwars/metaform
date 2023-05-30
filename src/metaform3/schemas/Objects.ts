@@ -154,3 +154,9 @@ export type TitleFranchisesRelease = {
   ordinal?: number;
   names?: TitleNames;
 };
+
+export type descriptionType = "html" | "plain";
+
+export type playlistType = "object" | "array";
+
+export type includeType = "raw_poster" | "raw_torrent" | "torrent_meta";

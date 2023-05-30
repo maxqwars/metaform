@@ -1,36 +1,50 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
-export interface GetTitleParams {
+import { playlistType, descriptionType, includeType } from "./Objects";
+
+export interface TitleCommonParams {
+  filter?: string[];
+  remove?: string[];
+  include?: includeType[];
+  description_type?: descriptionType;
+  playlist_type?: playlistType;
+}
+
+export interface GetTitleParams extends TitleCommonParams {
   id?: number;
   code?: string;
   torrent_id?: string;
-  filter?: string[];
-  remove?: string[];
-  include?: string[];
-  description_type?: string;
-  playlist_type?: string;
 }
 
-export interface GetTitleListParams {
+export interface GetTitleListParams extends TitleCommonParams {
   id_list?: number[];
   code_list?: string[];
   torrent_id_list?: string[];
-  filter?: string[];
-  remove?: string[];
-  include?: string;
-  description_type?: string;
-  playlist_type?: string;
   page?: number;
   items_per_page?: number;
 }
 
-export interface GetTitleUpdatesParams {}
+export interface GetTitleUpdatesParams extends TitleCommonParams {
+  limit?: number;
+  since?: number;
+  after?: number;
+  page?: number;
+  items_per_page?: number;
+}
 
-export interface GetTitleChangesParams {}
+export interface GetTitleChangesParams extends TitleCommonParams {
+  limit?: number;
+  since?: number;
+  after?: number;
+  page?: number;
+  items_per_page?: number;
+}
 
-export interface GetTitleScheduleParams {}
+export interface GetTitleScheduleParams extends TitleCommonParams {
+  days?: string[];
+}
 
-export interface GetTitleRandomParams {}
+export interface GetTitleRandomParams extends TitleCommonParams {}
 
 export interface GetTitleSearchParams {}
 

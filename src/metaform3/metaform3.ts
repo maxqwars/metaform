@@ -11,7 +11,10 @@ export interface IMetaform3 {
   getTitleList(
     params: Params.GetTitleListParams
   ): Promise<Responses.GetTitleListResponse>;
-  // getTitleUpdates: Options.IGetTitleUpdatesOptions;
+  getGenres(): Promise<Responses.GetGenresResponse>;
+  getYears(): Promise<Responses.GetYearsResponse>;
+  getTeam(): Promise<Responses.GetTeamResponse>;
+  // getTitleUpdates(params: Params.GetTitleUpdatesParams): Promise<void>;
   // getTitleChanges: Options.IGetTitleChangesOption;
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
   // getTitleRandom: Options.IGetTitleRandomOptions;
@@ -20,9 +23,6 @@ export interface IMetaform3 {
   // getTitleFranchises(): Promise<void>;
   // getYoutube(): Promise<void>;
   // getFeed(): Promise<void>;
-  getYears(): Promise<Responses.GetYearsResponse>;
-  getGenres(): Promise<Responses.GetGenresResponse>;
-  getTeam(): Promise<Responses.GetTeamResponse>;
   // getTorrentSeedStat(): Promise<void>;
   // getTorrentRSS(): Promise<void>;
   // getFranchiseList(): Promise<void>;
