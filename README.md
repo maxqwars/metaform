@@ -1,19 +1,19 @@
 <center>
-    <img src="https://raw.githubusercontent.com/syndtek/metaform/main/banner.png" alt="">
+    <img src="https://raw.githubusercontent.com/maxqwars/metaform/main/banner.png" alt="">
 </center>
 
 <br>
 
 <center>
 
-![](https://img.shields.io/github/issues/syndtek/metaform)
-![](https://img.shields.io/github/forks/syndtek/metaform)
-![](https://img.shields.io/github/stars/syndtek/metaform)
-![](https://img.shields.io/github/license/syndtek/metaform)
-![](https://img.shields.io/librariesio/dependents/npm/@tns/metaform)
-![](https://img.shields.io/github/release-date/syndtek/metaform)
-![](https://img.shields.io/github/contributors/syndtek/metaform)
-![](https://img.shields.io/github/package-json/v/syndtek/metaform)
+![](https://img.shields.io/github/issues/maxqwars/metaform)
+![](https://img.shields.io/github/forks/maxqwars/metaform)
+![](https://img.shields.io/github/stars/maxqwars/metaform)
+![](https://img.shields.io/github/license/maxqwars/metaform)
+![](https://img.shields.io/librariesio/dependents/npm/@maxqwars/metaform)
+![](https://img.shields.io/github/release-date/maxqwars/metaform)
+![](https://img.shields.io/github/contributors/maxqwars/metaform)
+![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
 
 </center>
 
@@ -22,17 +22,59 @@
 Metaform is an open source library for working with the AniLibria Web API. Developed **without using third-party dependencies** in the production version.
 Metaform works in the browser and Nodejs.
 
+Special thanks to the [VK-IO](https://github.com/negezor/vk-io) project that inspired Metaform3
+
 This document has a [translated version in Russian](http://simp.ly/p/crbFMP)
 
-## Usage
+## Reasons to use Metaform
 
-Install metaform from npm
+Reasons to use Metaform in your projects
 
-> npm install @tns/metaform
+- Open source distributed under a liberal license
+- Without binding to third-party libraries and frameworks
+- Support for Nodejs and browsers
+- 100% original API support
+- Simple and intuitive API, similar to the original API
+
+## Installation
+
+### Step 0: Install
+
+> $ npm install @maxqwars/metaform
 
 or install from local
 
-> npm install ./path-to-metaform-dir
+> $ npm install ./path-to-metaform-dir
+
+### For API V3
+
+```javascript
+import { metaform3 } from "@maxqwars/metaform/metaform3";
+```
+
+### For API V2
+
+```javascript
+import { metaform2 } from "@maxqwars/metaform/metaform2";
+```
+
+## Metaform in action
+
+You can try out Metaform3 in action on the CodeSandbox website
+
+\* If you are in the Russian territory, use a VPN
+
+[![CODESANDBOX](https://raw.githubusercontent.com/maxqwars/metaform/main/play_in_sandbox.png)]()
+
+## Metaform API
+
+Metaform inherits the name of the original API methods with the HTTP method of the API used.
+
+> Original API endpoint -> GET \<host>/title
+>
+> Metaform method -> metaform.getTitle()
+
+Detailed information about the available methods can be found in the [repository with the documentation](https://github.com/anilibria/docs) of the original API
 
 ## Development workflow
 
@@ -46,7 +88,7 @@ Metaform is a project written in JS and uses the [Rollup](https://rollupjs.org/)
 
 First, get the current version of the source code
 
-> $ git clone https://github.com/syndtek/metaform
+> $ git clone https://github.com/maxqwars/metaform
 
 After that, open the commands window in the folder with the Metaform source code. In Linux you can use the popup menu option, in Windows open the menu with `Shift` pressed.
 
@@ -96,8 +138,11 @@ Launches the unit testing tool Jest
 
 ## Contributing
 
--
+If you have found a bug, are having difficulty using Metaform, or would like to suggest an improvement, use the contacts below:
+
+- [Developer Telegram (Recommended)](https://t.me/maxqwars)
+- [Developer @mail](mailto:maxqwars@gmail.com?subject=Metaform)
 
 ## License
 
-MetaForm is an open source library licensed under the MIT license.
+MetaForm is an open source library licensed under the [MIT]() license.
