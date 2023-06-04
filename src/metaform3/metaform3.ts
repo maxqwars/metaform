@@ -1,37 +1,75 @@
 import { API_METHOD_PATH, METAFORM_ERROR } from "./enums";
 
 import { URLConstructor } from "./core";
-import { Object2QueryString } from "./Utils";
+import { Object2QueryString } from "./utils";
 
 /* Schemas */
 import { Params, Objects, Responses } from "./schemas";
 
 export interface IMetaform3 {
-  getTitle(params: Params.GetTitleParams): Promise<Responses.GetTitleResponse>;
+  /* -------------------------------------------------------------------------- */
+  /*                     Methods that return composite types                    */
+  /* -------------------------------------------------------------------------- */
   getTitleList(
     params: Params.GetTitleListParams
   ): Promise<Responses.GetTitleListResponse>;
-  getGenres(): Promise<Responses.GetGenresResponse>;
-  getYears(): Promise<Responses.GetYearsResponse>;
-  getTeam(): Promise<Responses.GetTeamResponse>;
-  // getTitleUpdates(params: Params.GetTitleUpdatesParams): Promise<void>;
-  // getTitleChanges: Options.IGetTitleChangesOption;
-  // getTitleSchedule: Options.IGetTitleScheduleOptions;
+
   getTitleRandom(
     params: Params.GetTitleRandomParams
   ): Promise<Responses.GetTitleResponse>;
+
+  // TODO: Implement method title/updates
+  // getTitleUpdates(params: Params.GetTitleUpdatesParams): Promise<void>;
+
+  // TODO: Implement method title/changes
+  // getTitleChanges: Options.IGetTitleChangesOption;
+
+  // TODO: Implement method title/schedule
+  // getTitleSchedule: Options.IGetTitleScheduleOptions;
+
+  // TODO: Implement method title/search
   // getTitleSearch(): Promise<void>;
+
+  // TODO: Implement method title/search/advanced
   // getTitleSearchAdvanced(): Promise<void>;
+
+  // TODO: Implement method title/franshises
   // getTitleFranchises(): Promise<void>;
+
+  // TODO: Implement method /youtube
   // getYoutube(): Promise<void>;
+
+  // TODO: Implement method /feed
   // getFeed(): Promise<void>;
+
+  // TODO: Implement method torrent/seed_stats
   // getTorrentSeedStat(): Promise<void>;
+
+  // TODO: Implement method torrent/rss
   // getTorrentRSS(): Promise<void>;
+
+  // TODO: Implement method franshise/list
   // getFranchiseList(): Promise<void>;
+
+  // TODO: Implement method /user
   // getUser(): Promise<void>;
+
+  // TODO: Implement method GET user/favorites
   // getUserFavorites(): Promise<void>;
+
+  // TODO: Implement method PUT user/favorites
   // putFavorites(): Promise<void>;
+
+  // TODO: Implement method DELETE user/favorites
   // deleteFavorites(): Promise<void>;
+
+  /* -------------------------------------------------------------------------- */
+  /*                      Methods that return simple types                      */
+  /* -------------------------------------------------------------------------- */
+  getTitle(params: Params.GetTitleParams): Promise<Responses.GetTitleResponse>;
+  getGenres(): Promise<Responses.GetGenresResponse>;
+  getYears(): Promise<Responses.GetYearsResponse>;
+  getTeam(): Promise<Responses.GetTeamResponse>;
 }
 
 type TimeoutFetchOptions = RequestInit & {
