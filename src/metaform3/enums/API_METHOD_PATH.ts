@@ -15,7 +15,7 @@ export enum API_METHOD_PATH {
   GET_TEAM = "team",
   GET_TORRENT_SEED_STATS = "torrent/seed_stats",
   GET_TORRENT_RSS = "torrent/rss",
-  GET_FRANCHISE_LIST = "franshise/list",
+  GET_FRANCHISE_LIST = "franchise/list",
   GET_USER = "user",
   ALL_USER_FAVORITES = "user/favorites",
 }

@@ -50,8 +50,9 @@ export interface IMetaform3 {
   // TODO: Implement method torrent/rss
   // getTorrentRSS(): Promise<void>;
 
-  // TODO: Implement method franshise/list
-  // getFranchiseList(): Promise<void>;
+  getFranchiseList(
+    params: Params.FranshiseListParams
+  ): Promise<Responses.GetFranshiseListResponse>;
 
   // TODO: Implement method /user
   // getUser(): Promise<void>;
@@ -114,6 +115,43 @@ export class Metaform3 implements IMetaform3 {
 
   protected _getQuery(params: unknown) {
     return Object2QueryString(params as { [key: string]: unknown });
+  }
+
+  async getFranchiseList(
+    params: Params.FranshiseListParams
+  ): Promise<Responses.GetFranshiseListResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_FRANCHISE_LIST)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.FranshiseList>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
   }
 
   async getTitleUpdates(

@@ -28,3 +28,7 @@ export type GetTeamResponse = MetaformResponse & {
 export type GetTitleChangesResponse = MetaformResponse & {
   data: Objects.TitleChanges | null;
 };
+
+export type GetFranshiseListResponse = MetaformResponse & {
+  data: Objects.FranshiseList | null;
+};

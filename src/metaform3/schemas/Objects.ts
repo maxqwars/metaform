@@ -172,3 +172,18 @@ export type Pagination = {
   items_per_page?: number;
   total_items?: number;
 };
+
+export type FranshiseList = {
+  list?: FranshiseListItem[];
+  pagination?: Pagination;
+};
+
+export type FranshiseListItem = {
+  franshise?: FranshiseListItemFranshise;
+  releases?: Title[];
+};
+
+export type FranshiseListItemFranshise = {
+  id?: string;
+  name?: string;
+};

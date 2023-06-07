@@ -68,3 +68,12 @@ export interface GetUserFavoritesParams {}
 export interface PutUserFavoritesParams {}
 
 export interface DeleteFavoritesParams {}
+
+export interface FranshiseListParams {
+  filter?: string[];
+  remove?: string[];
+  limit?: number;
+  after?: number;
+  page?: number;
+  items_per_page?: number;
+}
