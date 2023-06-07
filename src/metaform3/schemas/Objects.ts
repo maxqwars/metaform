@@ -160,3 +160,15 @@ export type descriptionType = "html" | "plain";
 export type playlistType = "object" | "array";
 
 export type includeType = "raw_poster" | "raw_torrent" | "torrent_meta";
+
+export type TitleChanges = {
+  list?: Title[];
+  pagination?: Pagination;
+};
+
+export type Pagination = {
+  page?: number;
+  current_page?: number;
+  items_per_page?: number;
+  total_items?: number;
+};

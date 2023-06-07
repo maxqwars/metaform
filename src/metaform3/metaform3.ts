@@ -21,8 +21,9 @@ export interface IMetaform3 {
   // TODO: Implement method title/updates
   // getTitleUpdates(params: Params.GetTitleUpdatesParams): Promise<void>;
 
-  // TODO: Implement method title/changes
-  // getTitleChanges: Options.IGetTitleChangesOption;
+  getTitleChanges(
+    params: Params.GetTitleChangesParams
+  ): Promise<Responses.GetTitleChangesResponse>;
 
   // TODO: Implement method title/schedule
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
@@ -112,6 +113,43 @@ export class Metaform3 implements IMetaform3 {
 
   protected _getQuery(params: unknown) {
     return Object2QueryString(params as { [key: string]: unknown });
+  }
+
+  async getTitleChanges(
+    params: Params.GetTitleChangesParams
+  ): Promise<Responses.GetTitleChangesResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_CHANGES)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.TitleChanges>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
   }
 
   async getTitle(
