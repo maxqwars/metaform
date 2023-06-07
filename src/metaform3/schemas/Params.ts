@@ -24,6 +24,7 @@ export interface GetTitleListParams extends TitleCommonParams {
   items_per_page?: number;
 }
 
+// TODO: Remove, use GetTitleChangesParams
 export interface GetTitleUpdatesParams extends TitleCommonParams {
   limit?: number;
   since?: number;
