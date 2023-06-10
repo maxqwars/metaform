@@ -187,3 +187,5 @@ export type FranshiseListItemFranshise = {
   id?: string;
   name?: string;
 };
+
+export type TitleSearch = Title[];
