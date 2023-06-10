@@ -30,7 +30,7 @@ export interface IMetaform3 {
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
 
   // TODO: Implement method title/search
-  // getTitleSearch(): Promise<void>;
+  getTitleSearch(params: Params.GetTitleSearchParams): Promise<void>;
 
   // TODO: Implement method title/search/advanced
   // getTitleSearchAdvanced(): Promise<void>;
@@ -115,6 +115,10 @@ export class Metaform3 implements IMetaform3 {
 
   protected _getQuery(params: unknown) {
     return Object2QueryString(params as { [key: string]: unknown });
+  }
+
+  getTitleSearch(params: Params.GetTitleSearchParams): Promise<void> {
+    throw new Error("Method not implemented.");
   }
 
   async getFranchiseList(
