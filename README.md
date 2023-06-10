@@ -24,7 +24,7 @@ Metaform works in the browser and Nodejs.
 
 Special thanks to the [VK-IO](https://github.com/negezor/vk-io) project that inspired Metaform3
 
-This document has a [translated version in Russian](http://simp.ly/p/crbFMP)
+This document has a [translated version in Russian](https://maxqwars.github.io/posts/metaform-readme/)
 
 ## Reasons to use Metaform
 
