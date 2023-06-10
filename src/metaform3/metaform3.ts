@@ -32,7 +32,7 @@ export interface IMetaform3 {
   // TODO: Implement method title/search
   getTitleSearch(
     params: Params.GetTitleSearchParams
-  ): Promise<Responses.GetTitleResponse>;
+  ): Promise<Responses.GetTitleSearchResponse>;
 
   // TODO: Implement method title/search/advanced
   // getTitleSearchAdvanced(): Promise<void>;
@@ -119,10 +119,42 @@ export class Metaform3 implements IMetaform3 {
     return Object2QueryString(params as { [key: string]: unknown });
   }
 
-  getTitleSearch(
+  async getTitleSearch(
     params: Params.GetTitleSearchParams
-  ): Promise<Responses.GetTitleResponse> {
-    throw new Error("Method not implemented.");
+  ): Promise<Responses.GetTitleSearchResponse> {
+    // TODO: Add required params check
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_SEARCH)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.TitleSearch>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
   }
 
   async getFranchiseList(
