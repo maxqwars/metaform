@@ -76,6 +76,37 @@ Metaform inherits the name of the original API methods with the HTTP method of t
 
 Detailed information about the available methods can be found in the [repository with the documentation](https://github.com/anilibria/docs) of the original API
 
+## API V3 compatibility table
+
+- ✔ Fully ready to use
+- 🔧 It works, but needs modification
+- ⛔ Not implemented in any way
+
+| Method                     | Status |
+| -------------------------- | ------ |
+| GET /title/list            | ✔      |
+| GET /title/random          | ✔      |
+| GET /title/updates         | ✔      |
+| GET /title/changes         | ✔      |
+| GET /title/search          | 🔧     |
+| GET /franshise/list        | ✔      |
+| GET /title                 | ✔      |
+| GET /genres                | ✔      |
+| GET /team                  | ✔      |
+| GET /years                 | ✔      |
+| GET /title/search          | ✔      |
+| GET /title/schedule        | ⛔     |
+| GET /title/search/advanced | ⛔     |
+| GET /title/franshises      | ⛔     |
+| GET /youtube               | ⛔     |
+| GET /feed                  | ⛔     |
+| GET /torrent/seed_stats    | ⛔     |
+| GET /torrent/rss           | ⛔     |
+| GET /user                  | ⛔     |
+| GET /user/favorites        | ⛔     |
+| PUT /user/favorites        | ⛔     |
+| DELETE /user/favorites     | ⛔     |
+
 ## Development workflow
 
 Requirements and instructions for the metaform development process
