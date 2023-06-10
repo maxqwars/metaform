@@ -19,12 +19,12 @@ export interface IMetaform3 {
   ): Promise<Responses.GetTitleResponse>;
 
   getTitleUpdates(
-    params: Params.GetTitleChangesParams
-  ): Promise<Responses.GetTitleChangesResponse>;
+    params: Params.GetTitleChangesAndUpdatesParams
+  ): Promise<Responses.GetTitleChangesAndUpdatesResponse>;
 
   getTitleChanges(
-    params: Params.GetTitleChangesParams
-  ): Promise<Responses.GetTitleChangesResponse>;
+    params: Params.GetTitleChangesAndUpdatesParams
+  ): Promise<Responses.GetTitleChangesAndUpdatesResponse>;
 
   // TODO: Implement method title/schedule
   // getTitleSchedule: Options.IGetTitleScheduleOptions;

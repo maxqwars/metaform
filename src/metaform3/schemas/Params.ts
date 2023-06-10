@@ -32,8 +32,7 @@ export interface GetTitleListParams extends TitleCommonParams {
   items_per_page?: number;
 }
 
-// TODO: Rename to GetTitleChangesAndUpdatesParams
-export interface GetTitleChangesParams
+export interface GetTitleChangesAndUpdatesParams
   extends TitleCommonParams,
     PaginationParams {
   since?: number;
