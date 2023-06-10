@@ -29,7 +29,6 @@ export interface IMetaform3 {
   // TODO: Implement method title/schedule
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
 
-  // TODO: Implement method title/search
   getTitleSearch(
     params: Params.GetTitleSearchParams
   ): Promise<Responses.GetTitleSearchResponse>;
