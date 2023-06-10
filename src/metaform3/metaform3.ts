@@ -30,7 +30,9 @@ export interface IMetaform3 {
   // getTitleSchedule: Options.IGetTitleScheduleOptions;
 
   // TODO: Implement method title/search
-  getTitleSearch(params: Params.GetTitleSearchParams): Promise<void>;
+  getTitleSearch(
+    params: Params.GetTitleSearchParams
+  ): Promise<Responses.GetTitleResponse>;
 
   // TODO: Implement method title/search/advanced
   // getTitleSearchAdvanced(): Promise<void>;
@@ -117,7 +119,9 @@ export class Metaform3 implements IMetaform3 {
     return Object2QueryString(params as { [key: string]: unknown });
   }
 
-  getTitleSearch(params: Params.GetTitleSearchParams): Promise<void> {
+  getTitleSearch(
+    params: Params.GetTitleSearchParams
+  ): Promise<Responses.GetTitleResponse> {
     throw new Error("Method not implemented.");
   }
 
@@ -159,8 +163,8 @@ export class Metaform3 implements IMetaform3 {
   }
 
   async getTitleUpdates(
-    params: Params.GetTitleChangesParams
-  ): Promise<Responses.GetTitleChangesResponse> {
+    params: Params.GetTitleChangesAndUpdatesParams
+  ): Promise<Responses.GetTitleChangesAndUpdatesResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE_UPDATES)
@@ -196,8 +200,8 @@ export class Metaform3 implements IMetaform3 {
   }
 
   async getTitleChanges(
-    params: Params.GetTitleChangesParams
-  ): Promise<Responses.GetTitleChangesResponse> {
+    params: Params.GetTitleChangesAndUpdatesParams
+  ): Promise<Responses.GetTitleChangesAndUpdatesResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE_CHANGES)
