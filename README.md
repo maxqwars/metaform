@@ -14,6 +14,7 @@
 ![](https://img.shields.io/github/release-date/maxqwars/metaform)
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
+![](https://socket.dev/api/badge/npm/package/@maxqwars/metaform/1.0.0#1687019298800)
 
 </center>
 
