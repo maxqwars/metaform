@@ -26,8 +26,9 @@ export interface IMetaform3 {
     params: Params.GetTitleChangesAndUpdatesParams
   ): Promise<Responses.GetTitleChangesAndUpdatesResponse>;
 
-  // TODO: Implement method title/schedule
-  // getTitleSchedule: Options.IGetTitleScheduleOptions;
+  getTitleSchedule(
+    params: Params.GetTitleScheduleParams
+  ): Promise<Responses.GetTitleScheduleResponse>;
 
   getTitleSearch(
     params: Params.GetTitleSearchParams
@@ -130,6 +131,43 @@ export class Metaform3 implements IMetaform3 {
 
     try {
       const data = await this._fetch<Objects.TitleSearch>(reqUrl, {});
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getTitleSchedule(
+    params: Params.GetTitleScheduleParams
+  ): Promise<Responses.GetTitleScheduleResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_SCHEDULE)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._fetch<Objects.TitleSchedule>(reqUrl, {});
       return {
         error: null,
         data,

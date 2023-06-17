@@ -37,6 +37,6 @@ export type GetTitleSearchResponse = MetaformResponse & {
   data: Objects.TitleSearch | null;
 };
 
-export type GetTitleSchedule = MetaformResponse & {
+export type GetTitleScheduleResponse = MetaformResponse & {
   data: Objects.TitleSchedule | null;
 };

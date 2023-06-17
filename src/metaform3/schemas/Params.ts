@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
 import { playlistType, descriptionType, includeType } from "./Objects";
-import { REL_SEASON } from "../enums";
+import { REL_SEASON, WEEK_DAY } from "../enums";
 
 export interface TitleCommonParams {
   filter?: string[];
@@ -88,5 +88,5 @@ export interface FranshiseListParams extends PaginationParams {
 }
 
 export interface TitleSchedule extends TitleCommonParams {
-  days?: string;
+  days?: WEEK_DAY[];
 }
