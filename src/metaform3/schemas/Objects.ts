@@ -189,3 +189,8 @@ export type FranshiseListItemFranshise = {
 };
 
 export type TitleSearch = Title[];
+
+export type TitleSchedule = {
+  day?: number;
+  list?: Title[];
+};

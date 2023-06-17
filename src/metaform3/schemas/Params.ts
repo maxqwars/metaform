@@ -86,3 +86,7 @@ export interface FranshiseListParams extends PaginationParams {
   filter?: string[];
   remove?: string[];
 }
+
+export interface TitleSchedule extends TitleCommonParams {
+  days?: string;
+}

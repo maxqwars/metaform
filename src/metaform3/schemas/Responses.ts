@@ -36,3 +36,7 @@ export type GetFranshiseListResponse = MetaformResponse & {
 export type GetTitleSearchResponse = MetaformResponse & {
   data: Objects.TitleSearch | null;
 };
+
+export type GetTitleSchedule = MetaformResponse & {
+  data: Objects.TitleSchedule | null;
+};
