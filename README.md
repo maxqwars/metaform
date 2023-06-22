@@ -96,12 +96,12 @@ Detailed information about the available methods can be found in the [repository
 | GET /team                  | ✔      |
 | GET /years                 | ✔      |
 | GET /title/search          | ✔      |
-| GET /title/schedule        | ⛔     |
+| GET /title/schedule        | ✔      |
 | GET /title/search/advanced | ⛔     |
-| GET /title/franshises      | ⛔     |
-| GET /youtube               | ⛔     |
+| GET /title/franshises      | ✔     |
+| GET /youtube               | ✔      |
 | GET /feed                  | ⛔     |
-| GET /torrent/seed_stats    | ⛔     |
+| GET /torrent/seed_stats    | ✔      |
 | GET /torrent/rss           | ⛔     |
 | GET /user                  | ⛔     |
 | GET /user/favorites        | ⛔     |
