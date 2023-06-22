@@ -1,10 +1,19 @@
 import { API_METHOD_PATH, METAFORM_ERROR } from "./enums";
 
 import { URLConstructor } from "./core";
-import { Object2QueryString } from "./utils";
+import { Object2QueryString, extractDomainFromUrl } from "./utils";
 
 /* Schemas */
 import { Params, Objects, Responses } from "./schemas";
+
+export type MetaformOptions = {
+  apiVer: string;
+  apiDomain: string;
+  https: boolean;
+  timeout: number;
+};
+
+const DEFAULT_FETCH_TIMEOUT = 10000;
 
 export interface IMetaform3 {
   /* -------------------------------------------------------------------------- */
@@ -34,27 +43,30 @@ export interface IMetaform3 {
     params: Params.GetTitleSearchParams
   ): Promise<Responses.GetTitleSearchResponse>;
 
-  // TODO: Implement method title/search/advanced
-  // getTitleSearchAdvanced(): Promise<void>;
+  getTitleFranchises(
+    params: Params.GetTitleFranchisesParams
+  ): Promise<Responses.GetTitleFranshisesResponse>;
 
-  // TODO: Implement method title/franshises
-  // getTitleFranchises(): Promise<void>;
+  getYoutube(
+    params: Params.GetYoutubeParams
+  ): Promise<Responses.GetYoutubeResponse>;
 
-  // TODO: Implement method /youtube
-  // getYoutube(): Promise<void>;
-
-  // TODO: Implement method /feed
-  // getFeed(): Promise<void>;
-
-  // TODO: Implement method torrent/seed_stats
-  // getTorrentSeedStat(): Promise<void>;
-
-  // TODO: Implement method torrent/rss
-  // getTorrentRSS(): Promise<void>;
+  getTorrentSeedStats(
+    params: Params.GetTorrentsSeedStatsParams
+  ): Promise<Responses.GetTorrentSeedStatsResponse>;
 
   getFranchiseList(
     params: Params.FranshiseListParams
   ): Promise<Responses.GetFranshiseListResponse>;
+
+  // TODO: Implement method title/search/advanced
+  // getTitleSearchAdvanced(): Promise<void>;
+
+  // TODO: Implement method /feed
+  // getFeed(): Promise<void>;
+
+  // TODO: Implement method torrent/rss
+  // getTorrentRSS(): Promise<void>;
 
   // TODO: Implement method /user
   // getUser(): Promise<void>;
@@ -67,6 +79,12 @@ export interface IMetaform3 {
 
   // TODO: Implement method DELETE user/favorites
   // deleteFavorites(): Promise<void>;
+
+  // TODO: Implement method login
+  login(email: string, password: string): Promise<string | null>;
+
+  // TODO: Implement method logout
+  // logout(): Promise<void>
 
   /* -------------------------------------------------------------------------- */
   /*                      Methods that return simple types                      */
@@ -83,18 +101,47 @@ type TimeoutFetchOptions = RequestInit & {
 
 export class Metaform3 implements IMetaform3 {
   private readonly _urlConst: URLConstructor;
+  private readonly _loginUrl: string;
+  private readonly _logoutUrl: string;
+  private readonly _timeout: number;
 
-  constructor() {
-    this._urlConst = new URLConstructor();
+  constructor(options?: MetaformOptions) {
+    if (options) {
+      const { apiVer, apiDomain, https, timeout } = options;
+      this._urlConst = new URLConstructor(apiVer, apiDomain, https);
+
+      const domain = this._urlConst.domain;
+      const rootDomain = extractDomainFromUrl(domain);
+      this._loginUrl = `https://${rootDomain}/public/login.php`;
+      this._logoutUrl = `https://${rootDomain}/public/logout.php`;
+      this._timeout = timeout;
+    } else {
+      this._urlConst = new URLConstructor();
+      const domain = this._urlConst.domain;
+      const rootDomain = extractDomainFromUrl(domain);
+      this._loginUrl = `https://${rootDomain}/public/login.php`;
+      this._logoutUrl = `https://${rootDomain}/public/logout.php`;
+      this._timeout = DEFAULT_FETCH_TIMEOUT;
+    }
   }
 
-  protected async _fetch<T>(
-    url: string,
-    options: TimeoutFetchOptions
-  ): Promise<T> {
+  private _encodeUserCredentials(email: string, password: string): string {
+    const keys = [
+      `${encodeURIComponent("mail")}=${encodeURIComponent(email)}`,
+      `${encodeURIComponent("passwd")}=${encodeURIComponent(password)}`,
+    ];
+
+    return keys.join("&");
+  }
+
+  async login(email: string, password: string): Promise<string | null> {
+    return null;
+  }
+
+  protected async _fetch(url: string, options: TimeoutFetchOptions) {
     // Set default timeout if set anybody else
     const timeout =
-      typeof options.timeout !== "undefined" ? options.timeout : 100 * 1000;
+      typeof options.timeout !== "undefined" ? options.timeout : this._timeout;
 
     // Create DOM abort controller
     const abortController = new AbortController();
@@ -112,11 +159,127 @@ export class Metaform3 implements IMetaform3 {
 
     // Remove timeout
     clearTimeout(abortTimer);
+    return response;
+  }
+
+  protected async _requestData<T>(url: string): Promise<T> {
+    const response = await this._fetch(url, {});
     return (await response.json()) as T;
   }
 
   protected _getQuery(params: unknown) {
     return Object2QueryString(params as { [key: string]: unknown });
+  }
+
+  async getTitleFranchises(
+    params: Params.GetTitleFranchisesParams
+  ): Promise<Responses.GetTitleFranshisesResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TITLE_FRANCHISES)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._requestData<Objects.TitleFranchises>(reqUrl);
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getTorrentSeedStats(
+    params: Params.GetTorrentsSeedStatsParams
+  ): Promise<Responses.GetTorrentSeedStatsResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_TORRENT_SEED_STATS)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._requestData<Objects.TorrentSeedStats[]>(reqUrl);
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
+  }
+
+  async getYoutube(
+    params: Params.GetYoutubeParams
+  ): Promise<Responses.GetYoutubeResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_YOUTUBE)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._requestData<Objects.Youtube[]>(reqUrl);
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        return {
+          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+          data: null,
+        };
+      }
+
+      if (error instanceof DOMException) {
+        return {
+          error: METAFORM_ERROR.TIMEOUT_ERR,
+          data: null,
+        };
+      }
+
+      return {
+        error: METAFORM_ERROR.UNKNOWN_ERR,
+        data: null,
+      };
+    }
   }
 
   async getTitleSearch(
@@ -130,7 +293,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.TitleSearch>(reqUrl, {});
+      const data = await this._requestData<Objects.TitleSearch>(reqUrl);
       return {
         error: null,
         data,
@@ -167,7 +330,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.TitleSchedule>(reqUrl, {});
+      const data = await this._requestData<Objects.TitleSchedule>(reqUrl);
       return {
         error: null,
         data,
@@ -204,7 +367,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.FranshiseList>(reqUrl, {});
+      const data = await this._requestData<Objects.FranshiseList>(reqUrl);
       return {
         error: null,
         data,
@@ -241,7 +404,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.TitleChanges>(reqUrl, {});
+      const data = await this._requestData<Objects.TitleChanges>(reqUrl);
       return {
         error: null,
         data,
@@ -278,7 +441,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.TitleChanges>(reqUrl, {});
+      const data = await this._requestData<Objects.TitleChanges>(reqUrl);
       return {
         error: null,
         data,
@@ -315,7 +478,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.Title>(reqUrl, {});
+      const data = await this._requestData<Objects.Title>(reqUrl);
       return {
         error: null,
         data,
@@ -353,7 +516,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.Title>(reqUrl, {});
+      const data = await this._requestData<Objects.Title>(reqUrl);
       return {
         error: null,
         data,
@@ -390,7 +553,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.Title[]>(reqUrl, {});
+      const data = await this._requestData<Objects.Title[]>(reqUrl);
       return {
         error: null,
         data,
@@ -423,7 +586,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<number[]>(reqUrl, {});
+      const data = await this._requestData<number[]>(reqUrl);
       return {
         error: null,
         data,
@@ -456,7 +619,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<string[]>(reqUrl, {});
+      const data = await this._requestData<string[]>(reqUrl);
       return {
         error: null,
         data,
@@ -489,7 +652,7 @@ export class Metaform3 implements IMetaform3 {
       .construct();
 
     try {
-      const data = await this._fetch<Objects.TitleTeam>(reqUrl, {});
+      const data = await this._requestData<Objects.TitleTeam>(reqUrl);
       return {
         error: null,
         data,
