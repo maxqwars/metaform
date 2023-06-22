@@ -6,6 +6,10 @@ export class URLConstructor {
   private readonly _useApiVer: string;
   private readonly _domain: string;
 
+  get domain() {
+    return this._domain;
+  }
+
   /* Settable properties */
   private _apiMethod: API_METHOD_PATH | null;
   private _query: string;
