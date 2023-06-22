@@ -64,13 +64,27 @@ export interface GetTitleSearchParams
 
 export interface GetTitleSearchAdvancedParams {}
 
-export interface GetTitleFranchisesParams {}
+export interface GetTitleFranchisesParams {
+  id?: number;
+  filter?: string[];
+  remove?: string[];
+}
 
-export interface GetYoutubeParams {}
+export interface GetYoutubeParams extends PaginationParams {
+  filter?: string;
+  remove?: string;
+  since?: number;
+}
 
 export interface GetFeedParams {}
 
-export interface GetTorrentsSeedStatsParams {}
+export interface GetTorrentsSeedStatsParams extends PaginationParams {
+  users?: string[];
+  filter?: string[];
+  remove?: string;
+  sort_by?: string;
+  order?: number;
+}
 
 export interface GetTorrentRSSParams {}
 

@@ -194,3 +194,28 @@ export type TitleSchedule = {
   day?: number;
   list?: Title[];
 };
+
+export type Youtube = {
+  id?: number;
+  title?: string;
+  preview?: YoutubePreview;
+  youtube_id?: string;
+  comments?: number;
+  views?: number;
+  timestamp?: number;
+};
+
+export type YoutubePreview = {
+  src?: string;
+  thumbnail?: string;
+};
+
+export type TorrentSeedStats = {
+  downloaded?: number;
+  uploaded?: number;
+  user?: string;
+};
+
+// export type AuthData = {
+
+// }

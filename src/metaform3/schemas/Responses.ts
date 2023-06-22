@@ -40,3 +40,15 @@ export type GetTitleSearchResponse = MetaformResponse & {
 export type GetTitleScheduleResponse = MetaformResponse & {
   data: Objects.TitleSchedule | null;
 };
+
+export type GetYoutubeResponse = MetaformResponse & {
+  data: Objects.Youtube[] | null;
+};
+
+export type GetTorrentSeedStatsResponse = MetaformResponse & {
+  data: Objects.TorrentSeedStats[] | null;
+};
+
+export type GetTitleFranshisesResponse = MetaformResponse & {
+  data: Objects.TitleFranchises | null;
+};
