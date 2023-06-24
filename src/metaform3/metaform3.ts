@@ -134,8 +134,8 @@ export class Metaform3 implements IMetaform3 {
     return keys.join("&");
   }
 
-  async login(email: string, password: string): Promise<string | null> {
-    return null;
+  protected _required(arg: unknown) {
+    return !arg;
   }
 
   protected async _fetch(url: string, options: TimeoutFetchOptions) {
@@ -171,9 +171,61 @@ export class Metaform3 implements IMetaform3 {
     return Object2QueryString(params as { [key: string]: unknown });
   }
 
+  async login(
+    email: string,
+    password: string
+  ): Promise<string | METAFORM_ERROR> {
+    if (this._required(email) && this._required(password)) {
+      return METAFORM_ERROR.REQ_PARAM_IS_MISSING;
+    }
+
+    const sessionExpression = new RegExp(/PHPSESSID=\w*/gm);
+
+    try {
+      // Send user credentials
+      const response = await this._fetch(this._loginUrl, {
+        timeout: DEFAULT_FETCH_TIMEOUT,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: this._encodeUserCredentials(email, password),
+      });
+
+      // Catch cookies
+      const setCookiesHeader = response.headers.get("set-cookie");
+
+      //
+      if (!setCookiesHeader) {
+        const body = await response.json();
+        const MODULE_ERR =
+          body.key === "invalidUser"
+            ? METAFORM_ERROR.INVALID_USR
+            : METAFORM_ERROR.WRONG_PASSWORD;
+        return MODULE_ERR;
+      }
+
+      const sessionId = setCookiesHeader.match(sessionExpression);
+
+      if (!sessionId) return METAFORM_ERROR.UNKNOWN_ERR;
+
+      return sessionId[0].split("=")[1];
+    } catch (e) {
+      console.log(e);
+      return METAFORM_ERROR.UNKNOWN_ERR;
+    }
+  }
+
   async getTitleFranchises(
     params: Params.GetTitleFranchisesParams
   ): Promise<Responses.GetTitleFranshisesResponse> {
+    if (this._required(params.id)) {
+      return {
+        data: null,
+        error: METAFORM_ERROR.REQ_PARAM_IS_MISSING,
+      };
+    }
+
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE_FRANCHISES)
@@ -285,7 +337,13 @@ export class Metaform3 implements IMetaform3 {
   async getTitleSearch(
     params: Params.GetTitleSearchParams
   ): Promise<Responses.GetTitleSearchResponse> {
-    // TODO: Add required params check
+    if (this._required(params.search)) {
+      return {
+        data: null,
+        error: METAFORM_ERROR.REQ_PARAM_IS_MISSING,
+      };
+    }
+
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE_SEARCH)
@@ -471,6 +529,14 @@ export class Metaform3 implements IMetaform3 {
   async getTitle(
     params: Params.GetTitleParams
   ): Promise<Responses.GetTitleResponse> {
+    /*  */
+    if (this._required(params.id) && this._required(params.code)) {
+      return {
+        data: null,
+        error: METAFORM_ERROR.REQ_PARAM_IS_MISSING,
+      };
+    }
+
     const queryStr = this._getQuery(params);
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE)
@@ -546,6 +612,13 @@ export class Metaform3 implements IMetaform3 {
   async getTitleList(
     params: Params.GetTitleListParams
   ): Promise<Responses.GetTitleListResponse> {
+    if (this._required(params.id_list) && this._required(params.code_list)) {
+      return {
+        data: null,
+        error: METAFORM_ERROR.REQ_PARAM_IS_MISSING,
+      };
+    }
+
     const queryStr = this._getQuery(params);
     const reqUrl = this._urlConst
       .setApiMethod(API_METHOD_PATH.GET_TITLE_LIST)
