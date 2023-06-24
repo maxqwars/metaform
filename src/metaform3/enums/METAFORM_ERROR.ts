@@ -4,4 +4,6 @@ export enum METAFORM_ERROR {
   REQ_PARAM_IS_MISSING = "REQ_PARAM_IS_MISSING", // Occurs when you do not pass the required parameter, for example by calling getTitle() without `id` or `code`.
   UNKNOWN_ERR = "UNKNOWN_ERR",
   DEPTH_ZERO_SELF_SIGNED_CERT = "DEPTH_ZERO_SELF_SIGNED_CERT",
+  INVALID_USR = "INVALID_USER",
+  WRONG_PASSWORD = "WRONG_PASSWORD",
 }
