@@ -13,6 +13,7 @@ export type MetaformOptions = {
   timeout: number;
 };
 
+/* Define default request timeout */
 const DEFAULT_FETCH_TIMEOUT = 10000;
 
 export interface IMetaform3 {
@@ -80,7 +81,6 @@ export interface IMetaform3 {
   // TODO: Implement method DELETE user/favorites
   // deleteFavorites(): Promise<void>;
 
-  // TODO: Implement method login
   login(email: string, password: string): Promise<string | null>;
 
   // TODO: Implement method logout
@@ -100,10 +100,10 @@ type TimeoutFetchOptions = RequestInit & {
 };
 
 export class Metaform3 implements IMetaform3 {
-  private readonly _urlConst: URLConstructor;
-  private readonly _loginUrl: string;
-  private readonly _logoutUrl: string;
-  private readonly _timeout: number;
+  private readonly _urlConst: URLConstructor; // Module for construct request urls
+  private readonly _loginUrl: string; // Pre-defined url for auth
+  private readonly _logoutUrl: string; // Pre-defined url for de-auth
+  private readonly _timeout: number; // Request default timeout
 
   constructor(options?: MetaformOptions) {
     if (options) {
@@ -125,6 +125,15 @@ export class Metaform3 implements IMetaform3 {
     }
   }
 
+  /**
+   * Encode user credentianal before send
+   *
+   * @private
+   * @param {string} email User ```login``` or ```email```
+   * @param {string} password User password
+   * @return {*}  {string}
+   * @memberof Metaform3
+   */
   private _encodeUserCredentials(email: string, password: string): string {
     const keys = [
       `${encodeURIComponent("mail")}=${encodeURIComponent(email)}`,
@@ -138,6 +147,15 @@ export class Metaform3 implements IMetaform3 {
     return !arg;
   }
 
+  /**
+   * Modified fetch() method, added timeout option
+   *
+   * @protected
+   * @param {string} url Request URL
+   * @param {TimeoutFetchOptions} options Extended fetch() options
+   * @return {*}
+   * @memberof Metaform3
+   */
   protected async _fetch(url: string, options: TimeoutFetchOptions) {
     // Set default timeout if set anybody else
     const timeout =
@@ -162,6 +180,15 @@ export class Metaform3 implements IMetaform3 {
     return response;
   }
 
+  /**
+   * Method for fetch JSON data
+   *
+   * @protected
+   * @template T
+   * @param {string} url
+   * @return {*}  {Promise<T>}
+   * @memberof Metaform3
+   */
   protected async _requestData<T>(url: string): Promise<T> {
     const response = await this._fetch(url, {});
     return (await response.json()) as T;
@@ -261,7 +288,7 @@ export class Metaform3 implements IMetaform3 {
   }
 
   async getTorrentSeedStats(
-    params: Params.GetTorrentsSeedStatsParams
+    params?: Params.GetTorrentsSeedStatsParams
   ): Promise<Responses.GetTorrentSeedStatsResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
