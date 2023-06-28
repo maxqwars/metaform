@@ -65,7 +65,7 @@ You can try out Metaform3 in action on the CodeSandbox website
 
 \* If you are in the Russian territory, use a VPN
 
-[![CODESANDBOX](https://raw.githubusercontent.com/maxqwars/metaform/main/play_in_sandbox.png)]()
+[![CODESANDBOX](https://raw.githubusercontent.com/maxqwars/metaform/main/play_in_sandbox.png)](https://75f9w4.csb.app/)
 
 ## Metaform API
 
