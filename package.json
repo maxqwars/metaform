@@ -88,6 +88,6 @@
     "typescript": "^5.0.4"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown src/"
+    "**/*": "prettier --write --ignore-unknown ./src/"
   }
 }
