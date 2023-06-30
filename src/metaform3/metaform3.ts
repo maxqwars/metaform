@@ -25,19 +25,19 @@ export interface IMetaform3 {
   ): Promise<Responses.GetTitleListResponse>;
 
   getTitleRandom(
-    params: Params.GetTitleRandomParams
+    params?: Params.GetTitleRandomParams
   ): Promise<Responses.GetTitleResponse>;
 
   getTitleUpdates(
-    params: Params.GetTitleChangesAndUpdatesParams
+    params?: Params.GetTitleChangesAndUpdatesParams
   ): Promise<Responses.GetTitleChangesAndUpdatesResponse>;
 
   getTitleChanges(
-    params: Params.GetTitleChangesAndUpdatesParams
+    params?: Params.GetTitleChangesAndUpdatesParams
   ): Promise<Responses.GetTitleChangesAndUpdatesResponse>;
 
   getTitleSchedule(
-    params: Params.GetTitleScheduleParams
+    params?: Params.GetTitleScheduleParams
   ): Promise<Responses.GetTitleScheduleResponse>;
 
   getTitleSearch(
@@ -49,11 +49,11 @@ export interface IMetaform3 {
   ): Promise<Responses.GetTitleFranshisesResponse>;
 
   getYoutube(
-    params: Params.GetYoutubeParams
+    params?: Params.GetYoutubeParams
   ): Promise<Responses.GetYoutubeResponse>;
 
   getTorrentSeedStats(
-    params: Params.GetTorrentsSeedStatsParams
+    params?: Params.GetTorrentsSeedStatsParams
   ): Promise<Responses.GetTorrentSeedStatsResponse>;
 
   getFranchiseList(
@@ -126,7 +126,7 @@ export class Metaform3 implements IMetaform3 {
   }
 
   /**
-   * Encode user credentianal before send
+   * Prepare user credentials before send
    *
    * @private
    * @param {string} email User ```login``` or ```email```
@@ -198,6 +198,30 @@ export class Metaform3 implements IMetaform3 {
     return Object2QueryString(params as { [key: string]: unknown });
   }
 
+  protected _getError(error: unknown) {
+    /* RosKomNadzor block */
+    if (error instanceof TypeError) {
+      return {
+        error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
+        data: null,
+      };
+    }
+
+    /* Time-out error */
+    if (error instanceof DOMException) {
+      return {
+        error: METAFORM_ERROR.TIMEOUT_ERR,
+        data: null,
+      };
+    }
+
+    /* Unknown (default, placeholder) error */
+    return {
+      error: METAFORM_ERROR.UNKNOWN_ERR,
+      data: null,
+    };
+  }
+
   async login(
     email: string,
     password: string
@@ -266,24 +290,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -303,29 +310,12 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
   async getYoutube(
-    params: Params.GetYoutubeParams
+    params?: Params.GetYoutubeParams
   ): Promise<Responses.GetYoutubeResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
@@ -340,24 +330,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -384,29 +357,12 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
   async getTitleSchedule(
-    params: Params.GetTitleScheduleParams
+    params?: Params.GetTitleScheduleParams
   ): Promise<Responses.GetTitleScheduleResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
@@ -421,24 +377,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -458,29 +397,12 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
   async getTitleUpdates(
-    params: Params.GetTitleChangesAndUpdatesParams
+    params?: Params.GetTitleChangesAndUpdatesParams
   ): Promise<Responses.GetTitleChangesAndUpdatesResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
@@ -495,29 +417,12 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
   async getTitleChanges(
-    params: Params.GetTitleChangesAndUpdatesParams
+    params?: Params.GetTitleChangesAndUpdatesParams
   ): Promise<Responses.GetTitleChangesAndUpdatesResponse> {
     const queryStr = params ? this._getQuery(params) : "";
     const reqUrl = this._urlConst
@@ -532,24 +437,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -577,29 +465,12 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
   async getTitleRandom(
-    params: Params.GetTitleRandomParams
+    params?: Params.GetTitleRandomParams
   ): Promise<Responses.GetTitleResponse> {
     const queryStr = params ? this._getQuery(params) : "";
 
@@ -615,24 +486,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -659,24 +513,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -692,24 +529,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -725,24 +545,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 
@@ -758,24 +561,7 @@ export class Metaform3 implements IMetaform3 {
         data,
       };
     } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        return {
-          error: METAFORM_ERROR.DEPTH_ZERO_SELF_SIGNED_CERT,
-          data: null,
-        };
-      }
-
-      if (error instanceof DOMException) {
-        return {
-          error: METAFORM_ERROR.TIMEOUT_ERR,
-          data: null,
-        };
-      }
-
-      return {
-        error: METAFORM_ERROR.UNKNOWN_ERR,
-        data: null,
-      };
+      return this._getError(error);
     }
   }
 }
