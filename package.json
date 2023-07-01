@@ -27,10 +27,7 @@
     "*": {
       "metaform3": [
         "./dist/metaform3/metaform3.d.ts",
-        "./dist/metaform3/utils/index.d.ts",
-        "./dist/metaform3/core/index.d.ts",
         "./dist/metaform3/schemas/index.d.ts",
-        "./dist/metaform3/core/QueryConstructor.d.ts",
         "./dist/metaform3/core/URLConstructor.d.ts",
         "./dist/metaform3/enums/API_METHOD_PATH.d.ts",
         "./dist/metaform3/enums/METAFORM_ERROR.d.ts",
@@ -40,8 +37,8 @@
         "./dist/metaform3/schemas/Objects.d.ts",
         "./dist/metaform3/schemas/Params.d.ts",
         "./dist/metaform3/schemas/Responses.d.ts",
-        "./dist/metaform3/utils/ExtractDomainFromUrl.d.ts",
-        "./dist/metaform3/utils/Object2QueryString.d.ts"
+        "./dist/metaform3/utils/extractDomainFromUrl.d.ts",
+        "./dist/metaform3/utils/object2query.d.ts"
       ]
     }
   },

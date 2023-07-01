@@ -1,7 +1,8 @@
 import { API_METHOD_PATH, METAFORM_ERROR } from "./enums";
 
-import { URLConstructor } from "./core";
-import { Object2QueryString, extractDomainFromUrl } from "./utils";
+import { URLConstructor } from "./core/URLConstructor";
+import { object2query } from "./utils/object2query";
+import { extractDomainFromUrl } from "./utils/extractDomainFromUrl";
 
 /* Schemas */
 import { Params, Objects, Responses } from "./schemas";
@@ -195,7 +196,7 @@ export class Metaform3 implements IMetaform3 {
   }
 
   protected _getQuery(params: unknown) {
-    return Object2QueryString(params as { [key: string]: unknown });
+    return object2query(params as { [key: string]: unknown });
   }
 
   protected _getError(error: unknown) {
