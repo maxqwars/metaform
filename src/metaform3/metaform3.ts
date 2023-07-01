@@ -21,6 +21,9 @@ export interface IMetaform3 {
   /* -------------------------------------------------------------------------- */
   /*                     Methods that return composite types                    */
   /* -------------------------------------------------------------------------- */
+
+  getTitle(params: Params.GetTitleParams): Promise<Responses.GetTitleResponse>;
+
   getTitleList(
     params: Params.GetTitleListParams
   ): Promise<Responses.GetTitleListResponse>;
@@ -64,8 +67,7 @@ export interface IMetaform3 {
   // TODO: Implement method title/search/advanced
   // getTitleSearchAdvanced(): Promise<void>;
 
-  // TODO: Implement method /feed
-  // getFeed(): Promise<void>;
+  getFeed(params?: Params.GetFeedParams): Promise<Responses.GetFeedResponse>;
 
   // TODO: Implement method torrent/rss
   // getTorrentRSS(): Promise<void>;
@@ -90,10 +92,12 @@ export interface IMetaform3 {
   /* -------------------------------------------------------------------------- */
   /*                      Methods that return simple types                      */
   /* -------------------------------------------------------------------------- */
-  getTitle(params: Params.GetTitleParams): Promise<Responses.GetTitleResponse>;
   getGenres(): Promise<Responses.GetGenresResponse>;
   getYears(): Promise<Responses.GetYearsResponse>;
   getTeam(): Promise<Responses.GetTeamResponse>;
+
+  /* Getters */
+  session: string | null;
 }
 
 type TimeoutFetchOptions = RequestInit & {
@@ -105,6 +109,7 @@ export class Metaform3 implements IMetaform3 {
   private readonly _loginUrl: string; // Pre-defined url for auth
   private readonly _logoutUrl: string; // Pre-defined url for de-auth
   private readonly _timeout: number; // Request default timeout
+  private _session: string | null = null;
 
   constructor(options?: MetaformOptions) {
     if (options) {
@@ -124,6 +129,14 @@ export class Metaform3 implements IMetaform3 {
       this._logoutUrl = `https://${rootDomain}/public/logout.php`;
       this._timeout = DEFAULT_FETCH_TIMEOUT;
     }
+  }
+
+  get session(): string | null {
+    return this._session;
+  }
+
+  set session(session) {
+    this._session = session;
   }
 
   /**
@@ -258,13 +271,34 @@ export class Metaform3 implements IMetaform3 {
       }
 
       const sessionId = setCookiesHeader.match(sessionExpression);
-
       if (!sessionId) return METAFORM_ERROR.UNKNOWN_ERR;
 
-      return sessionId[0].split("=")[1];
+      const session = sessionId[0].split("=")[1];
+      this._session = session;
+      return session;
     } catch (e) {
       console.log(e);
       return METAFORM_ERROR.UNKNOWN_ERR;
+    }
+  }
+
+  async getFeed(
+    params?: Params.GetFeedParams
+  ): Promise<Responses.GetFeedResponse> {
+    const queryStr = params ? this._getQuery(params) : "";
+    const reqUrl = this._urlConst
+      .setApiMethod(API_METHOD_PATH.GET_FEED)
+      .setQueryString(queryStr)
+      .construct();
+
+    try {
+      const data = await this._requestData<Objects.Feed>(reqUrl);
+      return {
+        error: null,
+        data,
+      };
+    } catch (error: unknown) {
+      return this._getError(error);
     }
   }
 

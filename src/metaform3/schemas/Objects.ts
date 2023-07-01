@@ -216,6 +216,7 @@ export type TorrentSeedStats = {
   user?: string;
 };
 
-// export type AuthData = {
-
-// }
+export type Feed = {
+  youtube?: Youtube[];
+  title?: Title[];
+};

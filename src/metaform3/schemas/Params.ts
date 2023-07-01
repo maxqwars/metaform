@@ -76,7 +76,7 @@ export interface GetYoutubeParams extends PaginationParams {
   since?: number;
 }
 
-export interface GetFeedParams {}
+export interface GetFeedParams extends TitleCommonParams, PaginationParams {}
 
 export interface GetTorrentsSeedStatsParams extends PaginationParams {
   users?: string[];

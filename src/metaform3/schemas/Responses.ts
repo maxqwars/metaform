@@ -52,3 +52,7 @@ export type GetTorrentSeedStatsResponse = MetaformResponse & {
 export type GetTitleFranshisesResponse = MetaformResponse & {
   data: Objects.TitleFranchises | null;
 };
+
+export type GetFeedResponse = MetaformResponse & {
+  data: Objects.Feed | null;
+};
