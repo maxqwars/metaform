@@ -15,6 +15,7 @@
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
 ![](https://socket.dev/api/badge/npm/package/@maxqwars/metaform/1.0.0#1687019298800)
+[![](https://data.jsdelivr.com/v1/package/npm/@maxqwars/metaform/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@maxqwars/metaform)
 
 </center>
 
@@ -98,7 +99,7 @@ Detailed information about the available methods can be found in the [repository
 | GET /title/search          | ✔      |
 | GET /title/schedule        | ✔      |
 | GET /title/search/advanced | ⛔     |
-| GET /title/franshises      | ✔     |
+| GET /title/franshises      | ✔      |
 | GET /youtube               | ✔      |
 | GET /feed                  | ⛔     |
 | GET /torrent/seed_stats    | ✔      |
