@@ -167,7 +167,7 @@ export type TitleChanges = {
 };
 
 export type Pagination = {
-  page?: number;
+  pages?: number;
   current_page?: number;
   items_per_page?: number;
   total_items?: number;
