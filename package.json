@@ -26,6 +26,7 @@
   "typesVersions": {
     "*": {
       "metaform3": [
+        "./dist/metaform3/index.d.ts",
         "./dist/metaform3/metaform3.d.ts",
         "./dist/metaform3/schemas/index.d.ts",
         "./dist/metaform3/core/URLConstructor.d.ts",
@@ -43,7 +44,7 @@
     }
   },
   "exports": {
-    "./metaform3": "./dist/metaform3/metaform3.js",
+    "./metaform3": "./dist/metaform3/index.js",
     "./metaform2": "./dist/metaform2/metaform2.js"
   },
   "scripts": {
