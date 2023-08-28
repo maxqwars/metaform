@@ -1,6 +1,6 @@
 {
   "name": "@maxqwars/metaform",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Metaform is an open library for working with the Anilibria API without external dependencies.",
   "license": "MIT",
   "private": false,
