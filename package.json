@@ -74,8 +74,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^3.8.3",
-    "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
     "tsdown": "^0.22.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4"
