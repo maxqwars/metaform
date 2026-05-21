@@ -1,6 +1,0 @@
-export enum RELEASE_STATUS {
-  IN_PROCESS = 1,
-  COMPLETED = 2,
-  HIDDEN = 3,
-  NOT_ONGOING = 4,
-}
