@@ -23,30 +23,8 @@
   "files": [
     "dist"
   ],
-  "typesVersions": {
-    "*": {
-      "metaform3": [
-        "./dist/metaform3/index.d.ts",
-        "./dist/metaform3/metaform3.d.ts",
-        "./dist/metaform3/schemas/index.d.ts",
-        "./dist/metaform3/core/URLConstructor.d.ts",
-        "./dist/metaform3/enums/API_METHOD_PATH.d.ts",
-        "./dist/metaform3/enums/METAFORM_ERROR.d.ts",
-        "./dist/metaform3/enums/REL_SEASON.d.ts",
-        "./dist/metaform3/enums/WEEK_DAY.d.ts",
-        "./dist/metaform3/enums/index.d.ts",
-        "./dist/metaform3/schemas/Objects.d.ts",
-        "./dist/metaform3/schemas/Params.d.ts",
-        "./dist/metaform3/schemas/Responses.d.ts",
-        "./dist/metaform3/utils/extractDomainFromUrl.d.ts",
-        "./dist/metaform3/utils/object2query.d.ts"
-      ]
-    }
-  },
-  "exports": {
-    "./metaform3": "./dist/metaform3/index.js",
-    "./metaform2": "./dist/metaform2/metaform2.js"
-  },
+  "typesVersions": {},
+  "exports": {},
   "scripts": {
     "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsdown -d dist",
