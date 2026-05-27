@@ -9,7 +9,9 @@
   "keywords": [
     "anilibria",
     "rest-api",
-    "typescript"
+    "typescript",
+    "aniliberty-api",
+    "aniliberty"
   ],
   "bugs": "https://github.com/maxqwars/metaform/issues",
   "repository": {
@@ -21,10 +23,39 @@
     "email": "maxqwars@gmail.com"
   },
   "files": [
-    "dist"
+    "dist/index.mjs",
+    "dist/index.cjs",
+    "dist/index.d.mts",
+    "dist/index.d.cts",
+    "dist/scheme/v1.mjs",
+    "dist/scheme/v1.cjs",
+    "dist/scheme/v1.d.mts",
+    "dist/scheme/v1.d.cts",
+    "dist/transport.mjs",
+    "dist/transport.cjs",
+    "dist/transport.d.mts",
+    "dist/transport.d.cts",
+    "LICENSE",
+    "README.md"
   ],
-  "typesVersions": {},
-  "exports": {},
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./scheme/v1": {
+      "import": "./dist/scheme/v1.mjs",
+      "require": "./dist/scheme/v1.cjs",
+      "types": "./dist/scheme/v1.d.mts"
+    },
+    "./transport": {
+      "import": "./dist/transport.mjs",
+      "require": "./dist/transport.cjs",
+      "types": "./dist/transport.d.mts"
+    }
+  },
   "scripts": {
     "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsdown -d dist",

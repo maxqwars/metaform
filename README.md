@@ -22,11 +22,24 @@ Metaform works in the browser and Nodejs (upd: works in **any** javascript runti
 
 # Quick start
 
-## Via package manager
+## Fetch teams list example
 
-## Via CDN (jsdelevir)
+```typescript
+import { createFetchTransport } from '@maxqwars/metaform/transport/fetch-transport'
+import { getTeams } from '@maxqwars/metaform/api/functions/get-teams'
 
-## Via release file
+async function main() {
+  const transport = createFetchTransport('https://aniliberty.top/api/v1')
+
+  const teams = await getTeams(transport, 'v1', {
+    include: ['id', 'title'],
+  })
+
+  console.log(teams)
+}
+
+main().catch(console.error)
+```
 
 # Differences from metaform versions (2/3)
 
@@ -41,12 +54,6 @@ The new version removes the use of fetch built into nodejs or browser. Now you d
 ## Tree-shaking is now working.
 
 Previously, Metaform was architecturally structured as a single large class implementing API methods; now, however, it consists of an extensive set of highly configurable functions that work seamlessly with the tree-shaking capabilities of modern bundlers.
-
-# Use exist fetch transport or create own
-
-## Use via fetch
-
-## Use via custom axios transport
 
 # License
 
