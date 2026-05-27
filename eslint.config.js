@@ -26,6 +26,9 @@ export default defineConfig([
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
         allowDefaultProject: ['vitest.config.ts', 'tsdown.config.ts'],
+        parserOptions: {
+          project: ['./tsconfig.src.json', './tsconfig.node.json'],
+        },
       },
     },
   },
