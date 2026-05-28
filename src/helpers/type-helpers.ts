@@ -9,6 +9,10 @@ export function isOptionalNumber(value: unknown): boolean {
   return value === undefined || typeof value === 'number'
 }
 
+export function isOptionalNumberAndNotNaN(value: unknown): boolean {
+  return value === undefined || (typeof value === 'number' && !Number.isNaN(value))
+}
+
 export function isNullableString(value: unknown): boolean {
   return value === undefined || value === null || typeof value === 'string'
 }
