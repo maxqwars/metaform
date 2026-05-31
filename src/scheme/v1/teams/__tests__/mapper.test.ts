@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { mapTeamsDto } from './mapper'
+import { mapTeamsDto } from '../mapper'
 
 describe('mapTeamsDto', () => {
   it('maps all fields correctly', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isTeamsItemDto, isTeamsDto } from './guards'
+import { isTeamsItemDto, isTeamsDto } from '../guards'
 
 describe('isTeamsItemDto', () => {
   describe('valid cases', () => {

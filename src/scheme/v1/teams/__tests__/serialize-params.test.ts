@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { serializeTeamsParams } from './serialize-params'
+import { serializeTeamsParams } from '../serialize-params'
 
 describe('serializeTeamsParams', () => {
   it('serializes include array to comma-separated string', () => {
