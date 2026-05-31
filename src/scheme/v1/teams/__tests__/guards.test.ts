@@ -70,12 +70,7 @@ describe('isTeamsDto', () => {
   })
 
   it('fails when one item is invalid', () => {
-    expect(
-      isTeamsDto([
-        { id: '1' },
-        { id: null },
-      ]),
-    ).toBe(false)
+    expect(isTeamsDto([{ id: '1' }, { id: null }])).toBe(false)
   })
 
   it('fails on non-array', () => {
