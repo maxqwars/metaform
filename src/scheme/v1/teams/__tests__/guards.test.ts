@@ -73,7 +73,7 @@ describe('isTeamsDto', () => {
     expect(
       isTeamsDto([
         { id: '1' },
-        { id: null }, // невалидный
+        { id: null },
       ]),
     ).toBe(false)
   })
