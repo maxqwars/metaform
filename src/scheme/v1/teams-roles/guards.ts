@@ -1,7 +1,7 @@
 import { isNullableString, isOptionalNumber, isOptionalString } from '../../../helpers/type-helpers'
 import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
 
-export function isTeamsRoleItemDto(value: unknown): value is TeamsRolesItemDto {
+export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto {
   if (typeof value !== 'object' || value === null) {
     return false
   }
@@ -17,5 +17,5 @@ export function isTeamsRoleItemDto(value: unknown): value is TeamsRolesItemDto {
 }
 
 export function isTeamsRolesDto(value: unknown): value is TeamsRolesDto {
-  return Array.isArray(value) && value.every(isTeamsRoleItemDto)
+  return Array.isArray(value) && value.every(isTeamsRolesItemDto)
 }
