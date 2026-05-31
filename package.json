@@ -69,8 +69,8 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc",
     "check": "pnpm typecheck && pnpm test && pnpm build",
-    "prepare": "pnpm build && husky install",
-    "prepublishOnly": "pnpm test && pnpm check",
+    "prepare": "pnpm build && husky",
+    "prepublishOnly": "pnpm check",
     "preversion": "pnpm check",
     "version": "pnpm format && git add .",
     "postversion": "git push && git push --tags",
@@ -92,6 +92,10 @@
     "vitest": "^4.1.6"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown ./src/"
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml}": "prettier --write"
   }
 }
