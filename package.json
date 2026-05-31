@@ -93,5 +93,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown ./src/"
+  },
+  "dependencies": {
+    "@vitest/coverage-v8": "^4.1.6"
   }
 }
