@@ -51,3 +51,7 @@ export function isOptionalValidNumber(value: unknown): boolean {
 export function isNullableString(value: unknown): boolean {
   return value === undefined || value === null || typeof value === 'string'
 }
+
+export function isValidOptionalString(value: unknown): boolean {
+  return value === undefined || isValidString(value)
+}
