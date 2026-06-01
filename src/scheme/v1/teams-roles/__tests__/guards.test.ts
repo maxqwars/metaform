@@ -80,7 +80,7 @@ describe('Testing isTeamsRolesDto', () => {
     expect(
       isTeamsRolesDto([
         {
-          id: 'identifier',
+          id: 'f3a74564-5427-456d-bf57-d89d5749c7',
           title: 'role title',
           color: '#FFFFFF',
           sort_order: 1,
