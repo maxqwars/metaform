@@ -1,18 +1,23 @@
-import { isNullableString, isOptionalNumber, isOptionalString } from '../../../helpers/type-helpers'
+import {
+  isNullableString,
+  isOptionalString,
+  isOptionalValidNumber,
+  isValidOptionalString,
+} from '../../../helpers/type-helpers'
 import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
 
 export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto {
-  if (typeof value !== 'object' || value === null) {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return false
   }
 
   const item = value as Record<string, unknown>
 
   return (
-    isOptionalNumber(item.id) &&
+    isValidOptionalString(item.id) &&
     isOptionalString(item.title) &&
     isNullableString(item.color) &&
-    isOptionalNumber(item.sort_order)
+    isOptionalValidNumber(item.sort_order)
   )
 }
 

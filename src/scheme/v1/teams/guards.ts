@@ -1,8 +1,8 @@
 import type { TeamsItemDto, TeamsDto } from './types'
 import {
   isOptionalString,
-  isOptionalNumberAndNotNaN,
   isNullableString,
+  isOptionalValidNumber,
 } from '../../../helpers/type-helpers.js'
 
 export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
@@ -16,7 +16,7 @@ export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
   return (
     isOptionalString(item.id) &&
     isOptionalString(item.title) &&
-    isOptionalNumberAndNotNaN(item.sort_order) &&
+    isOptionalValidNumber(item.sort_order) &&
     isNullableString(item.description)
   )
 }
