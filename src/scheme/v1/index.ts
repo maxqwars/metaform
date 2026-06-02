@@ -7,3 +7,5 @@ export type * from './teams-roles/types'
 export * from './teams-roles/guards'
 export * from './teams-roles/mapper'
 export * from './teams-roles/serialize-params'
+
+export type * from './teams-users/types'
