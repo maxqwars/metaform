@@ -35,3 +35,7 @@ export function isUuid(value: unknown): boolean {
 export function isOptionalUuid(value: unknown): boolean {
   return value === undefined || isUuid(value)
 }
+
+export function isOptionalBoolean(value: unknown): boolean {
+  return value === undefined || typeof value === 'boolean'
+}
