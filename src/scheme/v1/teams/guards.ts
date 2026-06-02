@@ -3,22 +3,21 @@ import {
   isOptionalString,
   isNullableString,
   isOptionalValidNumber,
+  isOptionalUuid,
+  isRecord,
 } from '../../../helpers/type-helpers.js'
 
 export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
-  // Basic, value not object or null
-  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
-    return false
-  }
+  if (!isRecord(value)) return false
 
-  const item = value as Record<string, unknown>
+  const checks = [
+    isOptionalUuid(value.id),
+    isOptionalString(value.title),
+    isOptionalValidNumber(value.sort_order),
+    isNullableString(value.description),
+  ]
 
-  return (
-    isOptionalString(item.id) &&
-    isOptionalString(item.title) &&
-    isOptionalValidNumber(item.sort_order) &&
-    isNullableString(item.description)
-  )
+  return checks.every(Boolean)
 }
 
 export function isTeamsDto(value: unknown): value is TeamsDto {
