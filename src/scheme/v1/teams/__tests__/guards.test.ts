@@ -6,8 +6,8 @@ describe('isTeamsItemDto', () => {
     it('passes with all fields present', () => {
       expect(
         isTeamsItemDto({
-          id: '1',
-          title: 'Team',
+          id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
+          title: 'team',
           sort_order: 1,
           description: 'Desc',
         }),
@@ -61,7 +61,15 @@ describe('isTeamsItemDto', () => {
 describe('isTeamsDto', () => {
   it('passes with valid array', () => {
     expect(
-      isTeamsDto([{ id: '1', title: 'Team', sort_order: 1, description: null }, { id: '2' }]),
+      isTeamsDto([
+        {
+          id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
+          title: 'Team',
+          sort_order: 1,
+          description: null,
+        },
+        { id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45' },
+      ]),
     ).toBe(true)
   })
 

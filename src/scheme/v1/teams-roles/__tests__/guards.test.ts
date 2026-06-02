@@ -6,7 +6,7 @@ describe('Testing isTeamsRolesItemDto', () => {
     it('Passes with all fields present', () => {
       expect(
         isTeamsRolesItemDto({
-          id: 'identifier',
+          id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
           title: 'role title',
           color: '#FFFFFF',
           sort_order: 1,
@@ -15,7 +15,7 @@ describe('Testing isTeamsRolesItemDto', () => {
 
       expect(
         isTeamsRolesItemDto({
-          id: 'identifier',
+          id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
           title: 'role title',
           color: null,
           sort_order: 1,
@@ -80,13 +80,13 @@ describe('Testing isTeamsRolesDto', () => {
     expect(
       isTeamsRolesDto([
         {
-          id: 'f3a74564-5427-456d-bf57-d89d5749c7',
-          title: 'role title',
+          id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
+          title: 'title',
           color: '#FFFFFF',
           sort_order: 1,
         },
         {
-          title: 'role title',
+          title: 'title',
           color: null,
         },
       ]),
