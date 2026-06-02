@@ -39,3 +39,7 @@ export function isOptionalUuid(value: unknown): boolean {
 export function isOptionalBoolean(value: unknown): boolean {
   return value === undefined || typeof value === 'boolean'
 }
+
+export function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
