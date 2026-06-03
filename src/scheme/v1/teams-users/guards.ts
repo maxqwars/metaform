@@ -13,13 +13,15 @@ import type {
   TeamsUsersUserDto,
 } from './types'
 
-function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {
+export function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {
   if (!isRecord(value)) return false
 
   return isOptionalString(value.preview) && isOptionalString(value.thumbnail)
 }
 
-function isTeamsUsersUserAvatarImageDto(value: unknown): value is TeamsUsersUserAvatarImageDto {
+export function isTeamsUsersUserAvatarImageDto(
+  value: unknown,
+): value is TeamsUsersUserAvatarImageDto {
   if (!isRecord(value)) return false
 
   const checks = [
@@ -31,7 +33,7 @@ function isTeamsUsersUserAvatarImageDto(value: unknown): value is TeamsUsersUser
   return checks.every(Boolean)
 }
 
-function isTeamsUsersUserDto(value: unknown): value is TeamsUsersUserDto {
+export function isTeamsUsersUserDto(value: unknown): value is TeamsUsersUserDto {
   if (!isRecord(value)) return false
 
   const checks = [
