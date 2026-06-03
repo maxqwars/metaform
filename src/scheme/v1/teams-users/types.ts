@@ -15,7 +15,7 @@ export interface TeamsUsersItemDto {
   sort_order?: number
   is_vacation?: boolean
   user?: TeamsUsersUserDto | null
-  team?: TeamsDto
+  teams?: TeamsDto
   roles?: TeamsRolesDto
 }
 
@@ -45,7 +45,7 @@ export interface TeamsUsersItem {
   sortOrder: number | null
   isVacation: boolean | null
   user: TeamsUsersUser | null
-  team: Teams | null
+  teams: Teams | null
   roles: TeamsRoles | null
 }
 
