@@ -12,6 +12,7 @@ Metaform is a lightweight, platform-agnostic, open-source TypeScript library des
 ![](https://img.shields.io/github/release-date/maxqwars/metaform)
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
+[![codecov](https://codecov.io/github/maxqwars/metaform/graph/badge.svg?token=DOPS6ZASV0)](https://codecov.io/github/maxqwars/metaform)
 
 Version **2.0** introduces a complete architectural overhaul focused on performance, modularity, and strict type safety:
 
