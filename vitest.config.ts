@@ -15,7 +15,7 @@ export default defineConfig({
         'src/**/types.ts',
         'src/api/version-map.ts',
       ],
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html', 'lcov'],
     },
   },
 })
