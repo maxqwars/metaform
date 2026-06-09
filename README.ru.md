@@ -12,6 +12,7 @@ Metaform — это легковесная, платформанезависим
 ![](https://img.shields.io/github/release-date/maxqwars/metaform)
 ![](https://img.shields.io/github/contributors/maxqwars/metaform)
 ![](https://img.shields.io/github/package-json/v/maxqwars/metaform)
+[![codecov](https://codecov.io/github/maxqwars/metaform/graph/badge.svg?token=DOPS6ZASV0)](https://codecov.io/github/maxqwars/metaform)
 
 Версия **2.0** — это полное переосмысление архитектуры библиотеки с упором на производительность, модульность и строгую типизацию:
 
