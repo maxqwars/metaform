@@ -71,7 +71,7 @@ describe('isTeamsUsersUserAvatarImageDto', () => {
   })
 
   it('should return false if optimized is not a record', () => {
-    const invalidDto = { preview: 'test', thumbnail: 'test', optiomized: 'string' }
+    const invalidDto = { preview: 'test', thumbnail: 'test', optimized: 'string' }
     expect(isTeamsUsersUserAvatarImageDto(invalidDto)).toBe(false)
   })
 

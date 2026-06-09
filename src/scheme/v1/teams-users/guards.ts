@@ -27,7 +27,7 @@ export function isTeamsUsersUserAvatarImageDto(
   const checks = [
     isOptionalString(value.preview),
     isOptionalString(value.thumbnail),
-    value.optiomized === undefined || isTeamsUsersUserAvatarOptimizedDto(value.optiomized),
+    value.optimized === undefined || isTeamsUsersUserAvatarOptimizedDto(value.optimized),
   ]
 
   return checks.every(Boolean)
@@ -52,7 +52,7 @@ export function isTeamsUsersItemDto(value: unknown): value is TeamsUsersItemDto 
     isOptionalUuid(value.id),
     isOptionalString(value.nickname),
     value.is_intern === undefined || typeof value.is_intern === 'boolean',
-    value.is_vacation === undefined || typeof value.is_intern === 'boolean',
+    value.is_vacation === undefined || typeof value.is_vacation === 'boolean',
     isOptionalValidNumber(value.sort_order),
     value.user === undefined || value.user === null || isTeamsUsersUserDto(value.user),
     value.team === undefined || isTeamsDto(value.team),
