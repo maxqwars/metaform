@@ -9,7 +9,7 @@ import type {
   TeamsUsersUserAvatarImageDto,
 } from './types'
 
-function mapTeamsUsersUserAvatarImageDto(
+export function mapTeamsUsersUserAvatarImageDto(
   dto: TeamsUsersUserAvatarImageDto,
 ): TeamsUsersUserAvatarImage {
   return {
@@ -24,7 +24,7 @@ function mapTeamsUsersUserAvatarImageDto(
   }
 }
 
-function mapTeamsUsersUserDto(dto: TeamsUsersUserDto): TeamsUsersUser {
+export function mapTeamsUsersUserDto(dto: TeamsUsersUserDto): TeamsUsersUser {
   return {
     id: dto.id ?? null,
     nickname: dto.nickname ?? null,
