@@ -14,6 +14,14 @@ import { isTeamsRolesDto as isTeamsRolesDtoV1 } from '../scheme/v1/teams-roles'
 import { mapTeamsRolesDto as mapTeamsRolesDtoV1 } from '../scheme/v1/teams-roles'
 import { serializeTeamsRolesParams as serializeTeamsRolesParamsV1 } from '../scheme/v1/teams-roles'
 
+// Import scheme for /teams/users V1
+import type { TeamsUsers as TeamsUsersV1 } from '../scheme/v1/teams-users'
+import type { TeamsUsersDto as TeamsUsersDtoV1 } from '../scheme/v1/teams-users'
+import type { TeamsUsersParams as TeamsUsersParamsV1 } from '../scheme/v1/teams-users'
+import { isTeamsUsersDto as isTeamsUsersDtoV1 } from '../scheme/v1/teams-users'
+import { mapTeamsUsersDto as mapTeamsUsersDtoV1 } from '../scheme/v1/teams-users'
+import { serializeTeamsUsersParams as serializeTeamsUsersParamsV1 } from '../scheme/v1/teams-users'
+
 interface EndpointDef<TResult, TParams, TPathParams = undefined> {
   guard: (v: unknown) => boolean
   mapper: (v: unknown) => TResult
@@ -25,6 +33,7 @@ interface EndpointDef<TResult, TParams, TPathParams = undefined> {
 interface V1Endpoints {
   teams: EndpointDef<TeamsV1, TeamsParamsV1>
   teamsRoles: EndpointDef<TeamsRolesV1, TeamsRolesParamsV1>
+  teamsUsers: EndpointDef<TeamsUsersV1, TeamsUsersParamsV1>
 }
 
 export interface VersionMap {
@@ -44,6 +53,12 @@ export const versions: VersionMap = {
       mapper: (v) => mapTeamsRolesDtoV1(v as TeamsRolesDtoV1),
       serializeParams: serializeTeamsRolesParamsV1,
       path: '/teams/roles',
+    },
+    teamsUsers: {
+      guard: isTeamsUsersDtoV1,
+      mapper: (v) => mapTeamsUsersDtoV1(v as TeamsUsersDtoV1),
+      serializeParams: serializeTeamsUsersParamsV1,
+      path: '/teams/users',
     },
   },
 }
