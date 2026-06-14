@@ -43,7 +43,7 @@ export const versions: VersionMap = {
       guard: isTeamsRolesDtoV1,
       mapper: (v) => mapTeamsRolesDtoV1(v as TeamsRolesDtoV1),
       serializeParams: serializeTeamsRolesParamsV1,
-      path: '/teams/role',
+      path: '/teams/roles',
     },
   },
 }
