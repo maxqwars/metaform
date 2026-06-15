@@ -1,4 +1,3 @@
-// api/functions/get-teams.ts
 import type { Transport } from '../../transport/types'
 import type { VersionMap } from '../version-map'
 import { versions } from '../version-map'
