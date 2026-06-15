@@ -1,3 +1,4 @@
 export * from './api/version-map'
 export * from './api/functions/get-teams'
 export * from './api/functions/get-teams-roles'
+export * from './api/functions/get-teams-users'
