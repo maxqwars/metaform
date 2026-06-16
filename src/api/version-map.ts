@@ -22,6 +22,14 @@ import { isTeamsUsersDto as isTeamsUsersDtoV1 } from '../scheme/v1/teams-users'
 import { mapTeamsUsersDto as mapTeamsUsersDtoV1 } from '../scheme/v1/teams-users'
 import { serializeTeamsUsersParams as serializeTeamsUsersParamsV1 } from '../scheme/v1/teams-users'
 
+// Import scheme for /media/videos V1
+import type { MediaVideos as MediaVideosV1 } from '../scheme/v1/media-videos'
+import type { MediaVideosDto as MediaVideosDtoV1 } from '../scheme/v1/media-videos'
+import type { MediaVideosParams as MediaVideosParamsV1 } from '../scheme/v1/media-videos'
+import { isMediaVideosDto as isMediaVideosDtoV1 } from '../scheme/v1/media-videos'
+import { mapMediaVideosDto as mapMediaVideosDtoV1 } from '../scheme/v1/media-videos'
+import { serializeMediaVideosParams as serializeMediaVideosParamsV1 } from '../scheme/v1/media-videos'
+
 interface EndpointDef<TResult, TParams, TPathParams = undefined> {
   guard: (v: unknown) => boolean
   mapper: (v: unknown) => TResult
@@ -34,6 +42,7 @@ interface V1Endpoints {
   teams: EndpointDef<TeamsV1, TeamsParamsV1>
   teamsRoles: EndpointDef<TeamsRolesV1, TeamsRolesParamsV1>
   teamsUsers: EndpointDef<TeamsUsersV1, TeamsUsersParamsV1>
+  mediaVideos: EndpointDef<MediaVideosV1, MediaVideosParamsV1>
 }
 
 export interface VersionMap {
@@ -59,6 +68,12 @@ export const versions: VersionMap = {
       mapper: (v) => mapTeamsUsersDtoV1(v as TeamsUsersDtoV1),
       serializeParams: serializeTeamsUsersParamsV1,
       path: '/teams/users',
+    },
+    mediaVideos: {
+      guard: isMediaVideosDtoV1,
+      mapper: (v) => mapMediaVideosDtoV1(v as MediaVideosDtoV1),
+      serializeParams: serializeMediaVideosParamsV1,
+      path: '/media/videos',
     },
   },
 }
