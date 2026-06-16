@@ -43,7 +43,7 @@ export function mapMediaVideosImageOptimizedDto(
 export function mapMediaVideosImageDto(dto: MediaVideosItemImageDto): MediaVideosItemImage {
   return {
     preview: dto.preview ?? null,
-    thumbnail: dto.preview ?? null,
+    thumbnail: dto.thumbnail ?? null,
     optimized: dto.optimized ? mapMediaVideosImageOptimizedDto(dto.optimized) : null,
   }
 }
