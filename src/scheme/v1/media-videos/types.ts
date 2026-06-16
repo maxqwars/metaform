@@ -102,7 +102,7 @@ export interface MediaVideosItem {
   createdAt: string | null
   updatedAt: string | null
   isAnnounce: boolean | null
-  origin: MediaVideosItemOrigin
+  origin: MediaVideosItemOrigin | null
 }
 
 export interface MediaVideosItemImage {
@@ -122,7 +122,7 @@ export interface MediaVideosItemOrigin {
   type: MediaVideoItemOriginType | null
   title: string | null
   description: string | null
-  is_announce: boolean | null
+  isAnnounce: boolean | null
 }
 
 export interface MediaVideoItemOriginType {
