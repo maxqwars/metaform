@@ -10,7 +10,7 @@ type MediaVideosParams<V extends keyof VersionMap> = Parameters<
   VersionMap[V]['mediaVideos']['serializeParams']
 >[0]
 
-export async function getTeamUsers<V extends keyof VersionMap>(
+export async function getMediaVideos<V extends keyof VersionMap>(
   transport: Transport,
   version: V,
   params?: MediaVideosParams<V>,
