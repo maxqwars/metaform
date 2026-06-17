@@ -5,7 +5,7 @@ import {
   isRecord,
 } from '../../../../helpers/type-helpers'
 import { rolesGuards } from '../roles'
-import { teamsGuards } from '../'
+import * as teamsGuards from '../guards'
 import type {
   TeamsUsersDto,
   TeamsUsersItemDto,

@@ -1,4 +1,4 @@
-import { teamsMappers } from '../'
+import * as teamsMappers from '../mapper'
 import { rolesMappers } from '../roles'
 import type {
   TeamsUsers,
