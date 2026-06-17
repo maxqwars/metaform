@@ -1,5 +1,5 @@
-import type { TeamsRoles, TeamsRolesDto } from '../teams-roles/types'
-import type { Teams, TeamsDto } from '../teams/types'
+import type { TeamsRoles, TeamsRolesDto } from '../roles'
+import type { Teams, TeamsDto } from '../../teams/types'
 
 export type TeamsUsers = TeamsUsersItem[]
 export type TeamsUsersDto = TeamsUsersItemDto[]

@@ -3,7 +3,7 @@ import {
   isOptionalValidNumber,
   isOptionalUuid,
   isRecord,
-} from '../../../helpers/type-helpers'
+} from '../../../../helpers/type-helpers'
 import type {
   MediaVideosDto,
   MediaVideosItemDto,

@@ -4,7 +4,7 @@ import {
   isOptionalUuid,
   isOptionalValidNumber,
   isRecord,
-} from '../../../helpers/type-helpers'
+} from '../../../../helpers/type-helpers'
 import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
 
 export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto {

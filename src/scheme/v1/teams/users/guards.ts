@@ -3,15 +3,18 @@ import {
   isOptionalUuid,
   isOptionalValidNumber,
   isRecord,
-} from '../../../helpers/type-helpers'
-import { isTeamsRolesDto } from '../teams-roles'
-import { isTeamsDto } from '../teams/guards'
+} from '../../../../helpers/type-helpers'
+import { rolesGuards } from '../roles'
+import { teamsGuards } from '../'
 import type {
   TeamsUsersDto,
   TeamsUsersItemDto,
   TeamsUsersUserAvatarImageDto,
   TeamsUsersUserDto,
 } from './types'
+
+const { isTeamsRolesDto } = rolesGuards
+const { isTeamsDto } = teamsGuards
 
 export function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {
   if (!isRecord(value)) return false

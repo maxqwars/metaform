@@ -3,7 +3,7 @@ import type { Mock } from 'vitest'
 import { getMediaVideos } from '../get-media-videos'
 import { versions } from '../../version-map'
 import type { Transport } from '../../../transport/types'
-import type { MediaVideosParams } from '../../../scheme/v1/media-videos'
+import type { MediaVideosParams } from '../../../scheme/v1/media/'
 
 vi.mock('../../version-map', () => ({
   versions: {

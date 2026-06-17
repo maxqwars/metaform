@@ -1,5 +1,5 @@
-import { mapTeamsDto } from '../teams'
-import { mapTeamsRolesDto } from '../teams-roles'
+import { teamsMappers } from '../'
+import { rolesMappers } from '../roles'
 import type {
   TeamsUsers,
   TeamsUsersDto,
@@ -8,6 +8,9 @@ import type {
   TeamsUsersUserAvatarImage,
   TeamsUsersUserAvatarImageDto,
 } from './types'
+
+const { mapTeamsDto } = teamsMappers
+const { mapTeamsRolesDto } = rolesMappers
 
 export function mapTeamsUsersUserAvatarImageDto(
   dto: TeamsUsersUserAvatarImageDto,
