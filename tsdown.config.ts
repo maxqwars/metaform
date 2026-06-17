@@ -5,6 +5,7 @@ export default defineConfig([
     tsconfig: 'tsconfig.lib.json',
     entry: {
       index: 'src/index.ts',
+      'version-map': 'src/api/version-map.ts',
       'scheme/v1': 'src/scheme/v1/index.ts',
       transport: 'src/transport/index.ts',
     },

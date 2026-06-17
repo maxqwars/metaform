@@ -35,6 +35,10 @@
     "dist/transport.cjs",
     "dist/transport.d.mts",
     "dist/transport.d.cts",
+    "dist/version-map.mjs",
+    "dist/version-map.cjs",
+    "dist/version-map.d.mts",
+    "dist/version-map.d.cts",
     "LICENSE",
     "README.md"
   ],
@@ -54,6 +58,11 @@
       "import": "./dist/transport.mjs",
       "require": "./dist/transport.cjs",
       "types": "./dist/transport.d.mts"
+    },
+    "./version-map": {
+      "import": "./dist/version-map.mjs",
+      "require": "./dist/version-map.cjs",
+      "types": "./dist/version-map.d.mts"
     }
   },
   "scripts": {
