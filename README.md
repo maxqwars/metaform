@@ -30,9 +30,7 @@ import { getTeams } from '@maxqwars/metaform/get-teams'
 
 async function main() {
   // Initialize the transport by specifying the base API URL
-  const transport = createFetchTransport(
-    '[https://aniliberty.top/api/v1](https://aniliberty.top/api/v1)',
-  )
+  const transport = createFetchTransport('https://aniliberty.top/api/v1')
 
   // Invoke the isolated request function, passing the transport instance
   const teams = await getTeams(transport, 'v1', {
@@ -63,6 +61,85 @@ Previously, Metaform was architecturally structured as a single large class impl
 ### 3. Type Safety at Data Boundaries
 
 The new type system is built on the principle of strict validation. Combining declarative mapping with Type Guards allows you to catch mismatches in the API response structure at compile time or upon entering the transport, protecting your application from `undefined` errors at runtime.
+
+## Roadmap 📌
+
+Roadmap for implementing API methods. This roadmap is subject to change; please note that the implementation of **methods that use authorization is currently under re view**.
+
+### /teams
+
+- ✅ /teams
+- ✅ /teams/roles
+- ✅ /teams/users
+
+### /media
+
+- /media/videos
+- /media/promotions
+
+### /app
+
+- /app/status
+- /app/releases
+
+### /anime
+
+- /anime/torrents
+- /anime/torrents/{hashOrId}
+- /anime/torrents/{hashOrId}/file
+- /anime/torrents/release/{releaseId}
+- /anime/torrents/rss
+- /anime/torrents/rss/release/{releaseId}
+
+### /anime/schedule
+
+- /anime/schedure/now
+- /anime/schedure/week
+
+### /anime/releases
+
+- /anime/releases/latest
+- /anime/releases/random
+- /anime/releases/recommended
+- /anime/releases/list
+- /anime/releases/{idOrAlias}
+- /anime/releases/{idOrAlias}/members
+- /anime/releases/{idOrAlias}/episodes/timecodes
+- /anime/releases/episodes/{releaseEpisodeId}
+- /anime/releases/episodes/{releaseEpisodeId}/timecode
+
+### /anime/genres
+
+- /anime/genres
+- /anime/genres/{genreId}
+- /anime/genres/random
+- /anime/genres/{genreId}/releases
+
+### /anime/franchises
+
+- /anime/franchises
+- /anime/franchises/{franchiseId}
+- /anime/franchises/random
+- /anime/franchises/release/{releaseId}
+
+### /anime/catalog/references
+
+- /anime/catalog/references/age-ratings
+- /anime/catalog/references/genres
+- /anime/catalog/references/production-statuses
+- /anime/catalog/references/publish-statuses
+- /anime/catalog/references/seasons
+- /anime/catalog/references/sorting
+- /anime/catalog/references/types
+- /anime/catalog/references/years
+
+### /anime/catalog/releases
+
+- /anime/catalog/releases
+
+### /auth-required-methods/\*
+
+Methods that require authorization are currently under discussion as to whether they will be implemented.
 
 # License
 
