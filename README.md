@@ -64,7 +64,7 @@ The new type system is built on the principle of strict validation. Combining de
 
 ## Roadmap 📌
 
-Roadmap for implementing API methods. This roadmap is subject to change; please note that the implementation of **methods that use authorization is currently under re view**.
+Roadmap for implementing API methods. This roadmap is subject to change; please note that the implementation of **methods that use authorization is currently under review**.
 
 ### /teams
 
@@ -74,7 +74,7 @@ Roadmap for implementing API methods. This roadmap is subject to change; please 
 
 ### /media
 
-- /media/videos
+- ✅ /media/videos
 - /media/promotions
 
 ### /app
