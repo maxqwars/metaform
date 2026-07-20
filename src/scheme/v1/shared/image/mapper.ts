@@ -1,6 +1,16 @@
-import type { Image, ImageDto } from './types'
+import type * as ImageTypes from './types'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function mapImageDto(dto: ImageDto): Image {
-  throw Error('Not implemented')
+export function mapImageDto(dto: ImageTypes.ImageDto): ImageTypes.Image {
+  return {
+    preview: dto.preview ?? null,
+    thumbnail: dto.thumbnail ?? null,
+    optimized: dto.optimized ? mapImageOptimizedDto(dto.optimized) : null,
+  }
+}
+
+export function mapImageOptimizedDto(dto: ImageTypes.ImageOptimizedDto): ImageTypes.ImageOptimized {
+  return {
+    preview: dto.preview ?? null,
+    thumbnail: dto.thumbnail ?? null,
+  }
 }
