@@ -16,8 +16,7 @@ export function mapReleaseDto(dto: ReleaseTypes.ReleaseDto): ReleaseTypes.Releas
     ageRating: dto.age_rating ? mapReleaseAgeRatingDto(dto.age_rating) : null,
     publishDay: dto.publish_day ? mapReleasePublishDateDto(dto.publish_day) : null,
     description: dto.description ?? null,
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    notification: dto.notification ?? null,
+    notification: typeof dto.notification === 'boolean' ? dto.notification : null,
     episodesTotal: dto.episodes_total ?? null,
     externalPlayer: dto.external_player ?? null,
     isInProduction: typeof dto.is_in_production === 'boolean' ? dto.is_in_production : null,
