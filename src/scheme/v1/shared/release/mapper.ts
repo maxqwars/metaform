@@ -1,4 +1,5 @@
 import type * as ReleaseTypes from './types'
+import { ImageMappers } from '../image'
 
 export function mapReleaseDto(dto: ReleaseTypes.ReleaseDto): ReleaseTypes.Release {
   return {
@@ -104,8 +105,7 @@ export function mapReleaseGenreItemDto(
   return {
     id: dto.id ?? null,
     name: dto.name ?? null,
-    // TODO: add mapping of Image type from Image mapper once implemented
-    image: null,
+    image: dto.image ? ImageMappers.mapImageDto(dto.image) : null,
     totalReleases: dto.total_releases ?? null,
   }
 }
