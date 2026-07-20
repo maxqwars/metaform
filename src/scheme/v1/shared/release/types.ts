@@ -192,6 +192,6 @@ export interface ReleasePublishDate {
 export interface ReleaseGenreItem {
   id: number | null
   name: string | null
-  image: ImageTypes.Image
+  image: ImageTypes.Image | null
   totalReleases: number | null
 }
