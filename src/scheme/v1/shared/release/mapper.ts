@@ -1,8 +1,38 @@
 import type * as ReleaseTypes from './types'
 
-// export function mapReleaseDto(dto: ReleaseTypes.ReleaseDto): ReleaseTypes.Release {
-//   throw Error('Not implemented')
-// }
+export function mapReleaseDto(dto: ReleaseTypes.ReleaseDto): ReleaseTypes.Release {
+  return {
+    id: dto.id ?? null,
+    type: dto.type ? mapReleaseTypeDto(dto.type) : null,
+    year: dto.year ?? null,
+    name: dto.name ? mapReleaseNameDto(dto.name) : null,
+    alias: dto.alias ?? null,
+    season: dto.season ? mapReleaseSeasonDto(dto.season) : null,
+    poster: dto.poster ? mapReleasePosterDto(dto.poster) : null,
+    freshAt: dto.fresh_at ?? null,
+    createdAt: dto.created_at ?? null,
+    updatedAt: dto.updated_at ?? null,
+    isOngoing: dto.is_ongoing ?? null,
+    ageRating: dto.age_rating ? mapReleaseAgeRatingDto(dto.age_rating) : null,
+    publishDay: dto.publish_day ? mapReleasePublishDateDto(dto.publish_day) : null,
+    description: dto.description ?? null,
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    notification: dto.notification ?? null,
+    episodesTotal: dto.episodes_total ?? null,
+    externalPlayer: dto.external_player ?? null,
+    isInProduction: typeof dto.is_in_production === 'boolean' ? dto.is_in_production : null,
+    isBlockedByGeo: dto.is_blocked_by_geo ?? null,
+    isBlockedByCopyrights: dto.is_blocked_by_copyrights ?? null,
+    addedInUsersFavorites: dto.added_in_users_favorites ?? null,
+    averageDurationOfEpisode: dto.average_duration_of_episode ?? null,
+    addedInPlannedCollection: dto.added_in_planned_collection ?? null,
+    addedInWatchedCollection: dto.added_in_watched_collection ?? null,
+    addedInWatchingCollection: dto.added_in_watching_collection ?? null,
+    addedInPostponedCollection: dto.added_in_postponed_collection ?? null,
+    addedInAbandonedCollection: dto.added_in_abandoned_collection ?? null,
+    genres: dto.genres ? dto.genres.map((item) => mapReleaseGenreItemDto(item)) : null,
+  }
+}
 
 export function mapReleaseTypeDto(dto: ReleaseTypes.ReleaseTypeDto): ReleaseTypes.ReleaseType {
   return {
