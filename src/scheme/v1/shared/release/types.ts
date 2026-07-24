@@ -53,7 +53,7 @@ export interface ReleaseDto {
   age_rating?: ReleaseAgeRatingDto
   publish_day?: ReleasePublishDateDto
   description?: string
-  notification?: null
+  notification?: boolean
   episodes_total?: number
   external_player?: string | number
   is_in_production?: boolean
