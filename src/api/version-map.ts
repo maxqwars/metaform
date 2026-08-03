@@ -23,12 +23,13 @@ import { mapTeamsUsersDto as mapTeamsUsersDtoV1 } from '../scheme/v1/teams/users
 import { serializeTeamsUsersParams as serializeTeamsUsersParamsV1 } from '../scheme/v1/teams/users/serialize-params'
 
 // Import scheme for /media/videos V1
-import type { MediaVideos as MediaVideosV1 } from '../scheme/v1/media/videos'
-import type { MediaVideosDto as MediaVideosDtoV1 } from '../scheme/v1/media/videos'
-import type { MediaVideosParams as MediaVideosParamsV1 } from '../scheme/v1/media/videos'
-import { isMediaVideosDto as isMediaVideosDtoV1 } from '../scheme/v1/media/videos/guards'
-import { mapMediaVideosDto as mapMediaVideosDtoV1 } from '../scheme/v1/media/videos/mapper'
-import { serializeMediaVideosParams as serializeMediaVideosParamsV1 } from '../scheme/v1/media/videos/serialize-params'
+import * as MediaVideosV1 from '../scheme/v1/media/videos'
+// import type { MediaVideos as MediaVideosV1 } from '../scheme/v1/media/videos'
+// import type { MediaVideosDto as MediaVideosDtoV1 } from '../scheme/v1/media/videos'
+// import type { MediaVideosParams as MediaVideosParamsV1 } from '../scheme/v1/media/videos'
+// import { isMediaVideosDto as isMediaVideosDtoV1 } from '../scheme/v1/media/videos/guards'
+// import { mapMediaVideosDto as mapMediaVideosDtoV1 } from '../scheme/v1/media/videos/mapper'
+// import { serializeMediaVideosParams as serializeMediaVideosParamsV1 } from '../scheme/v1/media/videos/serialize-params'
 
 interface EndpointDef<TResult, TParams, TPathParams = undefined> {
   guard: (v: unknown) => boolean
@@ -42,7 +43,10 @@ interface V1Endpoints {
   teams: EndpointDef<TeamsV1, TeamsParamsV1>
   teamsRoles: EndpointDef<TeamsRolesV1, TeamsRolesParamsV1>
   teamsUsers: EndpointDef<TeamsUsersV1, TeamsUsersParamsV1>
-  mediaVideos: EndpointDef<MediaVideosV1, MediaVideosParamsV1>
+  mediaVideos: EndpointDef<
+    MediaVideosV1.MediaVideosTypes.MediaVideos,
+    MediaVideosV1.MediaVideosTypes.MediaVideosParams
+  >
 }
 
 export interface VersionMap {
@@ -70,9 +74,12 @@ export const versions: VersionMap = {
       path: '/teams/users',
     },
     mediaVideos: {
-      guard: isMediaVideosDtoV1,
-      mapper: (v) => mapMediaVideosDtoV1(v as MediaVideosDtoV1),
-      serializeParams: serializeMediaVideosParamsV1,
+      guard: MediaVideosV1.MediaVideosTypeGuards.isMediaVideosDto,
+      mapper: (v) =>
+        MediaVideosV1.MediaVideosMappers.mapMediaVideosDto(
+          v as MediaVideosV1.MediaVideosTypes.MediaVideosDto,
+        ),
+      serializeParams: MediaVideosV1.serializeMediaVideosParams,
       path: '/media/videos',
     },
   },
