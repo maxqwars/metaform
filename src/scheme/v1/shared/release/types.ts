@@ -35,7 +35,7 @@ type ReleaseTopLevelProp = (typeof _ReleaseTopLevelProperties)[number]
 
 export interface ReleaseParams {
   include?: ReleaseTopLevelProp[]
-  exclude?: ReleaseTopLevelProp
+  exclude?: ReleaseTopLevelProp[]
 }
 
 export interface ReleaseDto {
