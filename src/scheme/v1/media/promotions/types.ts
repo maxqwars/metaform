@@ -3,9 +3,25 @@ import type { ImageType, ReleaseType } from '../../shared'
 export type MediaPromotionsDto = MediaPromotionsItemDto[]
 export type MediaPromotions = MediaPromotionsItem[]
 
-// export interface MediaPromotionsParams {}````
+const _MediaPromotionsTopLevelProperties = [
+  'id',
+  'url',
+  'image',
+  'title',
+  'is_ad',
+  'ad_erid',
+  'ad_origin',
+  'url_label',
+  'has_overlay',
+  'release',
+] as const
 
-// DTO
+type MediaPromotionsTopLevelProp = (typeof _MediaPromotionsTopLevelProperties)[number]
+
+export interface MediaPromotionsParams {
+  include?: MediaPromotionsTopLevelProp[]
+  exclude?: MediaPromotionsTopLevelProp[]
+}
 
 export interface MediaPromotionsItemDto {
   id?: string
