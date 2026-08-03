@@ -132,7 +132,7 @@ export interface Release {
   ageRating: ReleaseAgeRating | null
   publishDay: ReleasePublishDate | null
   description: string | null
-  notification: null
+  notification: boolean | null
   episodesTotal: number | null
   externalPlayer: string | number | null
   isInProduction: boolean | null
