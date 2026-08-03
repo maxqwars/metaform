@@ -1,2 +1,2 @@
-export * from './fetch-transport'
-export type * from './types'
+export { createFetchTransport } from './fetch-transport'
+export type * as TransportTypes from './types'
