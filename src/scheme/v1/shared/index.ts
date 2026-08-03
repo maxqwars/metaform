@@ -1,2 +1,2 @@
-export * as ImageType from './image'
-export * as ReleaseType from './release'
+export * as Image from './image'
+export * as Release from './release'

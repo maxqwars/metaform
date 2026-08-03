@@ -4,7 +4,7 @@ import {
   isOptionalValidNumber,
   isRecord,
 } from '../../../../helpers/type-helpers'
-import { rolesGuards } from '../roles'
+import { Guards as RolesGuards } from '../roles'
 import * as teamsGuards from '../guards'
 import type {
   TeamsUsersDto,
@@ -13,7 +13,7 @@ import type {
   TeamsUsersUserDto,
 } from './types'
 
-const { isTeamsRolesDto } = rolesGuards
+const { isTeamsRolesDto } = RolesGuards
 const { isTeamsDto } = teamsGuards
 
 export function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {

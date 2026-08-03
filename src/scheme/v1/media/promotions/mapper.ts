@@ -1,7 +1,7 @@
 import type { MediaPromotionsDto, MediaPromotions } from './types'
 
-import { ImageMappers } from '../../shared/image'
-import { ReleaseMappers } from '../../shared/release'
+import { Mappers as ImageMappers } from '../../shared/image'
+import { Mappers as ReleaseMappers } from '../../shared/release'
 
 export function mapMediaPromotionsDto(dto: MediaPromotionsDto): MediaPromotions {
   return dto.map((item) => ({

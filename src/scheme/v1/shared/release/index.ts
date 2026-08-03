@@ -1,3 +1,3 @@
-export type * as ReleaseTypes from './types'
-export * as ReleaseMappers from './mapper'
-export * as ReleaseTypeGuards from './guards'
+export type * as Scheme from './types'
+export * as Guards from './guards'
+export * as Mappers from './mapper'

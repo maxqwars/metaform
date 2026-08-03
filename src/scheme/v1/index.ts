@@ -1,2 +1,3 @@
-export * from './media'
-export * from './teams'
+export * as Media from './media'
+export * as Teams from './teams'
+export * as Shared from './shared'

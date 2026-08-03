@@ -1,4 +1,4 @@
-export type * as MediaVideosTypes from './types'
-export * as MediaVideosTypeGuards from './guards'
-export * as MediaVideosMappers from './mapper'
-export { serializeMediaVideosParams } from './serialize-params'
+export type * as Scheme from './types'
+export * as Guards from './guards'
+export * as Mappers from './mapper'
+export { serializeMediaVideosParams as serializeParams } from './serialize-params'

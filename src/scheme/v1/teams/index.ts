@@ -1,20 +1,7 @@
-//
-// Exports for `teams/` api endpoint
-//
+export type * as Scheme from './types'
+export * as Guards from './guards'
+export * as Mappers from './mapper'
+export { serializeTeamsParams as serializeParams } from './serialize-params'
 
-import * as guards from './guards'
-import * as mappers from './mapper'
-import { serializeTeamsParams } from './serialize-params'
-
-export const teamsGuards = guards
-export const teamsMappers = mappers
-export const teamsSerialize = serializeTeamsParams
-
-export type { Teams, TeamsDto, TeamsParams, TeamsItem, TeamsItemDto } from './types'
-
-//
-// Exports for `teams/` api endpoint
-//
-
-export * from './roles'
-export * from './users'
+export * as Roles from './roles'
+export * as Users from './users'

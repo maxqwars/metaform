@@ -1,4 +1,4 @@
-import type { ImageTypes } from '../image'
+import type { Scheme as ImageScheme } from '../image'
 
 const _ReleaseTopLevelProperties = [
   'id',
@@ -113,7 +113,7 @@ export interface ReleasePublishDateDto {
 export interface ReleaseGenreItemDto {
   id?: number
   name?: string
-  image?: ImageTypes.ImageDto
+  image?: ImageScheme.ImageDto
   total_releases?: number
 }
 
@@ -192,6 +192,6 @@ export interface ReleasePublishDate {
 export interface ReleaseGenreItem {
   id: number | null
   name: string | null
-  image: ImageTypes.Image | null
+  image: ImageScheme.Image | null
   totalReleases: number | null
 }

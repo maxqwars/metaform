@@ -1,9 +1,8 @@
-import type { MediaPromotionsDto, MediaPromotionsItemDto } from './types'
-import { ImageTypeGuards } from '../../shared/image'
-import { ReleaseTypeGuards } from '../../shared/release'
+import { Guards as ImageTypeGuards } from '../../shared/image'
+import { Guards as ReleaseTypeGuards } from '../../shared/release'
 import { isOptionalBoolean, isOptionalString, isRecord } from '../../../../helpers/type-helpers'
 
-export function isMediaPromotionsItemDto(value: MediaPromotionsItemDto): boolean {
+export function isMediaPromotionsItemDto(value: unknown): boolean {
   if (!isRecord(value)) return false
 
   const checks = [
@@ -24,6 +23,6 @@ export function isMediaPromotionsItemDto(value: MediaPromotionsItemDto): boolean
   return checks.every(Boolean)
 }
 
-export function isMediaPromotionsDto(value: MediaPromotionsDto): boolean {
+export function isMediaPromotionsDto(value: unknown): boolean {
   return Array.isArray(value) && value.every(isMediaPromotionsItemDto)
 }

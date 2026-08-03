@@ -1,2 +1,2 @@
-export * as MediaVideosType from './videos'
-export * as MediaPromotionsType from './promotions'
+export * as Videos from './videos'
+export * as Promotions from './promotions'

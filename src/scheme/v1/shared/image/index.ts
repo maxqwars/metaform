@@ -1,3 +1,3 @@
-export type * as ImageTypes from './types'
-export * as ImageMappers from './mapper'
-export * as ImageTypeGuards from './guards'
+export type * as Scheme from './types'
+export * as Guards from './guards'
+export * as Mappers from './mapper'

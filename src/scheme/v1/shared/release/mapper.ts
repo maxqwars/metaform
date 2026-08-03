@@ -1,5 +1,5 @@
 import type * as ReleaseTypes from './types'
-import { ImageMappers } from '../image'
+import { Mappers as ImageMappers } from '../image'
 
 export function mapReleaseDto(dto: ReleaseTypes.ReleaseDto): ReleaseTypes.Release {
   return {

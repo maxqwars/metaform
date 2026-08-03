@@ -1,3 +1,4 @@
-export type * as MediaPromotionsTypes from './types'
-export * as MediaPromotionsTypeGuards from './guards'
-export * as MediaPromotionsMappers from './mapper'
+export type * as Scheme from './types'
+export * as Guards from './guards'
+export * as Mappers from './mapper'
+export { serializeMediaPromotionsParams as serializeParams } from './serialize-params'

@@ -1,4 +1,4 @@
-import type { TeamsRoles, TeamsRolesDto } from '../roles'
+import type { Scheme as RolesScheme } from '../roles'
 import type { Teams, TeamsDto } from '../../teams/types'
 
 export type TeamsUsers = TeamsUsersItem[]
@@ -16,7 +16,7 @@ export interface TeamsUsersItemDto {
   is_vacation?: boolean
   user?: TeamsUsersUserDto | null
   teams?: TeamsDto
-  roles?: TeamsRolesDto
+  roles?: RolesScheme.TeamsRolesDto
 }
 
 export interface TeamsUsersUserDto {
@@ -46,7 +46,7 @@ export interface TeamsUsersItem {
   isVacation: boolean | null
   user: TeamsUsersUser | null
   teams: Teams | null
-  roles: TeamsRoles | null
+  roles: RolesScheme.TeamsRoles | null
 }
 
 export interface TeamsUsersUser {
