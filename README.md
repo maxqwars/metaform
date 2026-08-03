@@ -25,8 +25,7 @@ Version **2.0** introduces a complete architectural overhaul focused on performa
 Here is an example of using independent functions and the built-in fetch transport to retrieve a list of teams:
 
 ```typescript
-import { createFetchTransport } from '@maxqwars/metaform/transport/fetch-transport'
-import { getTeams } from '@maxqwars/metaform/get-teams'
+import { createFetchTrasport, getTeams } from '@maxqwars/metaform'
 
 async function main() {
   // Initialize the transport by specifying the base API URL
@@ -75,7 +74,7 @@ Roadmap for implementing API methods. This roadmap is subject to change; please 
 ### /media
 
 - ✅ /media/videos
-- /media/promotions
+- ✅ /media/promotions
 
 ### /app
 
