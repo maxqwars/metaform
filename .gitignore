@@ -4,6 +4,7 @@ node_modules/
 # Compiled output folders
 dist/
 dist-bundle/
+dist-bundle-iife/
 
 # Tools and editor settings
 .continue/

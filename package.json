@@ -39,9 +39,12 @@
     "dist/version-map.cjs",
     "dist/version-map.d.mts",
     "dist/version-map.d.cts",
+    "dist-bundle-iife/metaform.js",
     "LICENSE",
     "README.md"
   ],
+  "unpkg": "dist-bundle-iife/metaform.js",
+  "jsdelivr": "dist-bundle-iife/metaform.js",
   "sideEffects": false,
   "exports": {
     ".": {
