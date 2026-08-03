@@ -1,6 +1,5 @@
-import { describe, it, expect, vi, afterEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import type * as ReleaseTypes from '../types'
-import { ImageMappers } from '../../image'
 import {
   mapReleaseDto,
   mapReleaseTypeDto,
@@ -13,18 +12,7 @@ import {
   mapReleaseGenreItemDto,
 } from '../mapper'
 
-// Mock the external Image mapping dependency
-vi.mock('../../image', () => ({
-  ImageMappers: {
-    mapImageDto: vi.fn(),
-  },
-}))
-
 describe('Release Mappers', () => {
-  afterEach(() => {
-    vi.clearAllMocks()
-  })
-
   // Covers mapping of the simple Type DTO and its nullish branches
   describe('mapReleaseTypeDto', () => {
     it('should map all fields correctly when provided', () => {
@@ -183,9 +171,9 @@ describe('Release Mappers', () => {
     })
   })
 
-  // Covers mapping of the Genre Item DTO, external Image dependency mocking, and nullish branches
+  // Covers mapping of the Genre Item DTO and real nested Image mapping
   describe('mapReleaseGenreItemDto', () => {
-    it('should map fields correctly and call external image mapper when image is present', () => {
+    it('should map fields correctly including nested image when image is present', () => {
       const mockImageDto = {
         preview: 'preview-image-url',
         thumbnail: 'thumbnail-image-url',
@@ -194,15 +182,6 @@ describe('Release Mappers', () => {
           thumbnail: 'thumbnail-image-url',
         },
       }
-      const mockMappedImage = {
-        preview: 'preview-image-url',
-        thumbnail: 'thumbnail-image-url',
-        optimized: {
-          preview: 'preview-image-url',
-          thumbnail: 'thumbnail-image-url',
-        },
-      }
-      vi.mocked(ImageMappers.mapImageDto).mockReturnValueOnce(mockMappedImage)
 
       const dto: ReleaseTypes.ReleaseGenreItemDto = {
         id: 10,
@@ -215,13 +194,18 @@ describe('Release Mappers', () => {
         id: 10,
         name: 'Action',
         totalReleases: 100,
-        image: mockMappedImage,
+        image: {
+          preview: 'preview-image-url',
+          thumbnail: 'thumbnail-image-url',
+          optimized: {
+            preview: 'preview-image-url',
+            thumbnail: 'thumbnail-image-url',
+          },
+        },
       })
-      expect(ImageMappers.mapImageDto).toHaveBeenCalledWith(mockImageDto)
-      expect(ImageMappers.mapImageDto).toHaveBeenCalledTimes(1)
     })
 
-    it('should return null for image when it is missing, without calling the image mapper', () => {
+    it('should return null for image when it is missing', () => {
       const dto: ReleaseTypes.ReleaseGenreItemDto = { id: 10, name: 'Action' }
       expect(mapReleaseGenreItemDto(dto)).toStrictEqual({
         id: 10,
@@ -229,7 +213,6 @@ describe('Release Mappers', () => {
         totalReleases: null,
         image: null,
       })
-      expect(ImageMappers.mapImageDto).not.toHaveBeenCalled()
     })
   })
 

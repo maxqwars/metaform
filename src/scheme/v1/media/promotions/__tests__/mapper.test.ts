@@ -1,15 +1,17 @@
 import { describe, expect, it } from 'vitest'
 import { mapMediaPromotionsDto } from '../mapper'
-import { ImageMappers } from '../../../shared/image'
-import { ReleaseMappers } from '../../../shared/release'
+// import { ImageMappers } from '../../../shared/image'
+// import { ReleaseMappers } from '../../../shared/release'
+
+import { Image, Release } from '../../../shared'
 
 describe('mapMediaPromotionsDto', () => {
   it('Maps all fields correctly when all are provided', () => {
     const mockImageDto = { preview: 'p', thumbnail: 't' }
-    const mockImage = ImageMappers.mapImageDto(mockImageDto)
+    const mockImage = Image.Mappers.mapImageDto(mockImageDto)
 
     const mockReleaseDto = { id: 1, year: 2023, name: { main: 'Release Name' } }
-    const mockRelease = ReleaseMappers.mapReleaseDto(mockReleaseDto)
+    const mockRelease = Release.Mappers.mapReleaseDto(mockReleaseDto)
 
     const dto = [
       {
@@ -70,7 +72,7 @@ describe('mapMediaPromotionsDto', () => {
 
   it('Handles a mix of provided and missing optional fields', () => {
     const partialImageDto = { preview: 'p' }
-    const partialImage = ImageMappers.mapImageDto(partialImageDto)
+    const partialImage = Image.Mappers.mapImageDto(partialImageDto)
 
     const dto = [
       {
