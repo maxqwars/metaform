@@ -1,35 +1,4 @@
-// Import scheme for /teams V1
-import type { Teams as TeamsV1 } from '../scheme/v1/teams'
-import type { TeamsDto as TeamsDtoV1 } from '../scheme/v1/teams'
-import type { TeamsParams as TeamsParamsV1 } from '../scheme/v1/teams'
-import { isTeamsDto as isTeamsDtoV1 } from '../scheme/v1/teams/guards'
-import { mapTeamsDto as mapTeamsDtoV1 } from '../scheme/v1/teams/mapper'
-import { serializeTeamsParams as serializeTeamsParamsV1 } from '../scheme/v1/teams/serialize-params'
-
-// Import scheme for /teams/role V1
-import type { TeamsRoles as TeamsRolesV1 } from '../scheme/v1/teams/roles'
-import type { TeamsRolesDto as TeamsRolesDtoV1 } from '../scheme/v1/teams/roles'
-import type { TeamsRolesParams as TeamsRolesParamsV1 } from '../scheme/v1/teams/roles'
-import { isTeamsRolesDto as isTeamsRolesDtoV1 } from '../scheme/v1/teams/roles/guards'
-import { mapTeamsRolesDto as mapTeamsRolesDtoV1 } from '../scheme/v1/teams/roles/mapper'
-import { serializeTeamsRolesParams as serializeTeamsRolesParamsV1 } from '../scheme/v1/teams/roles/serialize-params'
-
-// Import scheme for /teams/users V1
-import type { TeamsUsers as TeamsUsersV1 } from '../scheme/v1/teams/users'
-import type { TeamsUsersDto as TeamsUsersDtoV1 } from '../scheme/v1/teams/users'
-import type { TeamsUsersParams as TeamsUsersParamsV1 } from '../scheme/v1/teams/users'
-import { isTeamsUsersDto as isTeamsUsersDtoV1 } from '../scheme/v1/teams/users/guards'
-import { mapTeamsUsersDto as mapTeamsUsersDtoV1 } from '../scheme/v1/teams/users/mapper'
-import { serializeTeamsUsersParams as serializeTeamsUsersParamsV1 } from '../scheme/v1/teams/users/serialize-params'
-
-// Import scheme for /media/videos V1
-import * as MediaVideosV1 from '../scheme/v1/media/videos'
-// import type { MediaVideos as MediaVideosV1 } from '../scheme/v1/media/videos'
-// import type { MediaVideosDto as MediaVideosDtoV1 } from '../scheme/v1/media/videos'
-// import type { MediaVideosParams as MediaVideosParamsV1 } from '../scheme/v1/media/videos'
-// import { isMediaVideosDto as isMediaVideosDtoV1 } from '../scheme/v1/media/videos/guards'
-// import { mapMediaVideosDto as mapMediaVideosDtoV1 } from '../scheme/v1/media/videos/mapper'
-// import { serializeMediaVideosParams as serializeMediaVideosParamsV1 } from '../scheme/v1/media/videos/serialize-params'
+import * as SchemeV1 from '../scheme/v1'
 
 interface EndpointDef<TResult, TParams, TPathParams = undefined> {
   guard: (v: unknown) => boolean
@@ -40,12 +9,22 @@ interface EndpointDef<TResult, TParams, TPathParams = undefined> {
 }
 
 interface V1Endpoints {
-  teams: EndpointDef<TeamsV1, TeamsParamsV1>
-  teamsRoles: EndpointDef<TeamsRolesV1, TeamsRolesParamsV1>
-  teamsUsers: EndpointDef<TeamsUsersV1, TeamsUsersParamsV1>
+  teams: EndpointDef<SchemeV1.Teams.Scheme.Teams, SchemeV1.Teams.Scheme.TeamsParams>
+  teamsRoles: EndpointDef<
+    SchemeV1.Teams.Roles.Scheme.TeamsRoles,
+    SchemeV1.Teams.Roles.Scheme.TeamsRolesParams
+  >
+  teamsUsers: EndpointDef<
+    SchemeV1.Teams.Users.Scheme.TeamsUsers,
+    SchemeV1.Teams.Users.Scheme.TeamsUsersParams
+  >
   mediaVideos: EndpointDef<
-    MediaVideosV1.MediaVideosTypes.MediaVideos,
-    MediaVideosV1.MediaVideosTypes.MediaVideosParams
+    SchemeV1.Media.Videos.Scheme.MediaVideos,
+    SchemeV1.Media.Videos.Scheme.MediaVideosParams
+  >
+  mediaPromotions: EndpointDef<
+    SchemeV1.Media.Promotions.Scheme.MediaPromotions,
+    SchemeV1.Media.Promotions.Scheme.MediaPromotionsParams
   >
 }
 
@@ -56,31 +35,46 @@ export interface VersionMap {
 export const versions: VersionMap = {
   v1: {
     teams: {
-      guard: isTeamsDtoV1,
-      mapper: (v) => mapTeamsDtoV1(v as TeamsDtoV1),
-      serializeParams: serializeTeamsParamsV1,
+      guard: SchemeV1.Teams.Guards.isTeamsDto,
+      mapper: (v) => SchemeV1.Teams.Mappers.mapTeamsDto(v as SchemeV1.Teams.Scheme.TeamsDto),
+      serializeParams: SchemeV1.Teams.serializeParams,
       path: '/teams',
     },
     teamsRoles: {
-      guard: isTeamsRolesDtoV1,
-      mapper: (v) => mapTeamsRolesDtoV1(v as TeamsRolesDtoV1),
-      serializeParams: serializeTeamsRolesParamsV1,
+      guard: SchemeV1.Teams.Roles.Guards.isTeamsRolesDto,
+      mapper: (v) =>
+        SchemeV1.Teams.Roles.Mappers.mapTeamsRolesDto(
+          v as SchemeV1.Teams.Roles.Scheme.TeamsRolesDto,
+        ),
+      serializeParams: SchemeV1.Teams.Roles.serializeParams,
       path: '/teams/roles',
     },
     teamsUsers: {
-      guard: isTeamsUsersDtoV1,
-      mapper: (v) => mapTeamsUsersDtoV1(v as TeamsUsersDtoV1),
-      serializeParams: serializeTeamsUsersParamsV1,
+      guard: SchemeV1.Teams.Users.Guards.isTeamsUsersDto,
+      mapper: (v) =>
+        SchemeV1.Teams.Users.Mappers.mapTeamsUsersDto(
+          v as SchemeV1.Teams.Users.Scheme.TeamsUsersDto,
+        ),
+      serializeParams: SchemeV1.Teams.Users.serializeParams,
       path: '/teams/users',
     },
     mediaVideos: {
-      guard: MediaVideosV1.MediaVideosTypeGuards.isMediaVideosDto,
+      guard: SchemeV1.Media.Videos.Guards.isMediaVideosDto,
       mapper: (v) =>
-        MediaVideosV1.MediaVideosMappers.mapMediaVideosDto(
-          v as MediaVideosV1.MediaVideosTypes.MediaVideosDto,
+        SchemeV1.Media.Videos.Mappers.mapMediaVideosDto(
+          v as SchemeV1.Media.Videos.Scheme.MediaVideosDto,
         ),
-      serializeParams: MediaVideosV1.serializeMediaVideosParams,
+      serializeParams: SchemeV1.Media.Videos.serializeParams,
       path: '/media/videos',
+    },
+    mediaPromotions: {
+      guard: SchemeV1.Media.Promotions.Guards.isMediaPromotionsDto,
+      mapper: (v) =>
+        SchemeV1.Media.Promotions.Mappers.mapMediaPromotionsDto(
+          v as SchemeV1.Media.Promotions.Scheme.MediaPromotionsDto,
+        ),
+      serializeParams: SchemeV1.Media.Promotions.serializeParams,
+      path: '/media/promotions',
     },
   },
 }
