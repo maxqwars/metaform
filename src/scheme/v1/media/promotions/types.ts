@@ -33,7 +33,7 @@ export interface MediaPromotionsItemDto {
   ad_origin?: string | null
   url_label?: string
   has_overlay?: boolean
-  release?: ReleaseType.ReleaseTypes.ReleaseDto
+  release?: ReleaseType.ReleaseTypes.ReleaseDto | null
 }
 
 // Types
