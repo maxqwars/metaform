@@ -48,5 +48,5 @@ export interface MediaPromotionsItem {
   adOrigin: string | null
   urlLabel: string | null
   hasOverlay: boolean | null
-  release: ReleaseType.ReleaseTypes.Release
+  release: ReleaseType.ReleaseTypes.Release | null
 }
