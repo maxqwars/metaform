@@ -24,6 +24,13 @@ export function isEmptyString(value: unknown): value is '' {
   return typeof value === 'string' && value.length === 0
 }
 
+function isString(value: unknown): value is string {
+  return typeof value === 'string'
+}
+
+export const isNullableString = isNullableOptional(isString)
+export const isOptionalString = isOptional(isString)
+
 /*
  * Number edge cases
  */
@@ -42,6 +49,8 @@ export function isNumber(value: unknown): value is number {
 export function isDecimalNumber(value: unknown): value is number {
   return typeof value === 'number' && !Number.isNaN(value) && Number.isFinite(value)
 }
+
+export const isOptionalDecimalNumber = isOptional(isDecimalNumber)
 
 /*
  * Object edge cases
@@ -78,6 +87,8 @@ const HTTP_URL_RE = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 export function isUUID(value: unknown): value is string {
   return typeof value === 'string' && UUID_PATTERN.test(value)
 }
+
+export const isOptionalUUID = isOptional(isUUID)
 
 /** Checks that a value is a string matching an `http(s)://` URL shape. */
 export function isURL(value: unknown): value is string {
