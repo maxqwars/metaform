@@ -5,6 +5,7 @@ export { getTeams } from './api/functions/get-teams'
 export { getTeamsRoles } from './api/functions/get-teams-roles'
 export { getTeamsUsers } from './api/functions/get-teams-users'
 export { getMediaVideos } from './api/functions/get-media-videos'
+export { getMediaPromotions } from './api/functions/get-media-promotions'
 
 /*
  * Export API scheme
