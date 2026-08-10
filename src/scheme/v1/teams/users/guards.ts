@@ -1,9 +1,3 @@
-import {
-  isOptionalString,
-  isOptionalUuid,
-  isOptionalValidNumber,
-  isRecord,
-} from '../../../../helpers/type-helpers'
 import { Guards as RolesGuards } from '../roles'
 import * as teamsGuards from '../guards'
 import type {
@@ -13,11 +7,20 @@ import type {
   TeamsUsersUserDto,
 } from './types'
 
-const { isTeamsRolesDto } = RolesGuards
-const { isTeamsDto } = teamsGuards
+import {
+  isPlainObject,
+  isOptionalString,
+  isOptionalDecimalNumber,
+  isOptionalUUID,
+  isOptionalBoolean,
+  isNullableOptional,
+} from '@/helpers/type-guards'
+
+const { isOptionalTeamsRolesDto } = RolesGuards
+const { isOptionalTeamsDto } = teamsGuards
 
 export function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   return isOptionalString(value.preview) && isOptionalString(value.thumbnail)
 }
@@ -25,7 +28,7 @@ export function isTeamsUsersUserAvatarOptimizedDto(value: unknown): boolean {
 export function isTeamsUsersUserAvatarImageDto(
   value: unknown,
 ): value is TeamsUsersUserAvatarImageDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.preview),
@@ -37,10 +40,10 @@ export function isTeamsUsersUserAvatarImageDto(
 }
 
 export function isTeamsUsersUserDto(value: unknown): value is TeamsUsersUserDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalValidNumber(value.id),
+    isOptionalDecimalNumber(value.id),
     value.avatar === undefined || isTeamsUsersUserAvatarImageDto(value.avatar),
     isOptionalString(value.nickname),
   ]
@@ -48,18 +51,20 @@ export function isTeamsUsersUserDto(value: unknown): value is TeamsUsersUserDto 
   return checks.every(Boolean)
 }
 
+const isNullableOptionalIsTeamsUsersDto = isNullableOptional(isTeamsUsersUserDto)
+
 export function isTeamsUsersItemDto(value: unknown): value is TeamsUsersItemDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalUuid(value.id),
+    isOptionalUUID(value.id),
     isOptionalString(value.nickname),
-    value.is_intern === undefined || typeof value.is_intern === 'boolean',
-    value.is_vacation === undefined || typeof value.is_vacation === 'boolean',
-    isOptionalValidNumber(value.sort_order),
-    value.user === undefined || value.user === null || isTeamsUsersUserDto(value.user),
-    value.team === undefined || isTeamsDto(value.team),
-    value.roles === undefined || isTeamsRolesDto(value.roles),
+    isOptionalBoolean(value.is_intern),
+    isOptionalBoolean(value.is_vacation),
+    isOptionalDecimalNumber(value.sort_order),
+    isNullableOptionalIsTeamsUsersDto(value.user),
+    isOptionalTeamsDto(value.team),
+    isOptionalTeamsRolesDto(value.roles),
   ]
 
   return checks.every(Boolean)

@@ -1,20 +1,21 @@
+import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
 import {
   isNullableString,
+  isOptional,
+  isOptionalDecimalNumber,
   isOptionalString,
-  isOptionalUuid,
-  isOptionalValidNumber,
-  isRecord,
-} from '../../../../helpers/type-helpers'
-import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
+  isOptionalUUID,
+  isPlainObject,
+} from '@/helpers/type-guards'
 
 export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalUuid(value.id) &&
-      isOptionalString(value.title) &&
-      isNullableString(value.color) &&
-      isOptionalValidNumber(value.sort_order),
+    isOptionalUUID(value.id),
+    isOptionalString(value.title),
+    isNullableString(value.color),
+    isOptionalDecimalNumber(value.sort_order),
   ]
 
   return checks.every(Boolean)
@@ -23,3 +24,5 @@ export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto 
 export function isTeamsRolesDto(value: unknown): value is TeamsRolesDto {
   return Array.isArray(value) && value.every(isTeamsRolesItemDto)
 }
+
+export const isOptionalTeamsRolesDto = isOptional(isTeamsRolesDto)

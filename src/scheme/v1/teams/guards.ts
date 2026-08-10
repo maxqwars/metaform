@@ -6,6 +6,7 @@ import {
   isOptionalDecimalNumber,
   isNullableString,
   isOptionalString,
+  isOptional,
 } from '@/helpers/type-guards'
 
 export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
@@ -24,3 +25,5 @@ export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
 export function isTeamsDto(value: unknown): value is TeamsDto {
   return Array.isArray(value) && value.every(isTeamsItemDto)
 }
+
+export const isOptionalTeamsDto = isOptional(isTeamsDto)
