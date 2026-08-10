@@ -159,3 +159,10 @@ export function isNonEmptyArray(value: unknown): value is [unknown, ...unknown[]
 export function isEmptyObject(value: unknown): value is Record<string, never> {
   return isPlainObject(value) && Object.keys(value).length === 0
 }
+
+export function isBoolean(value: unknown): value is boolean {
+  return typeof value === 'boolean'
+}
+
+export const isNullableBoolean = isNullableOptional(isBoolean)
+export const isOptionalBoolean = isOptional(isBoolean)
