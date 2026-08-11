@@ -1,19 +1,21 @@
 import type { TeamsItemDto, TeamsDto } from './types'
+
 import {
-  isOptionalString,
+  isPlainObject,
+  isOptionalUUID,
+  isOptionalDecimalNumber,
   isNullableString,
-  isOptionalValidNumber,
-  isOptionalUuid,
-  isRecord,
-} from '../../../helpers/type-helpers.js'
+  isOptionalString,
+  isOptional,
+} from '@/helpers/type-guards'
 
 export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalUuid(value.id),
+    isOptionalUUID(value.id),
     isOptionalString(value.title),
-    isOptionalValidNumber(value.sort_order),
+    isOptionalDecimalNumber(value.sort_order),
     isNullableString(value.description),
   ]
 
@@ -23,3 +25,5 @@ export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
 export function isTeamsDto(value: unknown): value is TeamsDto {
   return Array.isArray(value) && value.every(isTeamsItemDto)
 }
+
+export const isOptionalTeamsDto = isOptional(isTeamsDto)

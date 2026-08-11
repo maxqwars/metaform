@@ -46,16 +46,16 @@ export interface ReleaseDto {
   alias?: string
   season?: ReleaseSeasonDto
   poster?: ReleasePosterDto
-  fresh_at?: Date
-  created_at?: Date
-  updated_at?: Date
+  fresh_at?: string
+  created_at?: string
+  updated_at?: string
   is_ongoing?: boolean
   age_rating?: ReleaseAgeRatingDto
   publish_day?: ReleasePublishDateDto
   description?: string
-  notification?: boolean
+  notification?: string
   episodes_total?: number
-  external_player?: string | number
+  external_player?: string
   is_in_production?: boolean
   is_blocked_by_geo?: boolean
   is_blocked_by_copyrights?: boolean

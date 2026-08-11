@@ -1,20 +1,27 @@
 import type * as ReleaseTypes from './types'
 import {
-  isRecord,
+  isNullableOptional,
+  isPlainObject,
   isOptionalString,
-  isOptionalNumber,
   isOptionalBoolean,
   isNullableString,
-} from '../../../../helpers/type-helpers'
+  isOptionalDecimalNumber,
+  isOptional,
+  isArray,
+} from '@/helpers/type-guards'
+
+import { Guards as ImageGuards } from '../image'
 
 export function isReleaseTypeDto(value: unknown): value is ReleaseTypes.ReleaseTypeDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   return isOptionalString(value.value) && isOptionalString(value.description)
 }
 
+export const isOptionalReleaseTypeDto = isOptional(isReleaseTypeDto)
+
 export function isReleaseNameDto(value: unknown): value is ReleaseTypes.ReleaseNameDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.main),
@@ -25,16 +32,20 @@ export function isReleaseNameDto(value: unknown): value is ReleaseTypes.ReleaseN
   return checks.every(Boolean)
 }
 
+export const isOptionalReleaseNameDto = isOptional(isReleaseNameDto)
+
 export function isReleaseSeasonDto(value: unknown): value is ReleaseTypes.ReleaseSeasonDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   return isOptionalString(value.value) && isOptionalString(value.description)
 }
 
+export const isOptionalReleaseSeasonDto = isOptional(isReleaseSeasonDto)
+
 export function isReleasePosterOptimizedDto(
   value: unknown,
 ): value is ReleaseTypes.ReleasePosterOptimizedDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.src),
@@ -46,7 +57,7 @@ export function isReleasePosterOptimizedDto(
 }
 
 export function isReleasePosterDto(value: unknown): value is ReleaseTypes.ReleasePosterDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.src),
@@ -58,8 +69,10 @@ export function isReleasePosterDto(value: unknown): value is ReleaseTypes.Releas
   return checks.every(Boolean)
 }
 
+export const isOptionalReleasePosterDto = isOptional(isReleasePosterDto)
+
 export function isReleaseAgeRatingDto(value: unknown): value is ReleaseTypes.ReleaseAgeRatingDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.value),
@@ -71,63 +84,67 @@ export function isReleaseAgeRatingDto(value: unknown): value is ReleaseTypes.Rel
   return checks.every(Boolean)
 }
 
+export const isOptionalReleaseAgeRatingDto = isOptional(isReleaseAgeRatingDto)
+
 export function isReleasePublishDateDto(
   value: unknown,
 ): value is ReleaseTypes.ReleasePublishDateDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
-  return isOptionalNumber(value.value) && isOptionalString(value.description)
+  return isOptionalDecimalNumber(value.value) && isOptionalString(value.description)
 }
 
+export const isOptionalReleasePublishDateDto = isOptional(isReleasePublishDateDto)
+
 export function isReleaseGenreItemDto(value: unknown): value is ReleaseTypes.ReleaseGenreItemDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalNumber(value.id),
+    isOptionalDecimalNumber(value.id),
     isOptionalString(value.name),
-    value.image === undefined || isRecord(value.image),
-    isOptionalNumber(value.total_releases),
+    ImageGuards.isOptionalImage(value.image),
+    isOptionalDecimalNumber(value.total_releases),
   ]
 
   return checks.every(Boolean)
 }
 
 export function isReleaseDto(value: unknown): value is ReleaseTypes.ReleaseDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalNumber(value.id),
-    value.type === undefined || isReleaseTypeDto(value.type),
-    isOptionalNumber(value.year),
-    value.name === undefined || isReleaseNameDto(value.name),
+    isOptionalDecimalNumber(value.id),
+    isOptionalReleaseTypeDto(value.type),
+    isOptionalDecimalNumber(value.year),
+    isOptionalReleaseNameDto(value.name),
     isOptionalString(value.alias),
-    value.season === undefined || isReleaseSeasonDto(value.season),
-    value.poster === undefined || isReleasePosterDto(value.poster),
-    value.fresh_at === undefined || value.fresh_at instanceof Date,
-    value.created_at === undefined || value.created_at instanceof Date,
-    value.updated_at === undefined || value.updated_at instanceof Date,
+    isOptionalReleaseSeasonDto(value.season),
+    isOptionalReleasePosterDto(value.poster),
+    isOptionalString(value.fresh_at),
+    isOptionalString(value.created_at),
+    isOptionalString(value.updated_at),
     isOptionalBoolean(value.is_ongoing),
-    value.age_rating === undefined || isReleaseAgeRatingDto(value.age_rating),
-    value.publish_day === undefined || isReleasePublishDateDto(value.publish_day),
+    isOptionalReleaseAgeRatingDto(value.age_rating),
+    isOptionalReleasePublishDateDto(value.publish_day),
     isOptionalString(value.description),
-    value.notification === undefined || value.notification === null,
-    isOptionalNumber(value.episodes_total),
-    value.external_player === undefined ||
-      typeof value.external_player === 'string' ||
-      typeof value.external_player === 'number',
+    isOptionalString(value.notification),
+    isOptionalDecimalNumber(value.episodes_total),
+    isOptionalString(value.external_player),
     isOptionalBoolean(value.is_in_production),
     isOptionalBoolean(value.is_blocked_by_geo),
     isOptionalBoolean(value.is_blocked_by_copyrights),
-    isOptionalNumber(value.added_in_users_favorites),
-    isOptionalNumber(value.average_duration_of_episode),
-    isOptionalNumber(value.added_in_planned_collection),
-    isOptionalNumber(value.added_in_watched_collection),
-    isOptionalNumber(value.added_in_watching_collection),
-    isOptionalNumber(value.added_in_postponed_collection),
-    isOptionalNumber(value.added_in_abandoned_collection),
+    isOptionalDecimalNumber(value.added_in_users_favorites),
+    isOptionalDecimalNumber(value.average_duration_of_episode),
+    isOptionalDecimalNumber(value.added_in_planned_collection),
+    isOptionalDecimalNumber(value.added_in_watched_collection),
+    isOptionalDecimalNumber(value.added_in_watching_collection),
+    isOptionalDecimalNumber(value.added_in_postponed_collection),
+    isOptionalDecimalNumber(value.added_in_abandoned_collection),
     value.genres === undefined ||
-      (Array.isArray(value.genres) && value.genres.every(isReleaseGenreItemDto)),
+      (isArray(value.genres) && value.genres.every(isReleaseGenreItemDto)),
   ]
 
   return checks.every(Boolean)
 }
+
+export const isNullableOptionalReleaseDto = isNullableOptional(isReleaseDto)
