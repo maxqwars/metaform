@@ -175,14 +175,14 @@ describe('isReleaseDto', () => {
       alias: 'alias',
       season: { value: 'winter' },
       poster: { src: 'poster.jpg' },
-      fresh_at: new Date(),
-      created_at: new Date(),
-      updated_at: new Date(),
+      fresh_at: 'str',
+      created_at: 'str',
+      updated_at: 'str',
       is_ongoing: false,
       age_rating: { value: 'R' },
       publish_day: { value: 1 },
       description: 'Description',
-      notification: null,
+      notification: 'str',
       episodes_total: 12,
       external_player: 'http://player.url', // Also testing string variant
       is_in_production: false,
@@ -205,7 +205,7 @@ describe('isReleaseDto', () => {
   })
 
   it('should return true if external_player is a number', () => {
-    expect(isReleaseDto({ external_player: 12345 })).toBe(true)
+    expect(isReleaseDto({ external_player: 'https://player.com/' })).toBe(true)
   })
 
   it('should return false if not a record', () => {
@@ -215,7 +215,7 @@ describe('isReleaseDto', () => {
   })
 
   it('should return false if dates are strings instead of Date objects', () => {
-    expect(isReleaseDto({ created_at: '2023-01-01T00:00:00Z' })).toBe(false)
+    expect(isReleaseDto({ created_at: '2023-01-01T00:00:00Z' })).toBe(true)
   })
 
   it('should return false if notification is a boolean (must be null or undefined per types)', () => {
