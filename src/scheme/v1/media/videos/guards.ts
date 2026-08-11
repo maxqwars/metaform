@@ -1,9 +1,3 @@
-import {
-  isOptionalString,
-  isOptionalValidNumber,
-  isOptionalUuid,
-  isRecord,
-} from '../../../../helpers/type-helpers'
 import type {
   MediaVideosDto,
   MediaVideosItemDto,
@@ -12,64 +6,86 @@ import type {
   MediaVideoItemOriginTypeDto,
 } from './types'
 
-export function isMediaVideosItemImageOptimizedDto(value: unknown): boolean {
-  if (!isRecord(value)) return false
+import {
+  isPlainObject,
+  isOptionalString,
+  isOptional,
+  isOptionalUUID,
+  isOptionalBoolean,
+  isOptionalDecimalNumber,
+  isNullableOptional,
+} from '@/helpers/type-guards'
 
+export function isMediaVideosItemImageOptimizedDto(value: unknown): value is boolean {
+  if (!isPlainObject(value)) return false
   return isOptionalString(value.preview) && isOptionalString(value.thumbnail)
 }
 
+export const isOptionalMediaVideosItemImageOptimizedDto = isOptional<boolean>(
+  isMediaVideosItemImageOptimizedDto,
+)
+
 export function isMediaVideosItemImageDto(value: unknown): value is MediaVideosItemImageDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalString(value.preview),
     isOptionalString(value.thumbnail),
-    value.optimized === undefined || isMediaVideosItemImageOptimizedDto(value.optimized),
+    isOptionalMediaVideosItemImageOptimizedDto(value.optimized),
   ]
 
   return checks.every(Boolean)
 }
 
+export const isNullableOptionalMediaVideosItemImageDto =
+  isNullableOptional<MediaVideosItemImageDto>(isMediaVideosItemImageDto)
+
 export function isMediaVideoItemOriginTypeDto(
   value: unknown,
 ): value is MediaVideoItemOriginTypeDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [isOptionalString(value.value), isOptionalString(value.description)]
 
   return checks.every(Boolean)
 }
 
+export const isOptionalMediaVideoItemOriginTypeDto = isOptional(isMediaVideoItemOriginTypeDto)
+
 export function isMediaVideosItemOriginDto(value: unknown): value is MediaVideosItemOriginDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalUuid(value.id),
+    isOptionalUUID(value.id),
     isOptionalString(value.url),
     isOptionalString(value.title),
     isOptionalString(value.description),
-    value.type === undefined || isMediaVideoItemOriginTypeDto(value.type),
-    value.is_announce === undefined || typeof value.is_announce === 'boolean',
+    isOptionalMediaVideoItemOriginTypeDto(value.type),
+    isOptionalBoolean(value.is_announce),
   ]
 
   return checks.every(Boolean)
 }
 
+export const isNullableOptionalMediaVideosItemOriginDto = isNullableOptional(
+  isMediaVideosItemOriginDto,
+)
+
 export function isMediaVideosItemDto(value: unknown): value is MediaVideosItemDto {
-  if (!isRecord(value)) return false
+  if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalValidNumber(value.id),
+    isOptionalDecimalNumber(value.id),
     isOptionalString(value.url),
     isOptionalString(value.title),
-    isOptionalValidNumber(value.views),
-    value.image === undefined || value.image === null || isMediaVideosItemImageDto(value.image),
-    isOptionalValidNumber(value.comments),
+    isOptionalDecimalNumber(value.views),
+    isNullableOptionalMediaVideosItemImageDto(value.image),
+    isOptionalDecimalNumber(value.comments),
     isOptionalString(value.video_id),
     isOptionalString(value.created_at),
     isOptionalString(value.updated_at),
-    value.is_announce === undefined || typeof value.is_announce === 'boolean',
-    value.origin === undefined || value.origin === null || isMediaVideosItemOriginDto(value.origin),
+    isOptionalBoolean(value.is_announce),
+    isNullableOptionalMediaVideosItemOriginDto(value.origin),
   ]
 
   return checks.every(Boolean)
