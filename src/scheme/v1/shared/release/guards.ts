@@ -6,6 +6,8 @@ import {
   isOptionalBoolean,
   isNullableString,
   isOptionalDecimalNumber,
+  isOptional,
+  isArray,
 } from '@/helpers/type-guards'
 
 import { Guards as ImageGuards } from '../image'
@@ -15,6 +17,8 @@ export function isReleaseTypeDto(value: unknown): value is ReleaseTypes.ReleaseT
 
   return isOptionalString(value.value) && isOptionalString(value.description)
 }
+
+export const isOptionalReleaseTypeDto = isOptional(isReleaseTypeDto)
 
 export function isReleaseNameDto(value: unknown): value is ReleaseTypes.ReleaseNameDto {
   if (!isPlainObject(value)) return false
@@ -28,11 +32,15 @@ export function isReleaseNameDto(value: unknown): value is ReleaseTypes.ReleaseN
   return checks.every(Boolean)
 }
 
+export const isOptionalReleaseNameDto = isOptional(isReleaseNameDto)
+
 export function isReleaseSeasonDto(value: unknown): value is ReleaseTypes.ReleaseSeasonDto {
   if (!isPlainObject(value)) return false
 
   return isOptionalString(value.value) && isOptionalString(value.description)
 }
+
+export const isOptionalReleaseSeasonDto = isOptional(isReleaseSeasonDto)
 
 export function isReleasePosterOptimizedDto(
   value: unknown,
@@ -61,6 +69,8 @@ export function isReleasePosterDto(value: unknown): value is ReleaseTypes.Releas
   return checks.every(Boolean)
 }
 
+export const isOptionalReleasePosterDto = isOptional(isReleasePosterDto)
+
 export function isReleaseAgeRatingDto(value: unknown): value is ReleaseTypes.ReleaseAgeRatingDto {
   if (!isPlainObject(value)) return false
 
@@ -74,6 +84,8 @@ export function isReleaseAgeRatingDto(value: unknown): value is ReleaseTypes.Rel
   return checks.every(Boolean)
 }
 
+export const isOptionalReleaseAgeRatingDto = isOptional(isReleaseAgeRatingDto)
+
 export function isReleasePublishDateDto(
   value: unknown,
 ): value is ReleaseTypes.ReleasePublishDateDto {
@@ -81,6 +93,8 @@ export function isReleasePublishDateDto(
 
   return isOptionalDecimalNumber(value.value) && isOptionalString(value.description)
 }
+
+export const isOptionalReleasePublishDateDto = isOptional(isReleasePublishDateDto)
 
 export function isReleaseGenreItemDto(value: unknown): value is ReleaseTypes.ReleaseGenreItemDto {
   if (!isPlainObject(value)) return false
@@ -100,18 +114,18 @@ export function isReleaseDto(value: unknown): value is ReleaseTypes.ReleaseDto {
 
   const checks = [
     isOptionalDecimalNumber(value.id),
-    value.type === undefined || isReleaseTypeDto(value.type),
+    isOptionalReleaseTypeDto(value.type),
     isOptionalDecimalNumber(value.year),
-    value.name === undefined || isReleaseNameDto(value.name),
+    isOptionalReleaseNameDto(value.name),
     isOptionalString(value.alias),
-    value.season === undefined || isReleaseSeasonDto(value.season),
-    value.poster === undefined || isReleasePosterDto(value.poster),
+    isOptionalReleaseSeasonDto(value.season),
+    isOptionalReleasePosterDto(value.poster),
     value.fresh_at === undefined || value.fresh_at instanceof Date,
     value.created_at === undefined || value.created_at instanceof Date,
     value.updated_at === undefined || value.updated_at instanceof Date,
     isOptionalBoolean(value.is_ongoing),
-    value.age_rating === undefined || isReleaseAgeRatingDto(value.age_rating),
-    value.publish_day === undefined || isReleasePublishDateDto(value.publish_day),
+    isOptionalReleaseAgeRatingDto(value.age_rating),
+    isOptionalReleasePublishDateDto(value.publish_day),
     isOptionalString(value.description),
     value.notification === undefined || value.notification === null,
     isOptionalDecimalNumber(value.episodes_total),
@@ -129,7 +143,7 @@ export function isReleaseDto(value: unknown): value is ReleaseTypes.ReleaseDto {
     isOptionalDecimalNumber(value.added_in_postponed_collection),
     isOptionalDecimalNumber(value.added_in_abandoned_collection),
     value.genres === undefined ||
-      (Array.isArray(value.genres) && value.genres.every(isReleaseGenreItemDto)),
+      (isArray(value.genres) && value.genres.every(isReleaseGenreItemDto)),
   ]
 
   return checks.every(Boolean)
