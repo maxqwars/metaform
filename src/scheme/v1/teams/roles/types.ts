@@ -1,11 +1,11 @@
-export type TeamsRoles = TeamsRolesItem[]
+import type { components } from '@/generated/scheme.v1'
+
+export type TeamsRolesItemDto = components['schemas']['responses.api.v1.teams.roles']
 export type TeamsRolesDto = TeamsRolesItemDto[]
 
-export interface TeamsRolesParams {
-  include?: ('id' | 'title' | 'color' | 'sort_order')[]
-  exclude?: ('id' | 'title' | 'color' | 'sort_order')[]
-}
+export type TeamsRoleField = keyof TeamsRolesItem
 
+export type TeamsRoles = TeamsRolesItem[]
 export interface TeamsRolesItem {
   id: string | null
   title: string | null
@@ -13,9 +13,7 @@ export interface TeamsRolesItem {
   sortOrder: number | null
 }
 
-export interface TeamsRolesItemDto {
-  id?: string
-  title?: string
-  color?: string | null
-  sort_order?: number
+export interface TeamsRolesParams {
+  include?: TeamsRoleField[]
+  exclude?: TeamsRoleField[]
 }
