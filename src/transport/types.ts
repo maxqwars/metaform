@@ -21,7 +21,7 @@ export type TransportError =
   | { kind: 'network'; cause: unknown }
   | { kind: 'timeout' }
   | { kind: 'parse'; cause: unknown }
-  | { kind: 'api'; status: number; body: unknown }
+  | { kind: 'http'; status: number; body: unknown }
 
 export type TransportResult<T> =
   | { ok: true; data: TransportResponse<T> }

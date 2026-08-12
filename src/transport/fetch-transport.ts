@@ -46,7 +46,7 @@ export function createFetchTransport(baseUrl: string): Transport {
       }
 
       if (!response.ok) {
-        return { ok: false, error: { kind: 'api', status: response.status, body: data } }
+        return { ok: false, error: { kind: 'http', status: response.status, body: data } }
       }
 
       return {
