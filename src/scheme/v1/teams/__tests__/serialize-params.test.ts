@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { serializeTeamsParams } from '../serialize-params'
+import { serializeTeamsQueryParams } from '../serialize-params'
 
 describe('serializeTeamsParams', () => {
   it('serializes include array to comma-separated string', () => {
     expect(
-      serializeTeamsParams({
+      serializeTeamsQueryParams({
         include: ['id', 'title'],
       }),
     ).toEqual({ include: 'id,title' })
@@ -12,7 +12,7 @@ describe('serializeTeamsParams', () => {
 
   it('serializes exclude array to comma-separated string', () => {
     expect(
-      serializeTeamsParams({
+      serializeTeamsQueryParams({
         exclude: ['description'],
       }),
     ).toEqual({ exclude: 'description' })
@@ -20,7 +20,7 @@ describe('serializeTeamsParams', () => {
 
   it('serializes both include and exclude', () => {
     expect(
-      serializeTeamsParams({
+      serializeTeamsQueryParams({
         include: ['id', 'title'],
         exclude: ['description'],
       }),
@@ -31,16 +31,16 @@ describe('serializeTeamsParams', () => {
   })
 
   it('omits undefined include', () => {
-    const result = serializeTeamsParams({})
+    const result = serializeTeamsQueryParams({})
     expect(result).not.toHaveProperty('include')
   })
 
   it('omits undefined exclude', () => {
-    const result = serializeTeamsParams({})
+    const result = serializeTeamsQueryParams({})
     expect(result).not.toHaveProperty('exclude')
   })
 
   it('returns empty object when no params', () => {
-    expect(serializeTeamsParams({})).toEqual({})
+    expect(serializeTeamsQueryParams({})).toEqual({})
   })
 })

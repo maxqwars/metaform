@@ -1,10 +1,14 @@
-import type { Teams, TeamsDto } from './types'
+import type { Teams, TeamsApiResponse, TeamsApiResponseItem, TeamsItem } from './types'
 
-export function mapTeamsDto(dto: TeamsDto): Teams {
-  return dto.map((item) => ({
+export function mapTeamsItemToDomain(item: TeamsApiResponseItem): TeamsItem {
+  return {
     id: item.id ?? null,
     title: item.title ?? null,
     sortOrder: item.sort_order ?? null,
     description: item.description ?? null,
-  }))
+  }
+}
+
+export function mapTeamsToDomain(dto: TeamsApiResponse): Teams {
+  return dto.map(mapTeamsItemToDomain)
 }

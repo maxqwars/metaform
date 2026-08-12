@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { isTeamsItemDto, isTeamsDto } from '../guards'
+import { isTeamsApiResponseItem, isTeamsApiResponse } from '../guards'
 
 describe('isTeamsItemDto', () => {
   describe('valid cases', () => {
     it('passes with all fields present', () => {
       expect(
-        isTeamsItemDto({
+        isTeamsApiResponseItem({
           id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
           title: 'team',
           sort_order: 1,
@@ -15,53 +15,53 @@ describe('isTeamsItemDto', () => {
     })
 
     it('passes with all fields undefined', () => {
-      expect(isTeamsItemDto({})).toBe(true)
+      expect(isTeamsApiResponseItem({})).toBe(true)
     })
 
     it('passes with nullable description', () => {
-      expect(isTeamsItemDto({ description: null })).toBe(true)
+      expect(isTeamsApiResponseItem({ description: null })).toBe(true)
     })
   })
 
   describe('invalid field types', () => {
     it('fails when id is null', () => {
-      expect(isTeamsItemDto({ id: null })).toBe(false)
+      expect(isTeamsApiResponseItem({ id: null })).toBe(false)
     })
 
     it('fails when id is number', () => {
-      expect(isTeamsItemDto({ id: 123 })).toBe(false)
+      expect(isTeamsApiResponseItem({ id: 123 })).toBe(false)
     })
 
     it('fails when title is null', () => {
-      expect(isTeamsItemDto({ title: null })).toBe(false)
+      expect(isTeamsApiResponseItem({ title: null })).toBe(false)
     })
 
     it('fails when sort_order is string', () => {
-      expect(isTeamsItemDto({ sort_order: '1' })).toBe(false)
+      expect(isTeamsApiResponseItem({ sort_order: '1' })).toBe(false)
     })
 
     it('fails when sort_order is NaN', () => {
-      expect(isTeamsItemDto({ sort_order: NaN })).toBe(false)
+      expect(isTeamsApiResponseItem({ sort_order: NaN })).toBe(false)
     })
 
     it('fails when description is number', () => {
-      expect(isTeamsItemDto({ description: 123 })).toBe(false)
+      expect(isTeamsApiResponseItem({ description: 123 })).toBe(false)
     })
   })
 
   describe('invalid value types', () => {
-    it('fails on null', () => expect(isTeamsItemDto(null)).toBe(false))
-    it('fails on array', () => expect(isTeamsItemDto([])).toBe(false))
-    it('fails on string', () => expect(isTeamsItemDto('string')).toBe(false))
-    it('fails on number', () => expect(isTeamsItemDto(42)).toBe(false))
-    it('fails on undefined', () => expect(isTeamsItemDto(undefined)).toBe(false))
+    it('fails on null', () => expect(isTeamsApiResponseItem(null)).toBe(false))
+    it('fails on array', () => expect(isTeamsApiResponseItem([])).toBe(false))
+    it('fails on string', () => expect(isTeamsApiResponseItem('string')).toBe(false))
+    it('fails on number', () => expect(isTeamsApiResponseItem(42)).toBe(false))
+    it('fails on undefined', () => expect(isTeamsApiResponseItem(undefined)).toBe(false))
   })
 })
 
 describe('isTeamsDto', () => {
   it('passes with valid array', () => {
     expect(
-      isTeamsDto([
+      isTeamsApiResponse([
         {
           id: '9872a949-9fe1-4ad9-ade4-d26b0bdbcb45',
           title: 'Team',
@@ -74,14 +74,14 @@ describe('isTeamsDto', () => {
   })
 
   it('passes with empty array', () => {
-    expect(isTeamsDto([])).toBe(true)
+    expect(isTeamsApiResponse([])).toBe(true)
   })
 
   it('fails when one item is invalid', () => {
-    expect(isTeamsDto([{ id: '1' }, { id: null }])).toBe(false)
+    expect(isTeamsApiResponse([{ id: '1' }, { id: null }])).toBe(false)
   })
 
   it('fails on non-array', () => {
-    expect(isTeamsDto({})).toBe(false)
+    expect(isTeamsApiResponse({})).toBe(false)
   })
 })

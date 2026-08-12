@@ -1,4 +1,4 @@
-import type { TeamsItemDto, TeamsDto } from './types'
+import type { TeamsApiResponseItem, TeamsApiResponse } from './types'
 
 import {
   isPlainObject,
@@ -9,7 +9,7 @@ import {
   isOptional,
 } from '@/helpers/type-guards'
 
-export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
+export function isTeamsApiResponseItem(value: unknown): value is TeamsApiResponseItem {
   if (!isPlainObject(value)) return false
 
   const checks = [
@@ -22,8 +22,8 @@ export function isTeamsItemDto(value: unknown): value is TeamsItemDto {
   return checks.every(Boolean)
 }
 
-export function isTeamsDto(value: unknown): value is TeamsDto {
-  return Array.isArray(value) && value.every(isTeamsItemDto)
+export function isTeamsApiResponse(value: unknown): value is TeamsApiResponse {
+  return Array.isArray(value) && value.every(isTeamsApiResponseItem)
 }
 
-export const isOptionalTeamsDto = isOptional(isTeamsDto)
+export const isOptionalTeamsDto = isOptional(isTeamsApiResponse)

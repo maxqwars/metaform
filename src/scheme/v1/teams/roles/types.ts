@@ -23,10 +23,9 @@ export type TeamsRoles = TeamsRolesItem[]
  * Query Params
  */
 
-export type TeamsRolesFields = keyof TeamsRolesApiResponseItem
 export type TeamsRolesFieldsPaths = NestedKeyOf<TeamsRolesItem>
 
 export interface TeamsRolesQueryParams {
-  include?: TeamsRolesFields[]
-  exclude?: TeamsRolesFields[]
+  include?: TeamsRolesFieldsPaths[]
+  exclude?: TeamsRolesFieldsPaths[]
 }

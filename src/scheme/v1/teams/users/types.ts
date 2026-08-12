@@ -1,5 +1,5 @@
 import type { Scheme as RolesScheme } from '../roles'
-import type { Teams, TeamsDto } from '../../teams/types'
+import type { Scheme as TeamsScheme } from '../../teams/'
 
 export type TeamsUsers = TeamsUsersItem[]
 export type TeamsUsersDto = TeamsUsersItemDto[]
@@ -15,8 +15,8 @@ export interface TeamsUsersItemDto {
   sort_order?: number
   is_vacation?: boolean
   user?: TeamsUsersUserDto | null
-  teams?: TeamsDto
-  roles?: RolesScheme.TeamsRolesDto
+  teams?: TeamsScheme.TeamsApiResponse
+  roles?: RolesScheme.TeamsRolesApiResponse
 }
 
 export interface TeamsUsersUserDto {
@@ -45,7 +45,7 @@ export interface TeamsUsersItem {
   sortOrder: number | null
   isVacation: boolean | null
   user: TeamsUsersUser | null
-  teams: Teams | null
+  teams: TeamsScheme.Teams | null
   roles: RolesScheme.TeamsRoles | null
 }
 
