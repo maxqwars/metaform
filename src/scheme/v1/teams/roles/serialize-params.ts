@@ -1,6 +1,8 @@
-import type { TeamsRolesParams } from './types'
+import type { TeamsRolesQueryParams } from './types'
 
-export function serializeTeamsRolesParams(params: TeamsRolesParams): Record<string, string> {
+export function serializeTeamsRolesQueryParams(
+  params: TeamsRolesQueryParams,
+): Record<string, string> {
   return {
     ...(params.include && { include: params.include.join(',') }),
     ...(params.exclude && { exclude: params.exclude.join(',') }),

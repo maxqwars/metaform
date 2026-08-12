@@ -1,11 +1,14 @@
 import type { components } from '@/generated/scheme.v1'
 
-export type TeamsRolesItemDto = components['schemas']['responses.api.v1.teams.roles']
-export type TeamsRolesDto = TeamsRolesItemDto[]
+/*
+ * API Transport Layer
+ */
+export type TeamsRolesApiResponseItem = components['schemas']['models.teams.v1.team.role']
+export type TeamsRolesApiResponse = readonly TeamsRolesApiResponseItem[]
 
-export type TeamsRoleField = keyof TeamsRolesItem
-
-export type TeamsRoles = TeamsRolesItem[]
+/*
+ * Domain Layer
+ */
 export interface TeamsRolesItem {
   id: string | null
   title: string | null
@@ -13,7 +16,15 @@ export interface TeamsRolesItem {
   sortOrder: number | null
 }
 
-export interface TeamsRolesParams {
-  include?: TeamsRoleField[]
-  exclude?: TeamsRoleField[]
+export type TeamsRoles = TeamsRolesItem[]
+
+/*
+ * Query Params
+ */
+
+export type TeamsRolesFields = keyof TeamsRolesApiResponseItem
+
+export interface TeamsRolesQueryParams {
+  include?: TeamsRolesFields[]
+  exclude?: TeamsRolesFields[]
 }

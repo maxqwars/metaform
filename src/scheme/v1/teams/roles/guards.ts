@@ -1,6 +1,5 @@
-import type { TeamsRolesItemDto, TeamsRolesDto } from './types'
+import type { TeamsRolesApiResponseItem, TeamsRolesApiResponse } from './types'
 import {
-  isNullableString,
   isOptional,
   isOptionalDecimalNumber,
   isOptionalString,
@@ -8,21 +7,21 @@ import {
   isPlainObject,
 } from '@/helpers/type-guards'
 
-export function isTeamsRolesItemDto(value: unknown): value is TeamsRolesItemDto {
+export function isTeamsRolesApiResponseItem(value: unknown): value is TeamsRolesApiResponseItem {
   if (!isPlainObject(value)) return false
 
   const checks = [
     isOptionalUUID(value.id),
     isOptionalString(value.title),
-    isNullableString(value.color),
+    isOptionalString(value.color),
     isOptionalDecimalNumber(value.sort_order),
   ]
 
   return checks.every(Boolean)
 }
 
-export function isTeamsRolesDto(value: unknown): value is TeamsRolesDto {
-  return Array.isArray(value) && value.every(isTeamsRolesItemDto)
+export function isTeamsRolesApiResponse(value: unknown): value is TeamsRolesApiResponse {
+  return Array.isArray(value) && value.every(isTeamsRolesApiResponseItem)
 }
 
-export const isOptionalTeamsRolesDto = isOptional(isTeamsRolesDto)
+export const isOptionalTeamsRolesApiResponse = isOptional(isTeamsRolesApiResponse)

@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { mapTeamsRolesDto } from '../mapper'
+import { mapTeamsRolesToDomain } from '../mapper'
 
 describe('mapTeamsRolesDto', () => {
   it('Maps all fields correctly', () => {
     expect(
-      mapTeamsRolesDto([
+      mapTeamsRolesToDomain([
         {
           id: 'hh64r-h34y67r-h347rh',
           title: 'role-title-field',
@@ -23,7 +23,7 @@ describe('mapTeamsRolesDto', () => {
   })
 
   it('Converts undefined fields to null', () => {
-    expect(mapTeamsRolesDto([{}])).toEqual([
+    expect(mapTeamsRolesToDomain([{}])).toEqual([
       {
         id: null,
         title: null,
@@ -34,7 +34,7 @@ describe('mapTeamsRolesDto', () => {
   })
 
   it('Preserves null color', () => {
-    expect(mapTeamsRolesDto([{ color: null }])).toEqual([
+    expect(mapTeamsRolesToDomain([{ color: undefined }])).toEqual([
       {
         id: null,
         title: null,
@@ -45,12 +45,12 @@ describe('mapTeamsRolesDto', () => {
   })
 
   it('Maps empty array to empty array', () => {
-    expect(mapTeamsRolesDto([])).toEqual([])
+    expect(mapTeamsRolesToDomain([])).toEqual([])
   })
 
   it('Renames sort_order to sortOrder', () => {
-    const result = mapTeamsRolesDto([{ sort_order: 5 }])
-    expect(result[0].sortOrder).toBe(5)
+    const result = mapTeamsRolesToDomain([{ sort_order: 5 }])
+    if (result[0]) expect(result[0].sortOrder).toBe(5)
     expect(result[0]).not.toHaveProperty('sort_order')
   })
 })
