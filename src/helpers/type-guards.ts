@@ -105,6 +105,8 @@ export function isURLPath(value: unknown): value is string {
   )
 }
 
+export const isOptionalURLPath = isOptional(isURLPath)
+
 /*
  * Additional edge cases (JS-specific gotchas worth guarding against)
  */
