@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "noUncheckedIndexedAccess": true
   },
   "include": ["tsdown.config.ts", "vitest.config.ts"]
 }
