@@ -25,10 +25,10 @@ describe('Media Promotions Guards', () => {
   describe('isMediaPromotionsItemDto', () => {
     it('should return false for non-record values', () => {
       // Using `as unknown` to safely bypass ESLint strictness
-      expect(isMediaPromotionsItemDto(null as unknown as MediaPromotionsItemDto)).toBe(false)
-      expect(isMediaPromotionsItemDto(undefined as unknown as MediaPromotionsItemDto)).toBe(false)
-      expect(isMediaPromotionsItemDto('string' as unknown as MediaPromotionsItemDto)).toBe(false)
-      expect(isMediaPromotionsItemDto(123 as unknown as MediaPromotionsItemDto)).toBe(false)
+      expect(isMediaPromotionsItemDto(null)).toBe(false)
+      expect(isMediaPromotionsItemDto(undefined)).toBe(false)
+      expect(isMediaPromotionsItemDto('string')).toBe(false)
+      expect(isMediaPromotionsItemDto(123)).toBe(false)
     })
 
     it('should return true for a valid item with all fields', () => {
@@ -102,17 +102,9 @@ describe('Media Promotions Guards', () => {
 
   describe('isMediaPromotionsDto', () => {
     it('should return false if input is not an array', () => {
-      expect(
-        isMediaPromotionsDto({} as unknown as Parameters<typeof isMediaPromotionsDto>[0]),
-      ).toBe(false)
-      expect(
-        isMediaPromotionsDto(
-          'not an array' as unknown as Parameters<typeof isMediaPromotionsDto>[0],
-        ),
-      ).toBe(false)
-      expect(
-        isMediaPromotionsDto(null as unknown as Parameters<typeof isMediaPromotionsDto>[0]),
-      ).toBe(false)
+      expect(isMediaPromotionsDto({})).toBe(false)
+      expect(isMediaPromotionsDto('not an array')).toBe(false)
+      expect(isMediaPromotionsDto(null)).toBe(false)
     })
 
     it('should return true for an empty array', () => {

@@ -17,3 +17,8 @@ export * as SchemeV1 from './scheme/v1'
  */
 export type { TransportTypes } from './transport'
 export { createFetchTransport } from './transport'
+
+/*
+ * Export Metaform errors
+ */
+export * as Errors from './errors'

@@ -1,4 +1,6 @@
 import type { Transport } from '../../transport/types'
+import { unwrapTransportResult } from '../unwrap-transport-result'
+import { MetaformInvalidResponseError } from '../../errors'
 import type { VersionMap } from '../version-map'
 import { versions } from '../version-map'
 
@@ -17,14 +19,16 @@ export async function getTeamsRoles<V extends keyof VersionMap>(
 ): Promise<TeamsRolesResult<V>> {
   const { guard, mapper, serializeParams, path } = versions[version].teamsRoles
 
-  const response = await transport.request({
+  const result = await transport.request({
     url: path,
     method: 'GET',
     params: params ? serializeParams(params) : undefined,
   })
 
+  const response = unwrapTransportResult(result)
+
   if (!guard(response.data)) {
-    throw new Error('Invalid response shape')
+    throw new MetaformInvalidResponseError('teamsRoles')
   }
 
   return mapper(response.data) as TeamsRolesResult<V>

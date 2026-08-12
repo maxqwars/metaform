@@ -3,7 +3,7 @@ import type { Mock } from 'vitest'
 import { getTeamsUsers } from '../get-teams-users'
 import { versions } from '../../version-map'
 import type { Transport } from '../../../transport/types'
-import type { TeamsUsersParams } from '../../../scheme/v1'
+import type { TeamsUsersParams } from '../../../scheme/v1/teams/users/types'
 
 vi.mock('../../version-map', () => ({
   versions: {
@@ -56,7 +56,7 @@ describe('Tests for getTeamsUsers API func', () => {
       mockSerializeParams.mockReturnValue(serializedParams)
       mockGuard.mockReturnValue(true)
       mockMapper.mockReturnValueOnce(mappedData)
-      mockRequest.mockResolvedValue({ data: rawData, status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
       const result = await getTeamsUsers(mockTransport, 'v1', inputParams)
 
@@ -78,7 +78,7 @@ describe('Tests for getTeamsUsers API func', () => {
       const rawData = { invalid: 'data' }
 
       mockGuard.mockReturnValue(false)
-      mockRequest.mockResolvedValue({ data: rawData, status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
       await expect(getTeamsUsers(mockTransport, 'v1')).rejects.toThrow('Invalid response shape')
 
@@ -86,11 +86,11 @@ describe('Tests for getTeamsUsers API func', () => {
       expect(mockMapper).not.toHaveBeenCalled()
     })
 
-    it('should propagate errors thrown by the transport layer', async () => {
-      const networkError = new Error('Network request failed')
-      mockRequest.mockRejectedValue(networkError)
+    it('should throw MetaformTransportError when the transport layer reports a network error', async () => {
+      const cause = new TypeError('Failed to fetch')
+      mockRequest.mockResolvedValue({ ok: false, error: { kind: 'network', cause } })
 
-      await expect(getTeamsUsers(mockTransport, 'v1')).rejects.toThrow('Network request failed')
+      await expect(getTeamsUsers(mockTransport, 'v1')).rejects.toThrow('Transport error: network')
     })
 
     it('should propagate errors thrown during serialization', async () => {
@@ -115,7 +115,7 @@ describe('Tests for getTeamsUsers API func', () => {
       mockSerializeParams.mockReturnValue(serializedParams)
       mockGuard.mockReturnValue(true)
       mockMapper.mockReturnValue([])
-      mockRequest.mockResolvedValue({ data: [], status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: [], status: 200, headers: {} } })
 
       const result = await getTeamsUsers(mockTransport, 'v1', emptyParams)
 

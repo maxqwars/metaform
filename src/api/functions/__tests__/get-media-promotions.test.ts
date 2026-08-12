@@ -1,56 +1,57 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { Mock } from 'vitest'
-import { getMediaVideos } from '../get-media-videos'
+import { getMediaPromotions } from '../get-media-promotions'
 import { versions } from '../../version-map'
 import type { Transport } from '../../../transport/types'
-import type { MediaVideosParams } from '../../../scheme/v1/media/videos/types'
+import type { MediaPromotionsParams } from '../../../scheme/v1/media/promotions/types'
 
 vi.mock('../../version-map', () => ({
   versions: {
     v1: {
-      mediaVideos: {
+      mediaPromotions: {
         guard: vi.fn(),
         mapper: vi.fn(),
         serializeParams: vi.fn(),
-        path: '/media/videos',
+        path: '/media/promotions',
       },
     },
   },
 }))
 
-describe('Tests for getMediaVideos API func', () => {
+describe('Tests for getMediaPromotions API func', () => {
   const mockRequest = vi.fn()
   const mockTransport: Transport = {
     request: mockRequest,
   }
 
-  const mockGuard = versions.v1.mediaVideos.guard as Mock
-  const mockMapper = versions.v1.mediaVideos.mapper as Mock
-  const mockSerializeParams = versions.v1.mediaVideos.serializeParams as Mock
+  const mockGuard = versions.v1.mediaPromotions.guard as Mock
+  const mockMapper = versions.v1.mediaPromotions.mapper as Mock
+  const mockSerializeParams = versions.v1.mediaPromotions.serializeParams as Mock
 
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
   describe('Success Scenarios', () => {
-    it('should successfully fetch and map media videos when params are provided', async () => {
-      const inputParams: MediaVideosParams = {
-        limit: 10,
-        include: ['title', 'url'],
+    it('should successfully fetch and map media promotions when params are provided', async () => {
+      const inputParams: MediaPromotionsParams = {
+        include: ['id', 'url', 'title'],
       }
-      const serializedParams = { limit: '10', include: 'title,url' }
+      const serializedParams = { include: 'id,url,title' }
       const rawData = [
         {
-          id: 1,
-          title: 'Sample Video',
-          url: 'https://example.com/video',
+          id: '1',
+          url: 'https://example.com/promo',
+          title: 'Sample Promotion',
+          is_ad: true,
         },
       ]
       const mappedData = [
         {
-          id: 1,
-          title: 'Sample Video',
-          url: 'https://example.com/video',
+          id: '1',
+          url: 'https://example.com/promo',
+          title: 'Sample Promotion',
+          isAd: true,
         },
       ]
 
@@ -59,17 +60,36 @@ describe('Tests for getMediaVideos API func', () => {
       mockMapper.mockReturnValueOnce(mappedData)
       mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
-      const result = await getMediaVideos(mockTransport, 'v1', inputParams)
+      const result = await getMediaPromotions(mockTransport, 'v1', inputParams)
 
       expect(mockSerializeParams).toHaveBeenCalledWith(inputParams)
       expect(mockRequest).toHaveBeenCalledWith({
-        url: '/media/videos',
+        url: '/media/promotions',
         method: 'GET',
         params: serializedParams,
       })
 
       expect(mockGuard).toHaveBeenCalledWith(rawData)
       expect(mockMapper).toHaveBeenCalledWith(rawData)
+      expect(result).toEqual(mappedData)
+    })
+
+    it('should successfully fetch and map media promotions without params', async () => {
+      const rawData = [{ id: '2', url: 'https://example.com/promo2' }]
+      const mappedData = [{ id: '2', url: 'https://example.com/promo2' }]
+
+      mockGuard.mockReturnValue(true)
+      mockMapper.mockReturnValueOnce(mappedData)
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
+
+      const result = await getMediaPromotions(mockTransport, 'v1')
+
+      expect(mockSerializeParams).not.toHaveBeenCalled()
+      expect(mockRequest).toHaveBeenCalledWith({
+        url: '/media/promotions',
+        method: 'GET',
+        params: undefined,
+      })
       expect(result).toEqual(mappedData)
     })
   })
@@ -81,7 +101,9 @@ describe('Tests for getMediaVideos API func', () => {
       mockGuard.mockReturnValue(false)
       mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
-      await expect(getMediaVideos(mockTransport, 'v1')).rejects.toThrow('Invalid response shape')
+      await expect(getMediaPromotions(mockTransport, 'v1')).rejects.toThrow(
+        'Invalid response shape',
+      )
 
       expect(mockGuard).toHaveBeenCalledWith(rawData)
       expect(mockMapper).not.toHaveBeenCalled()
@@ -91,7 +113,19 @@ describe('Tests for getMediaVideos API func', () => {
       const cause = new TypeError('Failed to fetch')
       mockRequest.mockResolvedValue({ ok: false, error: { kind: 'network', cause } })
 
-      await expect(getMediaVideos(mockTransport, 'v1')).rejects.toThrow('Transport error: network')
+      await expect(getMediaPromotions(mockTransport, 'v1')).rejects.toThrow(
+        'Transport error: network',
+      )
+    })
+
+    it('should throw MetaformApiError when the transport layer reports a recognized API error body', async () => {
+      const errorBody = { message: 'Not found' }
+      mockRequest.mockResolvedValue({
+        ok: false,
+        error: { kind: 'http', status: 404, body: errorBody },
+      })
+
+      await expect(getMediaPromotions(mockTransport, 'v1')).rejects.toThrow('Not found')
     })
 
     it('should propagate errors thrown during serialization', async () => {
@@ -100,7 +134,7 @@ describe('Tests for getMediaVideos API func', () => {
         throw serializeError
       })
 
-      await expect(getMediaVideos(mockTransport, 'v1', { limit: 5 })).rejects.toThrow(
+      await expect(getMediaPromotions(mockTransport, 'v1', { include: ['id'] })).rejects.toThrow(
         'Serialization failed',
       )
 
@@ -118,10 +152,10 @@ describe('Tests for getMediaVideos API func', () => {
       mockMapper.mockReturnValue([])
       mockRequest.mockResolvedValue({ ok: true, data: { data: [], status: 200, headers: {} } })
 
-      const result = await getMediaVideos(mockTransport, 'v1', emptyParams)
+      const result = await getMediaPromotions(mockTransport, 'v1', emptyParams)
 
       expect(mockRequest).toHaveBeenCalledWith({
-        url: '/media/videos',
+        url: '/media/promotions',
         method: 'GET',
         params: serializedParams,
       })

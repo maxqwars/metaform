@@ -25,18 +25,54 @@ Version **2.0** introduces a complete architectural overhaul focused on performa
 Here is an example of using independent functions and the built-in fetch transport to retrieve a list of teams:
 
 ```typescript
-import { createFetchTrasport, getTeams } from '@maxqwars/metaform'
+import { createFetchTransport, getTeams, Errors } from '@maxqwars/metaform'
 
 async function main() {
-  // Initialize the transport by specifying the base API URL
   const transport = createFetchTransport('https://aniliberty.top/api/v1')
 
-  // Invoke the isolated request function, passing the transport instance
-  const teams = await getTeams(transport, 'v1', {
-    include: ['id', 'title'],
-  })
+  try {
+    const teams = await getTeams(transport, 'v1', {
+      include: ['id', 'title', 'description'],
+    })
 
-  console.log(teams)
+    console.log(teams)
+  } catch (err) {
+    if (err instanceof Errors.MetaformApiError) {
+      // Server responded with a non-2xx status, and the error body was recognized
+      // (matches the { message?, errors? } format from AniLiberty API).
+      console.error(`API error ${err.status}: ${err.body.message}`)
+
+      // err.body.fieldErrors is only populated on 422 — can show which specific fields failed validation.
+      if (err.body.fieldErrors) {
+        for (const [field, messages] of Object.entries(err.body.fieldErrors)) {
+          console.error(`  ${field}: ${messages.join(', ')}`)
+        }
+      }
+    } else if (err instanceof Errors.MetaformTransportError) {
+      // Failure below the HTTP response level: network, timeout, invalid JSON.
+      switch (err.cause.kind) {
+        case 'network':
+          console.error('Network error — check your connection:', err.cause.cause)
+          break
+        case 'timeout':
+          console.error('Request timed out')
+          break
+        case 'parse':
+          console.error('Failed to parse response as JSON:', err.cause.cause)
+          break
+        case 'http':
+          // HTTP error, but body did not pass isApiErrorDto — unrecognized format
+          console.error(`Unrecognized error body from server (status ${err.cause.status})`)
+          break
+      }
+    } else if (err instanceof Errors.MetaformInvalidResponseError) {
+      // Response received successfully (200 OK), but failed the expected schema guard —
+      // indicates that the API changed its response format faster than types were updated.
+      console.error('API response shape mismatch:', err.message)
+    } else {
+      throw err
+    }
+  }
 }
 
 main().catch(console.error)
