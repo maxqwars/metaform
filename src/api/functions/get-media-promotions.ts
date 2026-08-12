@@ -1,6 +1,8 @@
 import type { Transport } from '@/transport/types'
 import type { VersionMap } from '../version-map'
 import { versions } from '../version-map'
+import { MetaformInvalidResponseError } from '../../errors'
+import { unwrapTransportResult } from '../unwrap-transport-result'
 
 type MediaPromotionsResult<V extends keyof VersionMap> = ReturnType<
   VersionMap[V]['mediaPromotions']['mapper']
@@ -17,14 +19,16 @@ export async function getMediaPromotions<V extends keyof VersionMap>(
 ): Promise<MediaPromotionsResult<V>> {
   const { guard, mapper, serializeParams, path } = versions[version].mediaPromotions
 
-  const response = await transport.request({
+  const result = await transport.request({
     url: path,
     method: 'GET',
     params: params ? serializeParams(params) : undefined,
   })
 
+  const response = unwrapTransportResult(result)
+
   if (!guard(response.data)) {
-    throw new Error('Invalid response shape')
+    throw new MetaformInvalidResponseError('mediaPromotions')
   }
 
   return mapper(response.data) as MediaPromotionsResult<V>

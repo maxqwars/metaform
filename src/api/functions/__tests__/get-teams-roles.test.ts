@@ -3,7 +3,7 @@ import type { Mock } from 'vitest'
 import { getTeamsRoles } from '../get-teams-roles'
 import { versions } from '../../version-map'
 import type { Transport } from '../../../transport/types'
-import type { TeamsRolesParams } from '../../../scheme/v1'
+import type { TeamsRolesParams } from '../../../scheme/v1/teams/roles/types'
 
 vi.mock('../../version-map', () => ({
   versions: {
@@ -58,7 +58,7 @@ describe('getTeamsRoles', () => {
       mockSerializeParams.mockReturnValue(serializedParams)
       mockGuard.mockReturnValue(true)
       mockMapper.mockReturnValueOnce(mappedData)
-      mockRequest.mockResolvedValue({ data: rawData, status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
       const result = await getTeamsRoles(mockTransport, 'v1', inputParams)
 
@@ -80,7 +80,7 @@ describe('getTeamsRoles', () => {
 
       mockGuard.mockReturnValue(true)
       mockMapper.mockReturnValue(mappedData)
-      mockRequest.mockResolvedValue({ data: rawData, status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
       const result = await getTeamsRoles(mockTransport, 'v1', undefined)
 
@@ -99,7 +99,7 @@ describe('getTeamsRoles', () => {
       const rawData = { invalid: 'data' }
 
       mockGuard.mockReturnValue(false)
-      mockRequest.mockResolvedValue({ data: rawData, status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: rawData, status: 200, headers: {} } })
 
       await expect(getTeamsRoles(mockTransport, 'v1')).rejects.toThrow('Invalid response shape')
 
@@ -107,11 +107,11 @@ describe('getTeamsRoles', () => {
       expect(mockMapper).not.toHaveBeenCalled()
     })
 
-    it('should propagate errors thrown by the transport layer', async () => {
-      const networkError = new Error('Network request failed')
-      mockRequest.mockRejectedValue(networkError)
+    it('should throw MetaformTransportError when the transport layer reports a network error', async () => {
+      const cause = new TypeError('Failed to fetch')
+      mockRequest.mockResolvedValue({ ok: false, error: { kind: 'network', cause } })
 
-      await expect(getTeamsRoles(mockTransport, 'v1')).rejects.toThrow('Network request failed')
+      await expect(getTeamsRoles(mockTransport, 'v1')).rejects.toThrow('Transport error: network')
     })
 
     it('should propagate errors thrown during serialization', async () => {
@@ -136,7 +136,7 @@ describe('getTeamsRoles', () => {
       mockSerializeParams.mockReturnValue(serializedParams)
       mockGuard.mockReturnValue(true)
       mockMapper.mockReturnValue([])
-      mockRequest.mockResolvedValue({ data: [], status: 200, headers: {} })
+      mockRequest.mockResolvedValue({ ok: true, data: { data: [], status: 200, headers: {} } })
 
       const result = await getTeamsRoles(mockTransport, 'v1', emptyParams)
 
