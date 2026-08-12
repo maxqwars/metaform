@@ -1,4 +1,5 @@
 import type { components } from '@/generated/scheme.v1'
+import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
 /*
  * API Transport Layer
@@ -23,6 +24,7 @@ export type TeamsRoles = TeamsRolesItem[]
  */
 
 export type TeamsRolesFields = keyof TeamsRolesApiResponseItem
+export type TeamsRolesFieldsPaths = NestedKeyOf<TeamsRolesItem>
 
 export interface TeamsRolesQueryParams {
   include?: TeamsRolesFields[]
