@@ -87,7 +87,7 @@ describe('Testing isTeamsRolesDto', () => {
         },
         {
           title: 'title',
-          color: null,
+          color: undefined,
         },
       ]),
     ).toBe(true)
