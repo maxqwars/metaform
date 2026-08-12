@@ -1,16 +1,17 @@
 import type * as ImageTypes from './types'
 
-export function mapImageDto(dto: ImageTypes.ImageDto): ImageTypes.Image {
+export function toImage(dto: ImageTypes.ImageApiResponse): ImageTypes.Image {
   return {
     preview: dto.preview ?? null,
     thumbnail: dto.thumbnail ?? null,
-    optimized: dto.optimized ? mapImageOptimizedDto(dto.optimized) : null,
   }
 }
 
-export function mapImageOptimizedDto(dto: ImageTypes.ImageOptimizedDto): ImageTypes.ImageOptimized {
+export function toImageWithOptimized(
+  dto: ImageTypes.ImageApiWithOptimizedResponse,
+): ImageTypes.ImageWithOptimized {
   return {
-    preview: dto.preview ?? null,
-    thumbnail: dto.thumbnail ?? null,
+    ...toImage(dto),
+    optimized: dto.optimized ? toImage(dto.optimized) : null,
   }
 }

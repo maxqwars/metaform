@@ -1,33 +1,32 @@
-import type { ImageDto, ImageOptimizedDto } from './types'
+import type { ImageApiResponse, ImageApiWithOptimizedResponse } from './types'
 import {
   isNullableOptional,
   isPlainObject,
-  isOptionalString,
   isOptional,
+  isOptionalURLPath,
 } from '@/helpers/type-guards'
 
-export function isImageOptimizedDto(value: unknown): value is ImageOptimizedDto {
+export function isImageResponse(value: unknown): value is ImageApiWithOptimizedResponse {
   if (!isPlainObject(value)) return false
-
-  const checks = [isOptionalString(value.preview), isOptionalString(value.thumbnail)]
-
-  return checks.every(Boolean)
+  return isOptionalURLPath(value.preview) && isOptionalURLPath(value.thumbnail)
 }
 
-export const isOptionalImageOptimizedDto = isOptional(isImageOptimizedDto)
+export const isOptionalImageResponse = isOptional(isImageResponse)
+export const isNullableOptionalImageResponse = isNullableOptional(isImageResponse)
 
-export function isImageDto(value: unknown): value is ImageDto {
+export function isImageWithOptimizedResponse(value: unknown): value is ImageApiResponse {
   if (!isPlainObject(value)) return false
 
   const checks = [
-    isOptionalString(value.preview),
-    isOptionalString(value.thumbnail),
-    isOptionalImageOptimizedDto(value.optimized),
+    isOptionalURLPath(value.preview),
+    isOptionalURLPath(value.thumbnail),
+    isOptionalImageResponse(value.optimized),
   ]
 
   return checks.every(Boolean)
 }
 
-export const isOptionalImage = isOptional(isImageDto)
-
-export const isNullableOptionalImageDto = isNullableOptional(isImageDto)
+export const isOptionalImageWithOptimizedResponse = isOptional(isImageWithOptimizedResponse)
+export const isNUllableOptionalImageWithOptimizedResponse = isNullableOptional(
+  isImageWithOptimizedResponse,
+)
