@@ -23,19 +23,15 @@ export default defineConfig([
         ...globals.es2025,
       },
       parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-        allowDefaultProject: ['vitest.config.ts', 'tsdown.config.ts'],
-        parserOptions: {
-          project: ['./tsconfig.lib.json', './tsconfig.node.json'],
+        projectService: {
+          allowDefaultProject: ['vitest.config.ts', 'tsdown.config.ts', '*.config.ts'],
+          defaultProject: 'tsconfig.lib.json',
         },
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
 
-  //
-  // Rules for TypeScript files
-  //
   {
     files: ['**/*.ts', '**/*.mts', '**/*.cts'],
     rules: {
@@ -73,7 +69,7 @@ export default defineConfig([
 
   //
   // !Last
-  // Override rules with prettier for avoid conflicts
+  // Override rules with prettier to avoid conflicts
   //
   prettier,
 ])

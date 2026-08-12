@@ -18,10 +18,8 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "paths": {
-      "@/helpers/*": ["./src/helpers/*"],
-      "@/scheme/*": ["./src/scheme/*"],
-      "@/transport/*": ["./src/transport/*"],
-      "@/generated/*": ["./src/generated/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "noUncheckedIndexedAccess": true
   }
 }
