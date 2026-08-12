@@ -12,10 +12,6 @@ export interface TransportResponse<T> {
   headers: Record<string, string>
 }
 
-export interface Transport {
-  request<T>(req: RequestTransport): Promise<TransportResponse<T>>
-}
-
 /**
  * Transport-level error. The transport layer is unaware of the specific
  * API's error body format — for kind: 'api', the body is passed as unknown
