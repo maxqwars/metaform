@@ -1,5 +1,6 @@
 import type { RoleApiResponse } from './types'
 import {
+  isNullableString,
   isOptional,
   isOptionalDecimalNumber,
   isOptionalString,
@@ -13,7 +14,7 @@ export function isRoleResponse(value: unknown): value is RoleApiResponse {
   return (
     isOptionalUUID(value.id) &&
     isOptionalString(value.title) &&
-    isOptionalString(value.color) &&
+    isNullableString(value.color) &&
     isOptionalDecimalNumber(value.sort_order)
   )
 }
