@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { mapImageDto, mapImageOptimizedDto } from '../mapper'
-// Import the types to ensure the test data is strictly typed
+import { toImage, toImageWithOptimized } from '../mapper'
 import type * as ImageTypes from '../types'
+
+/*
+ * TODO: Refactoring needed
+ */
 
 describe('mapImageDto', () => {
   it('should map all fields correctly when all are provided', () => {
-    const dto: ImageTypes.ImageDto = {
+    const dto: ImageTypes.ImageApiWithOptimizedResponse = {
       preview: 'preview-image-url',
       thumbnail: 'thumbnail-image-url',
       optimized: {
@@ -15,7 +18,7 @@ describe('mapImageDto', () => {
     }
 
     // Use toStrictEqual for stricter object comparison
-    expect(mapImageDto(dto)).toStrictEqual({
+    expect(toImageWithOptimized(dto)).toStrictEqual({
       preview: 'preview-image-url',
       thumbnail: 'thumbnail-image-url',
       optimized: {
@@ -26,9 +29,9 @@ describe('mapImageDto', () => {
   })
 
   it('should convert undefined fields to null', () => {
-    const dto: ImageTypes.ImageDto = {}
+    const dto: ImageTypes.ImageApiWithOptimizedResponse = {}
 
-    expect(mapImageDto(dto)).toStrictEqual({
+    expect(toImageWithOptimized(dto)).toStrictEqual({
       preview: null,
       thumbnail: null,
       optimized: null,
@@ -36,12 +39,12 @@ describe('mapImageDto', () => {
   })
 
   it('should handle partial fields (preview and thumbnail provided, optimized missing)', () => {
-    const dto: ImageTypes.ImageDto = {
+    const dto: ImageTypes.ImageApiWithOptimizedResponse = {
       preview: 'preview-image-url',
       thumbnail: 'thumbnail-image-url',
     }
 
-    expect(mapImageDto(dto)).toStrictEqual({
+    expect(toImageWithOptimized(dto)).toStrictEqual({
       preview: 'preview-image-url',
       thumbnail: 'thumbnail-image-url',
       optimized: null,
@@ -50,12 +53,12 @@ describe('mapImageDto', () => {
 
   // Removed the duplicate "partially missing" test and kept one clear case for partial optimized fields
   it('should map optimized fields correctly when only some are present', () => {
-    const dto: ImageTypes.ImageDto = {
+    const dto: ImageTypes.ImageApiWithOptimizedResponse = {
       optimized: {
         preview: 'preview-image-url',
       },
     }
-    expect(mapImageDto(dto)).toStrictEqual({
+    expect(toImageWithOptimized(dto)).toStrictEqual({
       preview: null,
       thumbnail: null,
       optimized: {
@@ -66,12 +69,12 @@ describe('mapImageDto', () => {
   })
 
   it('should map optimized fields correctly when thumbnail is present but preview is missing', () => {
-    const dto: ImageTypes.ImageDto = {
+    const dto: ImageTypes.ImageApiWithOptimizedResponse = {
       optimized: {
         thumbnail: 'thumbnail-image-url',
       },
     }
-    expect(mapImageDto(dto)).toStrictEqual({
+    expect(toImageWithOptimized(dto)).toStrictEqual({
       preview: null,
       thumbnail: null,
       optimized: {
@@ -82,34 +85,34 @@ describe('mapImageDto', () => {
   })
 })
 
-describe('mapImageOptimizedDto', () => {
+describe('mapImageDto', () => {
   it('should map all fields correctly when both are provided', () => {
-    const dto: ImageTypes.ImageOptimizedDto = {
+    const dto: ImageTypes.ImageApiResponse = {
       preview: 'preview-url',
       thumbnail: 'thumbnail-url',
     }
 
-    expect(mapImageOptimizedDto(dto)).toStrictEqual({
+    expect(toImage(dto)).toStrictEqual({
       preview: 'preview-url',
       thumbnail: 'thumbnail-url',
     })
   })
 
   it('should map missing fields to null', () => {
-    const dto: ImageTypes.ImageOptimizedDto = {}
+    const dto: ImageTypes.ImageApiResponse = {}
 
-    expect(mapImageOptimizedDto(dto)).toStrictEqual({
+    expect(toImage(dto)).toStrictEqual({
       preview: null,
       thumbnail: null,
     })
   })
 
   it('should map present fields and missing fields to null', () => {
-    const dto: ImageTypes.ImageOptimizedDto = {
+    const dto: ImageTypes.ImageApiResponse = {
       thumbnail: 'thumbnail-url',
     }
 
-    expect(mapImageOptimizedDto(dto)).toStrictEqual({
+    expect(toImage(dto)).toStrictEqual({
       preview: null,
       thumbnail: 'thumbnail-url',
     })

@@ -4,8 +4,12 @@
  * standard image structures including optional preview, thumbnail, and optimized fields.
  */
 
+/*
+ * TODO: Refactoring needed
+ */
+
 import { describe, it, expect } from 'vitest'
-import { isImageDto, isImageOptimizedDto } from '../guards'
+import { isImageResponse, isImageWithOptimizedResponse } from '../guards'
 
 describe('isImageOptimizedDto', () => {
   // Test standard valid inputs for the optimized image guard
@@ -14,33 +18,33 @@ describe('isImageOptimizedDto', () => {
       preview: 'https://example.com/preview',
       thumbnail: 'https://example.com/thumb',
     }
-    expect(isImageOptimizedDto(validDto)).toBe(true)
+    expect(isImageWithOptimizedResponse(validDto)).toBe(true)
   })
 
   // Test that missing optional fields still pass the guard
   it('should return true for a valid optimized image DTO with one or both fields undefined', () => {
     const partialDto = { preview: 'https://example.com/preview' }
-    expect(isImageOptimizedDto(partialDto)).toBe(true)
+    expect(isImageWithOptimizedResponse(partialDto)).toBe(true)
 
     const emptyDto = {}
-    expect(isImageOptimizedDto(emptyDto)).toBe(true)
+    expect(isImageWithOptimizedResponse(emptyDto)).toBe(true)
   })
 
   // Test input that is not an object (not a record)
   it('should return false for inputs that are not records', () => {
-    expect(isImageOptimizedDto('string')).toBe(false)
-    expect(isImageOptimizedDto(123)).toBe(false)
-    expect(isImageOptimizedDto(null)).toBe(false)
-    expect(isImageOptimizedDto(undefined)).toBe(false)
+    expect(isImageWithOptimizedResponse('string')).toBe(false)
+    expect(isImageWithOptimizedResponse(123)).toBe(false)
+    expect(isImageWithOptimizedResponse(null)).toBe(false)
+    expect(isImageWithOptimizedResponse(undefined)).toBe(false)
   })
 
   // Test incorrect types for the fields (e.g., numbers instead of strings)
   it('should return false if preview or thumbnail are not valid types', () => {
     const invalidDto1 = { preview: 123, thumbnail: 'valid' }
-    expect(isImageOptimizedDto(invalidDto1)).toBe(false)
+    expect(isImageWithOptimizedResponse(invalidDto1)).toBe(false)
 
     const invalidDto2 = { preview: 'valid', thumbnail: true }
-    expect(isImageOptimizedDto(invalidDto2)).toBe(false)
+    expect(isImageWithOptimizedResponse(invalidDto2)).toBe(false)
   })
 })
 
@@ -52,35 +56,35 @@ describe('isImageDto', () => {
       thumbnail: 'path2',
       optimized: { preview: 'p3', thumbnail: 't3' },
     }
-    expect(isImageDto(validDto)).toBe(true)
+    expect(isImageResponse(validDto)).toBe(true)
   })
 
   // Test valid scenarios where optional fields are missing or optimized is absent
   it('should return true for a valid image DTO with some missing optional fields', () => {
     const partialDto = { preview: 'path1' } // thumbnail and optimized missing
-    expect(isImageDto(partialDto)).toBe(true)
+    expect(isImageResponse(partialDto)).toBe(true)
 
     const noOptimizedDto = {
       preview: 'path1',
       thumbnail: 'path2',
     }
-    expect(isImageDto(noOptimizedDto)).toBe(true)
+    expect(isImageResponse(noOptimizedDto)).toBe(true)
   })
 
   // Test input that is not an object (not a record)
   it('should return false for inputs that are not records', () => {
-    expect(isImageDto('string')).toBe(false)
-    expect(isImageDto(123)).toBe(false)
-    expect(isImageDto(null)).toBe(false)
+    expect(isImageResponse('string')).toBe(false)
+    expect(isImageResponse(123)).toBe(false)
+    expect(isImageResponse(null)).toBe(false)
   })
 
   // Test failure cases where fields exist but have incorrect types
   it('should return false if preview or thumbnail are not strings', () => {
     const invalidPreview = { preview: 123, thumbnail: 'valid' }
-    expect(isImageDto(invalidPreview)).toBe(false)
+    expect(isImageResponse(invalidPreview)).toBe(false)
 
     const invalidThumbnail = { preview: 'valid', thumbnail: true }
-    expect(isImageDto(invalidThumbnail)).toBe(false)
+    expect(isImageResponse(invalidThumbnail)).toBe(false)
   })
 
   // Test failure when the "optimized" field exists but is not a valid optimized DTO
@@ -90,19 +94,19 @@ describe('isImageDto', () => {
       thumbnail: 't1',
       optimized: 'not-a-record',
     }
-    expect(isImageDto(invalidOptimized)).toBe(false)
+    expect(isImageResponse(invalidOptimized)).toBe(false)
 
     const malformedOptimized = {
       preview: 'p1',
       thumbnail: 't1',
       optimized: { preview: 123 }, // nested field is wrong type
     }
-    expect(isImageDto(malformedOptimized)).toBe(false)
+    expect(isImageResponse(malformedOptimized)).toBe(false)
   })
 
   // Test edge cases for empty strings and mixed types
   it('should return true for valid DTOs containing empty strings', () => {
     const emptyStrings = { preview: '', thumbnail: '' }
-    expect(isImageDto(emptyStrings)).toBe(true)
+    expect(isImageResponse(emptyStrings)).toBe(true)
   })
 })
