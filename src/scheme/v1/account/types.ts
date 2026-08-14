@@ -7,7 +7,7 @@ export type AccountApiResponse = components['schemas']['models.teams.v1.team.use
 export interface Account {
   id: number | null
   nickname: string | null
-  avatar: ImageScheme.ImageWithOptimized
+  avatar: ImageScheme.ImageWithOptimized | null
 }
 
 export type AccountFieldsPaths = NestedKeyOf<AccountApiResponse>
