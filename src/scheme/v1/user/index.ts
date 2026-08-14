@@ -1,5 +1,3 @@
-export type * as Scheme from './types'
-export * as Guards from './guards'
-export * as Mappers from './mappers'
-
-// TODO: Need implement unit tests for scheme/user
+export type * as scheme from './types'
+export * as guards from './guards'
+export * as mappers from './mappers'

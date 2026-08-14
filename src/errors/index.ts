@@ -1,12 +1,12 @@
-import type { Scheme } from '@/scheme/v1/error'
+import type { scheme } from '@/scheme/v1/error'
 import type { TransportError } from '@/transport/types'
 
 /** API error: the server responded with a non-2xx status and a recognized error body. */
 export class MetaformApiError extends Error {
   readonly status: number
-  readonly body: Scheme.ApiErrorBody
+  readonly body: scheme.ApiError
 
-  constructor(status: number, body: Scheme.ApiErrorBody) {
+  constructor(status: number, body: scheme.ApiError) {
     super(body.message ?? `API error with status ${String(status)}`)
     this.name = 'MetaformApiError'
     this.status = status

@@ -4,7 +4,7 @@ import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 // API
 
 export type ImageApiResponse = components['schemas']['commons.v1.models.components.image']
-export type ImageApiWithOptimizedResponse =
+export type ImageWithOptimizedApiResponse =
   components['schemas']['commons.v1.models.components.image.withOptimized']
 
 // Domain
@@ -20,4 +20,4 @@ export interface ImageWithOptimized extends Image {
 // Fields
 
 export type ImageFieldsPaths = NestedKeyOf<ImageApiResponse>
-export type ImageWithOptimizedFieldsPaths = NestedKeyOf<ImageApiWithOptimizedResponse>
+export type ImageWithOptimizedFieldsPaths = NestedKeyOf<ImageWithOptimizedApiResponse>

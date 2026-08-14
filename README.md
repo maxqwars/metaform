@@ -104,13 +104,13 @@ Roadmap for implementing API methods. This roadmap is subject to change; please 
 ### /teams
 
 - ✅ /teams
-- ✅ /teams/roles
-- ✅ /teams/users
+- /teams/roles
+- /teams/users
 
 ### /media
 
-- ✅ /media/videos
-- ✅ /media/promotions
+- /media/videos
+- /media/promotions
 
 ### /app
 

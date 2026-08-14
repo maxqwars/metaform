@@ -1,5 +1,5 @@
 import type { AccountApiResponse, Account } from './types'
-import { Mappers as ImageMappers } from '@/scheme/v1/image'
+import { mappers as ImageMappers } from '@/scheme/v1/image'
 
 export function toAccount(dto: AccountApiResponse): Account {
   return {

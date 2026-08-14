@@ -1,4 +1,4 @@
-import type { ImageApiResponse, ImageApiWithOptimizedResponse } from './types'
+import type { ImageApiResponse, ImageWithOptimizedApiResponse } from './types'
 import {
   isNullableOptional,
   isPlainObject,
@@ -6,7 +6,7 @@ import {
   isOptionalURLPath,
 } from '@/helpers/type-guards'
 
-export function isImageResponse(value: unknown): value is ImageApiWithOptimizedResponse {
+export function isImageResponse(value: unknown): value is ImageWithOptimizedApiResponse {
   if (!isPlainObject(value)) return false
   return isOptionalURLPath(value.preview) && isOptionalURLPath(value.thumbnail)
 }
@@ -17,13 +17,11 @@ export const isNullableOptionalImageResponse = isNullableOptional(isImageRespons
 export function isImageWithOptimizedResponse(value: unknown): value is ImageApiResponse {
   if (!isPlainObject(value)) return false
 
-  const checks = [
-    isOptionalURLPath(value.preview),
-    isOptionalURLPath(value.thumbnail),
-    isOptionalImageResponse(value.optimized),
-  ]
-
-  return checks.every(Boolean)
+  return (
+    isOptionalURLPath(value.preview) &&
+    isOptionalURLPath(value.thumbnail) &&
+    isOptionalImageResponse(value.optimized)
+  )
 }
 
 export const isOptionalImageWithOptimizedResponse = isOptional(isImageWithOptimizedResponse)

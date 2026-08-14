@@ -1,4 +1,7 @@
-export * as Media from './media'
-export * as Teams from './teams'
-export * as Shared from './shared'
-export * as Error from './error'
+export * as Account from './account'
+export * as Image from './image'
+export * as Role from './role'
+export * as User from './user'
+export * as Team from './team'
+
+export * as GetTeamsMethod from './methods/getTeams'

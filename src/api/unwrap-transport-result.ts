@@ -1,6 +1,6 @@
-import { Mappers } from '@/scheme/v1/error'
-import type { Scheme } from '@/scheme/v1/error'
-import { MetaformApiError, MetaformTransportError } from '../errors/'
+import { mappers } from '@/scheme/v1/error'
+import type { scheme } from '@/scheme/v1/error'
+import { MetaformApiError, MetaformTransportError } from '@/errors'
 import type { TransportResponse, TransportResult } from '@/transport/types'
 
 /**
@@ -15,10 +15,10 @@ export function unwrapTransportResult<T>(result: TransportResult<T>): TransportR
   const { error } = result
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (error.kind === 'http' && Mappers.toApiErrorBody(error.body as Scheme.ApiErrorDto)) {
+  if (error.kind === 'http' && mappers.toApiError(error.body as scheme.ApiErrorResponse)) {
     throw new MetaformApiError(
       error.status,
-      Mappers.toApiErrorBody(error.body as Scheme.ApiErrorDto),
+      mappers.toApiError(error.body as scheme.ApiErrorResponse),
     )
   }
 

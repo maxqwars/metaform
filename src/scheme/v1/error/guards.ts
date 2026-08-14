@@ -1,7 +1,7 @@
-import type { ApiErrorDto } from './types'
+import type { ApiErrorResponse } from './types'
 import { isPlainObject, isOptionalString } from '@/helpers/type-guards'
 
-export function isApiErrorDto(value: unknown): value is ApiErrorDto {
+export function isApiErrorDto(value: unknown): value is ApiErrorResponse {
   if (!isPlainObject(value)) return false
 
   const checks = [

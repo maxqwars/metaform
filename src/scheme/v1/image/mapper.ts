@@ -1,15 +1,18 @@
-import type * as ImageTypes from './types'
+import type {
+  ImageApiResponse,
+  ImageWithOptimizedApiResponse,
+  Image,
+  ImageWithOptimized,
+} from './types'
 
-export function toImage(dto: ImageTypes.ImageApiResponse): ImageTypes.Image {
+export function toImage(dto: ImageApiResponse): Image {
   return {
     preview: dto.preview ?? null,
     thumbnail: dto.thumbnail ?? null,
   }
 }
 
-export function toImageWithOptimized(
-  dto: ImageTypes.ImageApiWithOptimizedResponse,
-): ImageTypes.ImageWithOptimized {
+export function toImageWithOptimized(dto: ImageWithOptimizedApiResponse): ImageWithOptimized {
   return {
     ...toImage(dto),
     optimized: dto.optimized ? toImage(dto.optimized) : null,
