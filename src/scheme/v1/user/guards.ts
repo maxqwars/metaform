@@ -5,9 +5,9 @@ import {
   isOptionalUUID,
   isPlainObject,
 } from '@/helpers/type-guards'
-import type { scheme as UserScheme } from '@/scheme/v1/user'
+import type { UserApiResponse } from './types'
 
-export function isUserApiResponse(value: unknown): value is UserScheme.UserApiResponse {
+export function isUserApiResponse(value: unknown): value is UserApiResponse {
   if (!isPlainObject(value)) return false
 
   return (
