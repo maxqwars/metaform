@@ -17,22 +17,6 @@ interface V1Endpoints {
     SchemeV1.GetTeamsRolesMethod.GetTeamsRolesResponse,
     SchemeV1.GetTeamsRolesMethod.GetTeamsRolesQueryParams
   >
-  // teamsRoles: EndpointDef<
-  //   SchemeV1.Teams.Roles.Scheme.TeamsRoles,
-  //   SchemeV1.Teams.Roles.Scheme.TeamsRolesParams
-  // >
-  // teamsUsers: EndpointDef<
-  //   SchemeV1.Teams.Users.Scheme.TeamsUsers,
-  //   SchemeV1.Teams.Users.Scheme.TeamsUsersParams
-  // >
-  // mediaVideos: EndpointDef<
-  //   SchemeV1.Media.Videos.Scheme.MediaVideos,
-  //   SchemeV1.Media.Videos.Scheme.MediaVideosParams
-  // >
-  // mediaPromotions: EndpointDef<
-  //   SchemeV1.Media.Promotions.Scheme.MediaPromotions,
-  //   SchemeV1.Media.Promotions.Scheme.MediaPromotionsParams
-  // >
 }
 
 export interface VersionMap {
@@ -60,48 +44,4 @@ export const versions: VersionMap = {
       path: '/teams/roles',
     },
   },
-  // v1: {
-  //   teams: {
-  //     guard: SchemeV1.Teams.Guards.isTeamsDto,
-  //     mapper: (v) => SchemeV1.Teams.Mappers.mapTeamsDto(v as SchemeV1.Teams.Scheme.TeamsDto),
-  //     serializeParams: SchemeV1.Teams.serializeParams,
-  //     path: '/teams',
-  //   },
-  //   teamsRoles: {
-  //     guard: SchemeV1.Teams.Roles.Guards.isTeamsRolesDto,
-  //     mapper: (v) =>
-  //       SchemeV1.Teams.Roles.Mappers.mapTeamsRolesDto(
-  //         v as SchemeV1.Teams.Roles.Scheme.TeamsRolesDto,
-  //       ),
-  //     serializeParams: SchemeV1.Teams.Roles.serializeParams,
-  //     path: '/teams/roles',
-  //   },
-  //   teamsUsers: {
-  //     guard: SchemeV1.Teams.Users.Guards.isTeamsUsersDto,
-  //     mapper: (v) =>
-  //       SchemeV1.Teams.Users.Mappers.mapTeamsUsersDto(
-  //         v as SchemeV1.Teams.Users.Scheme.TeamsUsersDto,
-  //       ),
-  //     serializeParams: SchemeV1.Teams.Users.serializeParams,
-  //     path: '/teams/users',
-  //   },
-  //   mediaVideos: {
-  //     guard: SchemeV1.Media.Videos.Guards.isMediaVideosDto,
-  //     mapper: (v) =>
-  //       SchemeV1.Media.Videos.Mappers.mapMediaVideosDto(
-  //         v as SchemeV1.Media.Videos.Scheme.MediaVideosDto,
-  //       ),
-  //     serializeParams: SchemeV1.Media.Videos.serializeParams,
-  //     path: '/media/videos',
-  //   },
-  //   mediaPromotions: {
-  //     guard: SchemeV1.Media.Promotions.Guards.isMediaPromotionsDto,
-  //     mapper: (v) =>
-  //       SchemeV1.Media.Promotions.Mappers.mapMediaPromotionsDto(
-  //         v as SchemeV1.Media.Promotions.Scheme.MediaPromotionsDto,
-  //       ),
-  //     serializeParams: SchemeV1.Media.Promotions.serializeParams,
-  //     path: '/media/promotions',
-  //   },
-  // },
 }
