@@ -17,6 +17,10 @@ interface V1Endpoints {
     SchemeV1.GetTeamsRolesMethod.GetTeamsRolesResponse,
     SchemeV1.GetTeamsRolesMethod.GetTeamsRolesQueryParams
   >
+  teamsUsers: EndpointDef<
+    SchemeV1.GetTeamsUsersMethod.GetTeamsUsersResponse,
+    SchemeV1.GetTeamsUsersMethod.GetTeamsUsersQueryParams
+  >
 }
 
 export interface VersionMap {
@@ -42,6 +46,15 @@ export const versions: VersionMap = {
         ),
       serializeParams: SchemeV1.GetTeamsRolesMethod.serializeGetTeamsRolesQueryParams,
       path: '/teams/roles',
+    },
+    teamsUsers: {
+      guard: SchemeV1.GetTeamsUsersMethod.isGetTeamsUsersApiResponse,
+      mapper: (v) =>
+        SchemeV1.GetTeamsUsersMethod.toGetTeamsUsersResponse(
+          v as SchemeV1.GetTeamsUsersMethod.GetTeamsUsersApiResponse,
+        ),
+      serializeParams: SchemeV1.GetTeamsUsersMethod.serializeGetTeamsUsersQueryParams,
+      path: '/teams/users',
     },
   },
 }
