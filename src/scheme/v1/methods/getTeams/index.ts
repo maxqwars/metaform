@@ -9,7 +9,7 @@ export interface GetTeamsQueryParams {
 }
 
 export function isGetTeamsApiResponse(value: unknown): value is GetTeamsApiResponse {
-  return Array.isArray(value) && value.every(Team.guards.isTeamResponse)
+  return Array.isArray(value) && value.every(Team.guards.isTeamApiResponse)
 }
 
 export function toGetTeamsResponse(dto: GetTeamsApiResponse): GetTeamsResponse {
