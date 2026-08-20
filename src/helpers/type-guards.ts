@@ -30,6 +30,7 @@ function isString(value: unknown): value is string {
 
 export const isNullableString = isNullableOptional(isString)
 export const isOptionalString = isOptional(isString)
+export const isNullableOptionalString = isNullableOptional(isString)
 
 /*
  * Number edge cases
@@ -106,6 +107,7 @@ export function isURLPath(value: unknown): value is string {
 }
 
 export const isOptionalURLPath = isOptional(isURLPath)
+export const isNullableOptionalURLPath = isNullableOptional(isURLPath)
 
 /*
  * Additional edge cases (JS-specific gotchas worth guarding against)
