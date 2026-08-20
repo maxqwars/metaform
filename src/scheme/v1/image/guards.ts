@@ -3,12 +3,12 @@ import {
   isNullableOptional,
   isPlainObject,
   isOptional,
-  isOptionalURLPath,
+  isNullableOptionalURLPath,
 } from '@/helpers/type-guards'
 
 export function isImageResponse(value: unknown): value is ImageWithOptimizedApiResponse {
   if (!isPlainObject(value)) return false
-  return isOptionalURLPath(value.preview) && isOptionalURLPath(value.thumbnail)
+  return isNullableOptionalURLPath(value.preview) && isNullableOptionalURLPath(value.thumbnail)
 }
 
 export const isOptionalImageResponse = isOptional(isImageResponse)
@@ -18,13 +18,13 @@ export function isImageWithOptimizedResponse(value: unknown): value is ImageApiR
   if (!isPlainObject(value)) return false
 
   return (
-    isOptionalURLPath(value.preview) &&
-    isOptionalURLPath(value.thumbnail) &&
-    isOptionalImageResponse(value.optimized)
+    isNullableOptionalURLPath(value.preview) &&
+    isNullableOptionalURLPath(value.thumbnail) &&
+    isNullableOptionalImageResponse(value.optimized)
   )
 }
 
 export const isOptionalImageWithOptimizedResponse = isOptional(isImageWithOptimizedResponse)
-export const isNUllableOptionalImageWithOptimizedResponse = isNullableOptional(
+export const isNullableOptionalImageWithOptimizedResponse = isNullableOptional(
   isImageWithOptimizedResponse,
 )

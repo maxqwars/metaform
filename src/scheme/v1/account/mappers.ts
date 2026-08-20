@@ -1,10 +1,10 @@
 import type { AccountApiResponse, Account } from './types'
-import { mappers as ImageMappers } from '@/scheme/v1/image'
+import { Image } from '@/scheme/v1'
 
 export function toAccount(dto: AccountApiResponse): Account {
   return {
     id: dto.id ?? null,
     nickname: dto.nickname ?? null,
-    avatar: dto.avatar !== undefined ? ImageMappers.toImageWithOptimized(dto.avatar) : null,
+    avatar: dto.avatar !== undefined ? Image.mappers.toImageWithOptimized(dto.avatar) : null,
   }
 }
