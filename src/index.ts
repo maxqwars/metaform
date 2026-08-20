@@ -3,6 +3,7 @@
  */
 export { getTeams } from './api/functions/getTeams'
 export { getTeamsRoles } from './api/functions/getTeamsRoles'
+export { getTeamsUsers } from './api/functions/getTeamsUsers'
 // export { getTeamsUsers } from './api/functions/get-teams-users'
 // export { getMediaVideos } from './api/functions/get-media-videos'
 // export { getMediaPromotions } from './api/functions/get-media-promotions'
