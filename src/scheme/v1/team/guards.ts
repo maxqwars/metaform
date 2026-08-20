@@ -5,9 +5,10 @@ import {
   isOptionalString,
   isOptionalUUID,
   isPlainObject,
+  isOptional,
 } from '@/helpers/type-guards'
 
-export function isTeamResponse(value: unknown): value is TeamApiResponse {
+export function isTeamApiResponse(value: unknown): value is TeamApiResponse {
   if (!isPlainObject(value)) return false
 
   return (
@@ -17,3 +18,5 @@ export function isTeamResponse(value: unknown): value is TeamApiResponse {
     isNullableString(value.description)
   )
 }
+
+export const isOptionalTeamApiResponse = isOptional(isTeamApiResponse)
