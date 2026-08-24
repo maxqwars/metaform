@@ -105,7 +105,7 @@ Roadmap for implementing API methods. This roadmap is subject to change; please 
 
 - ✅ /teams
 - ✅ /teams/roles
-- /teams/users
+- ✅ /teams/users
 
 ### /media
 
