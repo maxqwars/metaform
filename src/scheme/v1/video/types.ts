@@ -27,6 +27,7 @@ export interface VideoContent {
   createdAt: Date | null
   updatedAt: Date | null
   isAnnounce: boolean | null
+  origin: VideoOrigin | null
 }
 
 export interface VideoOrigin {
