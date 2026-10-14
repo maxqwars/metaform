@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {} from '@/helpers/type-guards'
+import { isPlainObject } from '@/helpers/type-guards'
 import type {
   VideoContentApiResponse,
   VideoOriginApiResponse,
@@ -22,9 +22,13 @@ export function isVideosOriginTypeApiResponse(value: unknown): value is VideoOri
   throw Error('Not implemented')
 }
 
-// TODO: Implement isVideoOriginTypeEnumApiResponse typeguard
 export function isVideoOriginTypeEnumApiResponse(
   value: unknown,
 ): value is VideoOriginTypeEnumApiResponse {
-  throw Error('Not implemented')
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  const obj = value as Record<string, string>
+  return typeof obj.value === 'string' && obj.value === 'YOUTUBE_PLAYLIST'
 }
