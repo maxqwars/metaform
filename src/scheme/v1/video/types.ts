@@ -5,7 +5,10 @@ import type { scheme as Image } from '@/scheme/v1/image'
  * Responses types
  */
 
-export type VideoContentApiResponse = components['schemas']['models.media.videos.v1.video.content']
+export type VideoContentApiResponse =
+  components['schemas']['models.media.videos.v1.video.content'] & {
+    origin?: components['schemas']['models.media.videos.v1.video.origin']
+  }
 export type VideoOriginApiResponse = components['schemas']['models.media.videos.v1.video.origin']
 export type VideoOriginTypeApiResponse =
   components['schemas']['models.media.videos.v1.video.origin.type']
