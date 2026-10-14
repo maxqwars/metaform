@@ -21,6 +21,10 @@ interface V1Endpoints {
     SchemeV1.GetTeamsUsersMethod.GetTeamsUsersResponse,
     SchemeV1.GetTeamsUsersMethod.GetTeamsUsersQueryParams
   >
+  mediaVideos: EndpointDef<
+    SchemeV1.GetMediaVideosMethod.GetMediaVideosResponse,
+    SchemeV1.GetMediaVideosMethod.GetMediaVideosQueryParams
+  >
 }
 
 export interface VersionMap {
@@ -55,6 +59,15 @@ export const versions: VersionMap = {
         ),
       serializeParams: SchemeV1.GetTeamsUsersMethod.serializeGetTeamsUsersQueryParams,
       path: '/teams/users',
+    },
+    mediaVideos: {
+      guard: SchemeV1.GetMediaVideosMethod.isGetMediaVideosApiResponse,
+      mapper: (v) =>
+        SchemeV1.GetMediaVideosMethod.toGetMediaVideosResponse(
+          v as SchemeV1.GetMediaVideosMethod.GetMediaVideosApiResponse,
+        ),
+      serializeParams: SchemeV1.GetMediaVideosMethod.serializeGetMediaVideosQueryParams,
+      path: '/media/videos',
     },
   },
 }
