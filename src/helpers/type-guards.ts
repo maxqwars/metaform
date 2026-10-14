@@ -153,6 +153,21 @@ export function isDate(value: unknown): value is Date {
   return value instanceof Date && !Number.isNaN(value.getTime())
 }
 
+export function isDateOrTimestamp(value: unknown): value is Date {
+  if (value instanceof Date) {
+    return !Number.isNaN(value.getTime())
+  }
+
+  if (typeof value === 'string' && /^\d+$/.test(value)) {
+    const date = new Date(Number(value))
+    return !Number.isNaN(date.getTime())
+  }
+  return false
+}
+
+export const isOptionalDateOrTimestamp = isOptional(isDateOrTimestamp)
+export const isNullableOptionalDateOrTimestamp = isNullableOptional(isDateOrTimestamp)
+
 /** Checks that a value is an array with zero elements. */
 export function isEmptyArray(value: unknown): value is [] {
   return Array.isArray(value) && value.length === 0
