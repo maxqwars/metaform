@@ -1,5 +1,6 @@
 import type { components } from '@/generated/scheme.v1'
 import type { scheme as Image } from '@/scheme/v1/image'
+import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
 /*
  * Responses types
@@ -33,6 +34,8 @@ export interface VideoContent {
   origin: VideoOrigin | null
 }
 
+export type VideoContentFieldsPaths = keyof NestedKeyOf<VideoContent>
+
 export interface VideoOrigin {
   id: string | null
   url: string | null
@@ -42,7 +45,11 @@ export interface VideoOrigin {
   isAnnounce: boolean | null
 }
 
+export type VideoOriginFieldsPaths = NestedKeyOf<VideoOrigin>
+
 export interface VideoOriginType {
   value: VideoOriginTypeEnumApiResponse | null
   description: string | null
 }
+
+export type VideoOriginTypeFieldsPaths = NestedKeyOf<VideoOriginType>
