@@ -1,5 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { isOptionalString, isPlainObject, isOptional } from '@/helpers/type-guards'
+import {
+  isOptionalString,
+  isPlainObject,
+  isOptional,
+  isOptionalDecimalNumber,
+  isOptionalBoolean,
+  isOptionalDateOrTimestamp,
+} from '@/helpers/type-guards'
+import { isImageWithOptimizedResponse } from '../image/guards'
 import type {
   VideoContentApiResponse,
   VideoOriginApiResponse,
@@ -7,14 +14,41 @@ import type {
   VideoOriginTypeEnumApiResponse,
 } from './types'
 
-// TODO: Implement isVideoContentApiResponse typeguard
 export function isVideoContentApiResponse(value: unknown): value is VideoContentApiResponse {
-  throw Error('Not implemented')
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  return (
+    isOptionalDecimalNumber(value.id) &&
+    isOptionalString(value.url) &&
+    isOptionalString(value.title) &&
+    isOptionalDecimalNumber(value.views) &&
+    isImageWithOptimizedResponse(value.image) &&
+    isOptionalDecimalNumber(value.comments) &&
+    isOptionalString(value.video_id) &&
+    isOptionalDateOrTimestamp(value.created_at) &&
+    isOptionalDateOrTimestamp(value.updated_at) &&
+    isOptionalBoolean(value.is_announce) &&
+    isVideoOriginApiResponse(value.origin)
+  )
 }
 
-// TODO: Implement isVideoOriginApiResponse typeguard
+export const isOptionalVideoContentApiResponse = isOptional(isVideoContentApiResponse)
+
 export function isVideoOriginApiResponse(value: unknown): value is VideoOriginApiResponse {
-  throw Error('Not implemented')
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  return (
+    isOptionalString(value.id) &&
+    isOptionalString(value.url) &&
+    isOptionalVideoOriginTypeApiResponse(value.type) &&
+    isOptionalString(value.title) &&
+    isOptionalString(value.description) &&
+    isOptionalBoolean(value.is_announce)
+  )
 }
 
 export function isVideosOriginTypeApiResponse(value: unknown): value is VideoOriginTypeApiResponse {
@@ -26,6 +60,8 @@ export function isVideosOriginTypeApiResponse(value: unknown): value is VideoOri
     isOptionalVideoOriginTypeEnumApiResponse(value.value) && isOptionalString(value.description)
   )
 }
+
+export const isOptionalVideoOriginTypeApiResponse = isOptional(isVideosOriginTypeApiResponse)
 
 export function isVideoOriginTypeEnumApiResponse(
   value: unknown,
