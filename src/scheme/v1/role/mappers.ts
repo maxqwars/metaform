@@ -1,6 +1,6 @@
-import type { RoleApiResponse, Role } from './types'
+import type { RoleApiScheme, Role } from './types'
 
-export function toRole(item: RoleApiResponse): Role {
+export function toRole(item: RoleApiScheme): Role {
   return {
     id: item.id ?? null,
     title: item.title ?? null,

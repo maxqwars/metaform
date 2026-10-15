@@ -1,22 +1,9 @@
-import type { RoleApiResponse } from './types'
-import {
-  isNullableString,
-  isOptional,
-  isOptionalDecimalNumber,
-  isOptionalString,
-  isOptionalUUID,
-  isPlainObject,
-} from '@/helpers/type-guards'
+import type { RoleApiScheme } from './types'
+import { isNullableString, isOptional, isOptionalDecimalNumber, isOptionalString, isOptionalUUID, isPlainObject } from '@/helpers/type-guards'
 
-export function isRoleResponse(value: unknown): value is RoleApiResponse {
+export function isRoleApiScheme(value: unknown): value is RoleApiScheme {
   if (!isPlainObject(value)) return false
-
-  return (
-    isOptionalUUID(value.id) &&
-    isOptionalString(value.title) &&
-    isNullableString(value.color) &&
-    isOptionalDecimalNumber(value.sort_order)
-  )
+  return isOptionalUUID(value.id) && isOptionalString(value.title) && isNullableString(value.color) && isOptionalDecimalNumber(value.sort_order)
 }
 
-export const isOptionalRoleResponse = isOptional(isRoleResponse)
+export const isOptionalRoleApiScheme = isOptional(isRoleApiScheme)
