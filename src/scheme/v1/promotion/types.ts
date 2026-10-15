@@ -2,7 +2,7 @@ import type { components } from '@/generated/scheme.v1'
 import type { scheme as Image } from '@/scheme/v1/image'
 import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
-export type PromotionApiResponse = components['schemas']['models.media.promotions.v1.promotion']
+export type PromotionApiScheme = components['schemas']['models.media.promotions.v1.promotion']
 
 export interface PromotionType {
   id: string | null
@@ -18,4 +18,4 @@ export interface PromotionType {
   hasOverlay: boolean | null
 }
 
-export type PromotionTypeFieldsPaths = NestedKeyOf<PromotionApiResponse>
+export type PromotionTypeFieldsPaths = NestedKeyOf<PromotionApiScheme>
