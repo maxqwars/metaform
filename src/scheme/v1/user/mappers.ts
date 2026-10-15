@@ -1,6 +1,6 @@
-import type { UserApiResponse, User } from './types'
+import type { User, UserApiScheme } from './types'
 
-export function toUser(dto: UserApiResponse): User {
+export function toUser(dto: UserApiScheme): User {
   return {
     id: dto.id ?? null,
     nickname: dto.nickname ?? null,

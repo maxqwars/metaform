@@ -1,7 +1,7 @@
 import type { components } from '@/generated/scheme.v1'
 import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
-export type UserApiResponse = components['schemas']['models.teams.v1.team.user']
+export type UserApiScheme = components['schemas']['models.teams.v1.team.user']
 
 export interface User {
   id: string | null
@@ -11,4 +11,4 @@ export interface User {
   isVacation: boolean | null
 }
 
-export type UserFieldsPaths = NestedKeyOf<UserApiResponse>
+export type UserFieldsPaths = NestedKeyOf<UserApiScheme>

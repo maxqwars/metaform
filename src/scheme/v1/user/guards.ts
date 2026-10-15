@@ -1,15 +1,7 @@
-import {
-  isNullableOptional,
-  isOptional,
-  isOptionalBoolean,
-  isOptionalDecimalNumber,
-  isNullableString,
-  isPlainObject,
-  isOptionalUUID,
-} from '@/helpers/type-guards'
-import type { UserApiResponse } from './types'
+import { isNullableOptional, isOptional, isOptionalBoolean, isOptionalDecimalNumber, isNullableString, isPlainObject, isOptionalUUID } from '@/helpers/type-guards'
+import type { UserApiScheme } from './types'
 
-export function isUserApiResponse(value: unknown): value is UserApiResponse {
+export function isUserApiScheme(value: unknown): value is UserApiScheme {
   if (!isPlainObject(value)) return false
 
   return (
@@ -21,5 +13,5 @@ export function isUserApiResponse(value: unknown): value is UserApiResponse {
   )
 }
 
-export const isOptionalUserApiResponse = isOptional(isUserApiResponse)
-export const isNullableOptionalUserApiResponse = isNullableOptional(isUserApiResponse)
+export const isOptionalUserApiScheme = isOptional(isUserApiScheme)
+export const isNullableOptionalUserApiScheme = isNullableOptional(isUserApiScheme)
