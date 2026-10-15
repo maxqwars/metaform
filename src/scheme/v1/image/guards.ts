@@ -1,30 +1,19 @@
-import type { ImageApiResponse, ImageWithOptimizedApiResponse } from './types'
-import {
-  isNullableOptional,
-  isPlainObject,
-  isOptional,
-  isNullableOptionalURLPath,
-} from '@/helpers/type-guards'
+import type { ImageApiScheme, ImageWithOptimizedApiScheme } from './types'
+import { isNullableOptional, isPlainObject, isOptional, isNullableOptionalURLPath } from '@/helpers/type-guards'
 
-export function isImageResponse(value: unknown): value is ImageWithOptimizedApiResponse {
+export function isImageApiScheme(value: unknown): value is ImageApiScheme {
   if (!isPlainObject(value)) return false
   return isNullableOptionalURLPath(value.preview) && isNullableOptionalURLPath(value.thumbnail)
 }
 
-export const isOptionalImageResponse = isOptional(isImageResponse)
-export const isNullableOptionalImageResponse = isNullableOptional(isImageResponse)
+export const isOptionalImageApiScheme = isOptional(isImageApiScheme)
+export const isNullableOptionalImageApiScheme = isNullableOptional(isImageApiScheme)
 
-export function isImageWithOptimizedResponse(value: unknown): value is ImageApiResponse {
+export function isImageWithOptimizedApiScheme(value: unknown): value is ImageWithOptimizedApiScheme {
   if (!isPlainObject(value)) return false
 
-  return (
-    isNullableOptionalURLPath(value.preview) &&
-    isNullableOptionalURLPath(value.thumbnail) &&
-    isNullableOptionalImageResponse(value.optimized)
-  )
+  return isNullableOptionalURLPath(value.preview) && isNullableOptionalURLPath(value.thumbnail) && isNullableOptionalImageApiScheme(value.optimized)
 }
 
-export const isOptionalImageWithOptimizedResponse = isOptional(isImageWithOptimizedResponse)
-export const isNullableOptionalImageWithOptimizedResponse = isNullableOptional(
-  isImageWithOptimizedResponse,
-)
+export const isOptionalImageWithOptimizedApiScheme = isOptional(isImageWithOptimizedApiScheme)
+export const isNullableOptionalImageWithOptimizedApiScheme = isNullableOptional(isImageWithOptimizedApiScheme)

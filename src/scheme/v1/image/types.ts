@@ -1,23 +1,24 @@
 import type { components } from '@/generated/scheme.v1'
 import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
-// API
+/*
+ * re-import original scheme
+ */
+export type ImageApiScheme = components['schemas']['commons.v1.models.components.image']
+export type ImageWithOptimizedApiScheme = components['schemas']['commons.v1.models.components.image.withOptimized']
 
-export type ImageApiResponse = components['schemas']['commons.v1.models.components.image']
-export type ImageWithOptimizedApiResponse =
-  components['schemas']['commons.v1.models.components.image.withOptimized']
-
-// Domain
+/*
+ * define metaform domain types
+ */
 
 export interface Image {
   preview: string | null
   thumbnail: string | null
 }
+
 export interface ImageWithOptimized extends Image {
   optimized: Image | null
 }
 
-// Fields
-
-export type ImageFieldsPaths = NestedKeyOf<ImageApiResponse>
-export type ImageWithOptimizedFieldsPaths = NestedKeyOf<ImageWithOptimizedApiResponse>
+export type ImageFieldsPaths = NestedKeyOf<ImageApiScheme>
+export type ImageWithOptimizedFieldsPaths = NestedKeyOf<ImageWithOptimizedApiScheme>
