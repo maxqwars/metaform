@@ -1,22 +1,9 @@
-import type { TeamApiResponse } from './types'
-import {
-  isNullableString,
-  isOptionalDecimalNumber,
-  isOptionalString,
-  isOptionalUUID,
-  isPlainObject,
-  isOptional,
-} from '@/helpers/type-guards'
+import type { TeamApiScheme } from './types'
+import { isNullableString, isOptionalDecimalNumber, isOptionalString, isOptionalUUID, isPlainObject, isOptional } from '@/helpers/type-guards'
 
-export function isTeamApiResponse(value: unknown): value is TeamApiResponse {
+export function isTeamApiScheme(value: unknown): value is TeamApiScheme {
   if (!isPlainObject(value)) return false
-
-  return (
-    isOptionalUUID(value.id) &&
-    isOptionalString(value.title) &&
-    isOptionalDecimalNumber(value.sort_order) &&
-    isNullableString(value.description)
-  )
+  return isOptionalUUID(value.id) && isOptionalString(value.title) && isOptionalDecimalNumber(value.sort_order) && isNullableString(value.description)
 }
 
-export const isOptionalTeamApiResponse = isOptional(isTeamApiResponse)
+export const isOptionalTeamApiScheme = isOptional(isTeamApiScheme)
