@@ -1,14 +1,7 @@
-import type {
-  VideoContent,
-  VideoContentApiResponse,
-  VideoOrigin,
-  VideoOriginType,
-  VideoOriginApiResponse,
-  VideoOriginTypeApiResponse,
-} from './types'
+import type { VideoContent, VideoContentApiScheme, VideoOrigin, VideoOriginType, VideoOriginApiScheme, VideoOriginTypeApiScheme } from './types'
 import { toImageWithOptimized } from '../image/mapper'
 
-export function toVideoContent(dto: VideoContentApiResponse): VideoContent {
+export function toVideoContent(dto: VideoContentApiScheme): VideoContent {
   return {
     id: dto.id ?? null,
     url: dto.url ?? null,
@@ -24,7 +17,7 @@ export function toVideoContent(dto: VideoContentApiResponse): VideoContent {
   }
 }
 
-export function toVideoOrigin(dto: VideoOriginApiResponse): VideoOrigin {
+export function toVideoOrigin(dto: VideoOriginApiScheme): VideoOrigin {
   return {
     id: dto.id ?? null,
     url: dto.url ?? null,
@@ -35,7 +28,7 @@ export function toVideoOrigin(dto: VideoOriginApiResponse): VideoOrigin {
   }
 }
 
-export function toVideoOriginType(dto: VideoOriginTypeApiResponse): VideoOriginType {
+export function toVideoOriginType(dto: VideoOriginTypeApiScheme): VideoOriginType {
   return {
     value: dto.value ?? null,
     description: dto.description ?? null,

@@ -1,20 +1,8 @@
-import {
-  isOptionalString,
-  isPlainObject,
-  isOptional,
-  isOptionalDecimalNumber,
-  isOptionalBoolean,
-  isOptionalDateOrTimestamp,
-} from '@/helpers/type-guards'
-import { isImageWithOptimizedResponse } from '../image/guards'
-import type {
-  VideoContentApiResponse,
-  VideoOriginApiResponse,
-  VideoOriginTypeApiResponse,
-  VideoOriginTypeEnumApiResponse,
-} from './types'
+import { isOptionalString, isPlainObject, isOptional, isOptionalDecimalNumber, isOptionalBoolean, isOptionalDateOrTimestamp } from '@/helpers/type-guards'
+import { isImageWithOptimizedApiScheme } from '../image/guards'
+import type { VideoContentApiScheme, VideoOriginApiScheme, VideoOriginTypeApiScheme, VideoOriginTypeEnumApiScheme } from './types'
 
-export function isVideoContentApiResponse(value: unknown): value is VideoContentApiResponse {
+export function isVideoContentApiScheme(value: unknown): value is VideoContentApiScheme {
   if (!isPlainObject(value)) {
     return false
   }
@@ -24,19 +12,19 @@ export function isVideoContentApiResponse(value: unknown): value is VideoContent
     isOptionalString(value.url) &&
     isOptionalString(value.title) &&
     isOptionalDecimalNumber(value.views) &&
-    isImageWithOptimizedResponse(value.image) &&
+    isImageWithOptimizedApiScheme(value.image) &&
     isOptionalDecimalNumber(value.comments) &&
     isOptionalString(value.video_id) &&
     isOptionalDateOrTimestamp(value.created_at) &&
     isOptionalDateOrTimestamp(value.updated_at) &&
     isOptionalBoolean(value.is_announce) &&
-    isVideoOriginApiResponse(value.origin)
+    isVideoOriginApiScheme(value.origin)
   )
 }
 
-export const isOptionalVideoContentApiResponse = isOptional(isVideoContentApiResponse)
+export const isOptionalVideoContentApiScheme = isOptional(isVideoContentApiScheme)
 
-export function isVideoOriginApiResponse(value: unknown): value is VideoOriginApiResponse {
+export function isVideoOriginApiScheme(value: unknown): value is VideoOriginApiScheme {
   if (!isPlainObject(value)) {
     return false
   }
@@ -44,28 +32,24 @@ export function isVideoOriginApiResponse(value: unknown): value is VideoOriginAp
   return (
     isOptionalString(value.id) &&
     isOptionalString(value.url) &&
-    isOptionalVideoOriginTypeApiResponse(value.type) &&
+    isOptionalVideosOriginTypeApiScheme(value.type) &&
     isOptionalString(value.title) &&
     isOptionalString(value.description) &&
     isOptionalBoolean(value.is_announce)
   )
 }
 
-export function isVideosOriginTypeApiResponse(value: unknown): value is VideoOriginTypeApiResponse {
+export function isVideosOriginTypeApiScheme(value: unknown): value is VideoOriginTypeApiScheme {
   if (!isPlainObject(value)) {
     return false
   }
 
-  return (
-    isOptionalVideoOriginTypeEnumApiResponse(value.value) && isOptionalString(value.description)
-  )
+  return isOptionalVideoOriginTypeEnumApiScheme(value.value) && isOptionalString(value.description)
 }
 
-export const isOptionalVideoOriginTypeApiResponse = isOptional(isVideosOriginTypeApiResponse)
+export const isOptionalVideosOriginTypeApiScheme = isOptional(isVideosOriginTypeApiScheme)
 
-export function isVideoOriginTypeEnumApiResponse(
-  value: unknown,
-): value is VideoOriginTypeEnumApiResponse {
+export function isVideoOriginTypeEnumApiScheme(value: unknown): value is VideoOriginTypeEnumApiScheme {
   if (!isPlainObject(value)) {
     return false
   }
@@ -74,4 +58,4 @@ export function isVideoOriginTypeEnumApiResponse(
   return typeof obj.value === 'string' && obj.value === 'YOUTUBE_PLAYLIST'
 }
 
-export const isOptionalVideoOriginTypeEnumApiResponse = isOptional(isVideoOriginTypeEnumApiResponse)
+export const isOptionalVideoOriginTypeEnumApiScheme = isOptional(isVideoOriginTypeEnumApiScheme)

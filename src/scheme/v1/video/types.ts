@@ -2,23 +2,12 @@ import type { components } from '@/generated/scheme.v1'
 import type { scheme as Image } from '@/scheme/v1/image'
 import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 
-/*
- * Responses types
- */
-
-export type VideoContentApiResponse =
-  components['schemas']['models.media.videos.v1.video.content'] & {
-    origin?: components['schemas']['models.media.videos.v1.video.origin']
-  }
-export type VideoOriginApiResponse = components['schemas']['models.media.videos.v1.video.origin']
-export type VideoOriginTypeApiResponse =
-  components['schemas']['models.media.videos.v1.video.origin.type']
-export type VideoOriginTypeEnumApiResponse =
-  components['schemas']['enums.media.videos.video.origin.type']
-
-/*
- * Metaform domain types
- */
+export type VideoContentApiScheme = components['schemas']['models.media.videos.v1.video.content'] & {
+  origin?: components['schemas']['models.media.videos.v1.video.origin']
+}
+export type VideoOriginApiScheme = components['schemas']['models.media.videos.v1.video.origin']
+export type VideoOriginTypeApiScheme = components['schemas']['models.media.videos.v1.video.origin.type']
+export type VideoOriginTypeEnumApiScheme = components['schemas']['enums.media.videos.video.origin.type']
 
 export interface VideoContent {
   id: number | null
@@ -34,7 +23,7 @@ export interface VideoContent {
   origin: VideoOrigin | null
 }
 
-export type VideoContentFieldsPaths = keyof NestedKeyOf<VideoContent>
+export type VideoContentFieldsPaths = keyof NestedKeyOf<VideoContentApiScheme>
 
 export interface VideoOrigin {
   id: string | null
@@ -45,11 +34,11 @@ export interface VideoOrigin {
   isAnnounce: boolean | null
 }
 
-export type VideoOriginFieldsPaths = NestedKeyOf<VideoOrigin>
+export type VideoOriginFieldsPaths = NestedKeyOf<VideoOriginApiScheme>
 
 export interface VideoOriginType {
-  value: VideoOriginTypeEnumApiResponse | null
+  value: VideoOriginTypeEnumApiScheme | null
   description: string | null
 }
 
-export type VideoOriginTypeFieldsPaths = NestedKeyOf<VideoOriginType>
+export type VideoOriginTypeFieldsPaths = NestedKeyOf<VideoOriginTypeApiScheme>
