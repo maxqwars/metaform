@@ -9,22 +9,10 @@ interface EndpointDef<TResult, TParams, TPathParams = undefined> {
 }
 
 interface V1Endpoints {
-  teams: EndpointDef<
-    SchemeV1.GetTeamsMethod.GetTeamsResponse,
-    SchemeV1.GetTeamsMethod.GetTeamsQueryParams
-  >
-  teamsRoles: EndpointDef<
-    SchemeV1.GetTeamsRolesMethod.GetTeamsRolesResponse,
-    SchemeV1.GetTeamsRolesMethod.GetTeamsRolesQueryParams
-  >
-  teamsUsers: EndpointDef<
-    SchemeV1.GetTeamsUsersMethod.GetTeamsUsersResponse,
-    SchemeV1.GetTeamsUsersMethod.GetTeamsUsersQueryParams
-  >
-  mediaVideos: EndpointDef<
-    SchemeV1.GetMediaVideosMethod.GetMediaVideosResponse,
-    SchemeV1.GetMediaVideosMethod.GetMediaVideosQueryParams
-  >
+  teams: EndpointDef<SchemeV1.GetTeamsMethod.GetTeamsResponse, SchemeV1.GetTeamsMethod.GetTeamsQueryParams>
+  teamsRoles: EndpointDef<SchemeV1.GetTeamsRolesMethod.GetTeamsRolesResponse, SchemeV1.GetTeamsRolesMethod.GetTeamsRolesQueryParams>
+  teamsUsers: EndpointDef<SchemeV1.GetTeamsUsersMethod.GetTeamsUsersResponse, SchemeV1.GetTeamsUsersMethod.GetTeamsUsersQueryParams>
+  mediaVideos: EndpointDef<SchemeV1.GetMediaVideosMethod.GetMediaVideosResponse, SchemeV1.GetMediaVideosMethod.GetMediaVideosQueryParams>
 }
 
 export interface VersionMap {
@@ -34,38 +22,26 @@ export interface VersionMap {
 export const versions: VersionMap = {
   v1: {
     teams: {
-      guard: SchemeV1.GetTeamsMethod.isGetTeamsApiResponse,
-      mapper: (v) =>
-        SchemeV1.GetTeamsMethod.toGetTeamsResponse(
-          v as SchemeV1.GetTeamsMethod.GetTeamsApiResponse,
-        ),
+      guard: SchemeV1.GetTeamsMethod.isGetTeamsApiScheme,
+      mapper: (v) => SchemeV1.GetTeamsMethod.toGetTeams(v as SchemeV1.GetTeamsMethod.GetTeamsApiResponse),
       serializeParams: SchemeV1.GetTeamsMethod.serializeGetTeamsQueryParams,
       path: '/teams',
     },
     teamsRoles: {
-      guard: SchemeV1.GetTeamsRolesMethod.isGetTeamsRolesApiResponse,
-      mapper: (v) =>
-        SchemeV1.GetTeamsRolesMethod.toGetTeamsRolesResponse(
-          v as SchemeV1.GetTeamsRolesMethod.GetTeamsRolesApiResponse,
-        ),
+      guard: SchemeV1.GetTeamsRolesMethod.isGetTeamsRolesApiScheme,
+      mapper: (v) => SchemeV1.GetTeamsRolesMethod.toGetTeamsRoles(v as SchemeV1.GetTeamsRolesMethod.GetTeamsRolesApiResponse),
       serializeParams: SchemeV1.GetTeamsRolesMethod.serializeGetTeamsRolesQueryParams,
       path: '/teams/roles',
     },
     teamsUsers: {
       guard: SchemeV1.GetTeamsUsersMethod.isGetTeamsUsersApiResponse,
-      mapper: (v) =>
-        SchemeV1.GetTeamsUsersMethod.toGetTeamsUsersResponse(
-          v as SchemeV1.GetTeamsUsersMethod.GetTeamsUsersApiResponse,
-        ),
+      mapper: (v) => SchemeV1.GetTeamsUsersMethod.toGetTeamsUsersResponse(v as SchemeV1.GetTeamsUsersMethod.GetTeamsUsersApiResponse),
       serializeParams: SchemeV1.GetTeamsUsersMethod.serializeGetTeamsUsersQueryParams,
       path: '/teams/users',
     },
     mediaVideos: {
-      guard: SchemeV1.GetMediaVideosMethod.isGetMediaVideosApiResponse,
-      mapper: (v) =>
-        SchemeV1.GetMediaVideosMethod.toGetMediaVideosResponse(
-          v as SchemeV1.GetMediaVideosMethod.GetMediaVideosApiResponse,
-        ),
+      guard: SchemeV1.GetMediaVideosMethod.isGetMediaVideosApiScheme,
+      mapper: (v) => SchemeV1.GetMediaVideosMethod.toGetMediaVideos(v as SchemeV1.GetMediaVideosMethod.GetMediaVideosApiResponse),
       serializeParams: SchemeV1.GetMediaVideosMethod.serializeGetMediaVideosQueryParams,
       path: '/media/videos',
     },
