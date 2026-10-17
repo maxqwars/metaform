@@ -1,6 +1,6 @@
-import type { ApiError, ApiErrorResponse } from './types'
+import type { ApiError, ApiErrorScheme } from './types'
 
-export function toApiError(dto: ApiErrorResponse): ApiError {
+export function toApiError(dto: ApiErrorScheme): ApiError {
   return {
     message: dto.message ?? null,
     fieldErrors: dto.errors ?? null,

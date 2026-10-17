@@ -4,7 +4,7 @@ import type * as ErrorTypes from '../types'
 
 describe('toApiErrorBody', () => {
   it('should map message and field errors when both are present', () => {
-    const dto: ErrorTypes.ApiErrorResponse = {
+    const dto: ErrorTypes.ApiErrorScheme = {
       message: 'Validation failed',
       errors: { login: ['Required field'] },
     }

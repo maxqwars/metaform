@@ -1,4 +1,4 @@
-export interface ApiErrorResponse {
+export interface ApiErrorScheme {
   message?: string
   errors?: Record<string, string[]>
 }
