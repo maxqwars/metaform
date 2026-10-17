@@ -1,6 +1,6 @@
 import { Video } from '@/scheme/v1'
 
-export type GetMediaVideosApiResponse = Video.scheme.VideoContentApiResponse[]
+export type GetMediaVideosApiResponse = Video.scheme.VideoContentApiScheme[]
 export type GetMediaVideosResponse = Video.scheme.VideoContent[]
 
 export interface GetMediaVideosQueryParams {
@@ -9,17 +9,15 @@ export interface GetMediaVideosQueryParams {
   limit?: number
 }
 
-export function isGetMediaVideosApiResponse(value: unknown): value is GetMediaVideosApiResponse {
-  return Array.isArray(value) && value.every(Video.guards.isVideoContentApiResponse)
+export function isGetMediaVideosApiScheme(value: unknown): value is GetMediaVideosApiResponse {
+  return Array.isArray(value) && value.every(Video.guards.isVideoContentApiScheme)
 }
 
-export function toGetMediaVideosResponse(dto: GetMediaVideosApiResponse): GetMediaVideosResponse {
+export function toGetMediaVideos(dto: GetMediaVideosApiResponse): GetMediaVideosResponse {
   return dto.map((value) => Video.mappers.toVideoContent(value))
 }
 
-export function serializeGetMediaVideosQueryParams(
-  params: GetMediaVideosQueryParams,
-): Record<string, string> {
+export function serializeGetMediaVideosQueryParams(params: GetMediaVideosQueryParams): Record<string, string> {
   return {
     ...(params.include && { include: params.include.join(',') }),
     ...(params.exclude && { exclude: params.exclude.join(',') }),

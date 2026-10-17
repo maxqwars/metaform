@@ -1,6 +1,6 @@
 import { Team } from '@/scheme/v1/'
 
-export type GetTeamsApiResponse = Team.scheme.TeamApiResponse[]
+export type GetTeamsApiResponse = Team.scheme.TeamApiScheme[]
 export type GetTeamsResponse = Team.scheme.Team[]
 
 export interface GetTeamsQueryParams {
@@ -8,11 +8,11 @@ export interface GetTeamsQueryParams {
   exclude?: Team.scheme.TeamFieldsPaths[]
 }
 
-export function isGetTeamsApiResponse(value: unknown): value is GetTeamsApiResponse {
-  return Array.isArray(value) && value.every(Team.guards.isTeamApiResponse)
+export function isGetTeamsApiScheme(value: unknown): value is GetTeamsApiResponse {
+  return Array.isArray(value) && value.every(Team.guards.isTeamApiScheme)
 }
 
-export function toGetTeamsResponse(dto: GetTeamsApiResponse): GetTeamsResponse {
+export function toGetTeams(dto: GetTeamsApiResponse): GetTeamsResponse {
   return dto.map((value) => Team.mappers.toTeam(value))
 }
 

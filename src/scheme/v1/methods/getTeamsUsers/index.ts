@@ -5,10 +5,9 @@ import type { NestedKeyOf } from '@/helpers/nestedKeyOf'
 /*
  * ⚠️ Fix for the OpenAPI schema: the user field of the responses.api.v1.teams.users object can be null, which was not defined in the schema.
  */
-export type GetTeamsUsersApiResponseItem =
-  components['schemas']['responses.api.v1.teams.users'][number] & {
-    user?: components['schemas']['models.teams.v1.team.user.account'] | null
-  }
+export type GetTeamsUsersApiResponseItem = components['schemas']['responses.api.v1.teams.users'][number] & {
+  user?: components['schemas']['models.teams.v1.team.user.account'] | null
+}
 export type GetTeamsUsersApiResponse = GetTeamsUsersApiResponseItem[]
 
 export interface GetTeamsUsersResponseItem extends User.scheme.User {
@@ -26,9 +25,7 @@ export interface GetTeamsUsersQueryParams {
   exclude?: GetTeamsUsersFields[]
 }
 
-export function serializeGetTeamsUsersQueryParams(
-  params: GetTeamsUsersQueryParams,
-): Record<string, string> {
+export function serializeGetTeamsUsersQueryParams(params: GetTeamsUsersQueryParams): Record<string, string> {
   return {
     ...(params.include && { include: params.include.join(',') }),
     ...(params.exclude && { exclude: params.exclude.join(',') }),
@@ -40,26 +37,21 @@ export function isGetTeamsUsersApiResponse(value: unknown): value is GetTeamsUse
 
   return value.every((item: GetTeamsUsersApiResponseItem): boolean => {
     return (
-      Team.guards.isOptionalTeamApiResponse(item.team) &&
-      Account.guards.isNullableOptionalAccountApiResponse(item.user) &&
-      (typeof item.roles !== 'undefined'
-        ? item.roles.every((role) => Role.guards.isOptionalRoleResponse(role))
-        : true)
+      Team.guards.isOptionalTeamApiScheme(item.team) &&
+      Account.guards.isNullableOptionalAccountApiScheme(item.user) &&
+      (typeof item.roles !== 'undefined' ? item.roles.every((role) => Role.guards.isOptionalRoleApiScheme(role)) : true)
     )
   })
 }
 
-export function toGetTeamsUsersResponseItem(
-  dto: GetTeamsUsersApiResponseItem,
-): GetTeamsUsersResponseItem {
+export function toGetTeamsUsersResponseItem(dto: GetTeamsUsersApiResponseItem): GetTeamsUsersResponseItem {
   const UserFields = User.mappers.toUser(dto)
 
   return {
     ...UserFields,
     user: !dto.user ? null : Account.mappers.toAccount(dto.user),
     team: typeof dto.team !== 'undefined' ? Team.mappers.toTeam(dto.team) : null,
-    roles:
-      typeof dto.roles !== 'undefined' ? dto.roles.map((item) => Role.mappers.toRole(item)) : null,
+    roles: typeof dto.roles !== 'undefined' ? dto.roles.map((item) => Role.mappers.toRole(item)) : null,
   }
 }
 
