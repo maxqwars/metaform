@@ -15,11 +15,8 @@ export function unwrapTransportResult<T>(result: TransportResult<T>): TransportR
   const { error } = result
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (error.kind === 'http' && mappers.toApiError(error.body as scheme.ApiErrorResponse)) {
-    throw new MetaformApiError(
-      error.status,
-      mappers.toApiError(error.body as scheme.ApiErrorResponse),
-    )
+  if (error.kind === 'http' && mappers.toApiError(error.body as scheme.ApiErrorScheme)) {
+    throw new MetaformApiError(error.status, mappers.toApiError(error.body as scheme.ApiErrorScheme))
   }
 
   throw new MetaformTransportError(error)
