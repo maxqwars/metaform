@@ -1,20 +1,11 @@
-import type { AccountApiResponse } from './types'
+import type { AccountApiScheme } from './types'
 import { Image } from '@/scheme/v1'
-import {
-  isDecimalNumber,
-  isNullableOptional,
-  isNullableOptionalString,
-  isPlainObject,
-} from '@/helpers/type-guards'
+import { isDecimalNumber, isNullableOptional, isNullableOptionalString, isPlainObject } from '@/helpers/type-guards'
 
-export function isAccountApiResponse(value: unknown): value is AccountApiResponse {
+export function isAccountApiScheme(value: unknown): value is AccountApiScheme {
   if (!isPlainObject(value)) return false
 
-  return (
-    isDecimalNumber(value.id) &&
-    isNullableOptionalString(value.nickname) &&
-    Image.guards.isNullableOptionalImageWithOptimizedResponse(value.avatar)
-  )
+  return isDecimalNumber(value.id) && isNullableOptionalString(value.nickname) && Image.guards.isNullableOptionalImageWithOptimizedApiScheme(value.avatar)
 }
 
-export const isNullableOptionalAccountApiResponse = isNullableOptional(isAccountApiResponse)
+export const isNullableOptionalAccountApiScheme = isNullableOptional(isAccountApiScheme)

@@ -1,7 +1,7 @@
-import type { AccountApiResponse, Account } from './types'
+import type { AccountApiScheme, Account } from './types'
 import { Image } from '@/scheme/v1'
 
-export function toAccount(dto: AccountApiResponse): Account {
+export function toAccount(dto: AccountApiScheme): Account {
   return {
     id: dto.id ?? null,
     nickname: dto.nickname ?? null,
